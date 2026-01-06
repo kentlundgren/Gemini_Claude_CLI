@@ -964,19 +964,73 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
             </ul>
         </div>
 
-        <h4>🚨 Om det fortfarande inte fungerar:</h4>
+        <h4>🚨 Om det fortfarande inte fungerar efter PowerShell-omstart:</h4>
         <div class="warning">
             <strong>Problem: PATH är inte uppdaterad</strong>
+            <p>Detta är ett vanligt Windows-problem - miljövariabler uppdateras inte fullt ut förrän efter omstart.</p>
+        </div>
+
+        <div class="success">
+            <strong>Lösning 1: Använd Hjälpscript (add_gcloud_to_path.ps1)</strong>
+            <p>Ett PowerShell-script har skapats för att automatiskt hitta och lägga till Google Cloud SDK i PATH:</p>
+            <div class="code-block">
+                <span class="command"># Tillåt script-körning först (engångsinställning):</span><br>
+                Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned<br><br>
+                
+                <span class="command"># Kör scriptet:</span><br>
+                .\add_gcloud_to_path.ps1<br><br>
+                
+                <span class="output"># Du bör se:</span><br>
+                <span class="output">Hittade Google Cloud SDK i: C:\Users\...\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin</span><br>
+                <span class="output">✓ Tillagt i PATH!</span>
+            </div>
+            <p><strong>Efter scriptet:</strong> Stäng och öppna PowerShell igen, testa <code>gcloud --version</code></p>
+        </div>
+
+        <div class="warning">
+            <strong>Lösning 2: Starta Om Datorn (SÄKRASTE!)</strong> ⭐
             <ol>
-                <li>Starta om <strong>hela datorn</strong> (inte bara PowerShell)</li>
-                <li>Eller lägg till manuellt i PATH:
+                <li>Spara allt arbete</li>
+                <li>Starta om datorn helt (inte bara logga ut/in)</li>
+                <li>Efter omstart, öppna PowerShell</li>
+                <li>Kör: <code>gcloud --version</code></li>
+                <li>✅ Det borde nu fungera!</li>
+            </ol>
+            <p><strong>💡 Varför?</strong> Windows laddar miljövariabler (PATH) vid uppstart. Även om installationen eller scriptet lagt till sökvägen, ser existerande processer inte ändringen förrän efter omstart.</p>
+        </div>
+
+        <div class="info">
+            <strong>Lösning 3: Manuell PATH-uppdatering</strong>
+            <p>Om du inte vill starta om, lägg till manuellt:</p>
+            <ol>
+                <li>Tryck <code>Windows + R</code></li>
+                <li>Skriv: <code>sysdm.cpl</code> och tryck Enter</li>
+                <li>Gå till fliken "Advanced"</li>
+                <li>Klicka "Environment Variables"</li>
+                <li>Under "User variables", dubbelklicka "Path"</li>
+                <li>Klicka "New" och lägg till rätt sökväg:
                     <ul>
-                        <li>Standardplats: <code>C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin</code></li>
-                        <li>Sök på "Environment Variables" i Windows</li>
-                        <li>Lägg till ovanstående sökväg i PATH</li>
+                        <li><code>C:\Users\DITT-ANVÄNDARNAMN\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin</code></li>
+                        <li>ELLER <code>C:\Program Files\Google\Cloud SDK\google-cloud-sdk\bin</code></li>
+                        <li>ELLER <code>C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin</code></li>
                     </ul>
                 </li>
+                <li>OK, OK, OK</li>
+                <li>Stäng ALLA PowerShell-fönster</li>
+                <li>Öppna nytt PowerShell-fönster</li>
+                <li>Testa: <code>gcloud --version</code></li>
             </ol>
+        </div>
+
+        <div class="warning" style="background-color: #ffebee;">
+            <h4 style="color: #c62828;">⚠️ Viktig Läxa:</h4>
+            <p><strong>Stänga och öppna PowerShell ≠ Starta om datorn</strong></p>
+            <ul>
+                <li>❌ Stänga PowerShell: Startar bara om terminalapplikationen</li>
+                <li>❌ Öppna ny PowerShell: Ärver fortfarande gamla PATH från Windows</li>
+                <li>✅ Starta om datorn: Windows laddar om ALLA miljövariabler från början</li>
+            </ul>
+            <p><strong>TL;DR:</strong> Om <code>gcloud --version</code> inte fungerar efter att ha stängt/öppnat PowerShell → <strong>Starta om datorn!</strong></p>
         </div>
     </div>
 
@@ -1088,6 +1142,125 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
         </ol>
     </div>
 
+    <h2>📝 Komplett Installationsresa - Från Start Till Mål</h2>
+
+    <div class="step">
+        <h3>Den Typiska Installationsupplevelsen (Verklig Erfarenhet!)</h3>
+        <p>Här är vad som VERKLIGEN händer när man installerar Gemini CLI första gången:</p>
+
+        <div class="warning">
+            <h4>⚠️ Fas 1: Första Försöket (Misslyckas)</h4>
+            <div class="code-block">
+                PS> gcloud ai gemini generate "berätta om Frans G Bengtsson"<br>
+                <span style="color: #e74c3c;">gcloud : The term 'gcloud' is not recognized...</span>
+            </div>
+            <p><strong>Problem:</strong> Google Cloud CLI är inte installerat!</p>
+            <p><strong>Läxa:</strong> Man kan inte använda Gemini CLI förrän Google Cloud SDK är installerat.</p>
+        </div>
+
+        <div class="info">
+            <h4>📥 Fas 2: Installation</h4>
+            <ol>
+                <li>Besök: https://cloud.google.com/sdk/docs/install</li>
+                <li>Ladda ner Google Cloud SDK Installer för Windows</li>
+                <li>Kör installationsprogrammet</li>
+                <li>Acceptera alla standardinställningar</li>
+                <li>Vänta på installationen (kan ta 5-10 minuter)</li>
+            </ol>
+            <p><strong>Förväntning:</strong> "Nu funkar det säkert!"</p>
+        </div>
+
+        <div class="warning">
+            <h4>⚠️ Fas 3: Fortfarande Fungerar Inte</h4>
+            <div class="code-block">
+                PS> gcloud --version<br>
+                <span style="color: #e74c3c;">gcloud : The term 'gcloud' is not recognized...</span>
+            </div>
+            <p><strong>Problem:</strong> PATH-miljövariabeln är inte uppdaterad!</p>
+            <p><strong>Vad som hänt:</strong></p>
+            <ul>
+                <li>✅ Google Cloud SDK ÄR installerat</li>
+                <li>❌ Men Windows har inte uppdaterat PATH ännu</li>
+                <li>❌ PowerShell ser inte det nya kommandot</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <h4>🔧 Fas 4: Fixar PATH med Script</h4>
+            <div class="code-block">
+                PS> Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned<br>
+                PS> .\add_gcloud_to_path.ps1<br>
+                <span style="color: #2ecc71;">Hittade Google Cloud SDK i: C:\Users\...\AppData\Local\Google\Cloud SDK\...</span><br>
+                <span style="color: #2ecc71;">✓ Tillagt i PATH!</span>
+            </div>
+            <p><strong>Förväntning:</strong> "Nu måste det funka!"</p>
+        </div>
+
+        <div class="warning">
+            <h4>⚠️ Fas 5: Stänger och Öppnar PowerShell... Men NEJ</h4>
+            <div class="code-block">
+                <span class="command"># Stänger PowerShell</span><br>
+                <span class="command"># Öppnar NY PowerShell</span><br>
+                PS> gcloud --version<br>
+                <span style="color: #e74c3c;">gcloud : The term 'gcloud' is not recognized...</span>
+            </div>
+            <p><strong>😤 Frustration: "Varför funkar det inte?!"</strong></p>
+            <p><strong>Sanningen:</strong> Windows laddar PATH vid SYSTEM-uppstart, inte vid app-start!</p>
+        </div>
+
+        <div class="success" style="background-color: #d4edda; border-left: 6px solid #28a745;">
+            <h4>✅ Fas 6: LÖSNINGEN - Starta Om Datorn</h4>
+            <div class="code-block">
+                <span class="command"># 1. Spara allt arbete</span><br>
+                <span class="command"># 2. Starta om datorn</span><br>
+                <span class="command"># 3. Öppna PowerShell efter omstart</span><br>
+                PS> gcloud --version<br>
+                <span style="color: #2ecc71;">Google Cloud SDK 450.0.0</span><br>
+                <span style="color: #2ecc71;">bq 2.0.97</span><br>
+                <span style="color: #2ecc71;">core 2023.10.30</span>
+            </div>
+            <h3 style="color: #28a745;">🎉 DET FUNGERAR!</h3>
+        </div>
+    </div>
+
+    <div class="info">
+        <h3>💡 Sammanfattning av Lärdomar:</h3>
+        <table>
+            <tr>
+                <th>Myt</th>
+                <th>Verklighet</th>
+            </tr>
+            <tr>
+                <td>"Efter installation funkar det direkt"</td>
+                <td>❌ NEJ - PATH måste uppdateras</td>
+            </tr>
+            <tr>
+                <td>"Stänga och öppna PowerShell räcker"</td>
+                <td>❌ NEJ - Windows laddar PATH vid systemstart</td>
+            </tr>
+            <tr>
+                <td>"Scriptet fixar allt"</td>
+                <td>⚠️ DELVIS - Lägger till PATH men kräver omstart</td>
+            </tr>
+            <tr>
+                <td>"Måste starta om datorn"</td>
+                <td>✅ JA - Det är det säkraste och enklaste!</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="warning" style="background-color: #ffebee; border-left: 6px solid #c62828;">
+        <h3 style="color: #c62828;">⚠️ Den Gyllene Regeln:</h3>
+        <p style="font-size: 1.2em;"><strong>Efter att ha installerat Google Cloud SDK:</strong></p>
+        <ol style="font-size: 1.1em;">
+            <li><strong>STARTA OM DATORN</strong> (inte bara PowerShell)</li>
+            <li>Öppna PowerShell efter omstart</li>
+            <li>Testa: <code>gcloud --version</code></li>
+            <li>Om det fungerar → Fortsätt till autentisering</li>
+            <li>Om det inte fungerar → Kör <code>add_gcloud_to_path.ps1</code> och starta om IGEN</li>
+        </ol>
+    </div>
+
     <h2>📖 Ytterligare Resurser</h2>
 
     <div class="info">
@@ -1132,7 +1305,15 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
     <div style="margin-top: 50px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; border-radius: 10px;">
         <p><strong>📝 Dokumentet skapad av Kent Lundgren</strong></p>
         <p>Skapad: 2025-01-06</p>
-        <p>Uppdaterad: 2025-01-06 - Lade till kopieringsknappar och instruktioner för att hantera lång output</p>
+        <p><strong>Senaste uppdatering: 2025-01-06</strong></p>
+        <ul style="list-style: none; padding: 0;">
+            <li>✅ Lade till kopieringsknappar för alla prompter</li>
+            <li>✅ Instruktioner för att hantera lång terminal-output</li>
+            <li>✅ Omfattande felsökningsguide med verkliga exempel</li>
+            <li>✅ add_gcloud_to_path.ps1 script-dokumentation</li>
+            <li>✅ "Komplett Installationsresa" - Den verkliga upplevelsen</li>
+            <li>✅ PATH-problem och omstartsguide</li>
+        </ul>
         <p><em>Lycka till med Gemini CLI - Din AI-assistent i terminalen! 🚀</em></p>
     </div>
 
