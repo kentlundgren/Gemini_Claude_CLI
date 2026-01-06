@@ -429,19 +429,40 @@ Förklara varje förbättring du föreslår.</span>
     </div>
 
     <div class="prompt-card">
-        <div class="prompt-title">📚 Prompt 3: Konceptförklaring och Vägledning</div>
-        <p><strong>Använd när:</strong> Du vill lära dig något nytt eller förstå koncept</p>
-        <p><strong>Prompt:</strong></p>
+        <div class="prompt-title">📚 Prompt 3: Konceptförklaring som HTML-Dokument</div>
+        <p><strong>Använd när:</strong> Du vill lära dig något nytt och få det som ett HTML-dokument att spara</p>
+        <p><strong>Prompt (Uppdaterad för HTML-output):</strong></p>
         <div class="code-block">
-            <span class="prompt-example">Förklara skillnaden mellan git merge och git rebase för mig. Ge konkreta exempel på när jag ska använda vardera, och visa med diagram hur commit-historiken ser ut efter varje operation. Inkludera också best practices för att undvika vanliga fallgropar.</span>
+            <span class="prompt-example">Skapa ett komplett, vackert formaterat HTML-dokument (git_merge_rebase.html) som förklarar skillnaden mellan git merge och git rebase. Dokumentet ska innehålla:<br><br>
+
+1. En tydlig introduktion<br>
+2. Visuella ASCII-diagram som visar commit-historik före och efter merge respektive rebase<br>
+3. Konkreta exempel på när man ska använda vardera<br>
+4. Best practices och vanliga fallgropar att undvika<br>
+5. Kod-exempel i färgade code-block<br>
+6. Modern CSS-styling med boxar, färger och responsiv design<br>
+7. En sammanfattning med checklista<br><br>
+
+Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett HTML-struktur från &lt;!DOCTYPE html&gt; till &lt;/html&gt;.</span>
         </div>
         <p><strong>Detta visar:</strong></p>
         <ul>
-            <li>✅ Pedagogiska förklaringar</li>
-            <li>✅ Visuella representationer</li>
+            <li>✅ HTML-dokumentgenerering</li>
+            <li>✅ Pedagogiska förklaringar med styling</li>
+            <li>✅ Visuella representationer (ASCII-diagram)</li>
             <li>✅ Best practices och tips</li>
-            <li>✅ Praktiska användningsfall</li>
+            <li>✅ Komplett, användbart dokument att spara</li>
         </ul>
+        
+        <div class="success">
+            <strong>💾 Efter att Gemini genererat koden:</strong>
+            <ol>
+                <li>Kopiera hela HTML-koden från terminalen</li>
+                <li>Skapa en ny fil: <code>git_merge_rebase.html</code></li>
+                <li>Klistra in koden</li>
+                <li>Öppna i webbläsare och njut av ditt nya dokument! 🎉</li>
+            </ol>
+        </div>
     </div>
 
     <h2>🎨 Användningsområden för Gemini CLI</h2>
@@ -532,6 +553,49 @@ Förklara varje förbättring du föreslår.</span>
             <span class="command"># Fråga Gemini om ett bra commit-meddelande</span><br>
             gcloud ai gemini generate "Föreslå ett commit-meddelande för dessa ändringar: [klistra in diff]"
         </div>
+
+        <h4>6. Be om HTML-Output för att Spara Resultat 📄</h4>
+        <div class="success">
+            <p><strong>💡 Pro-tips:</strong> Istället för att bara få text-svar, be Gemini att generera ett komplett HTML-dokument!</p>
+        </div>
+        
+        <p><strong>Så här gör du:</strong></p>
+        <ol>
+            <li>Lägg till "Skapa ett komplett HTML-dokument" i början av din prompt</li>
+            <li>Specificera vad dokumentet ska innehålla</li>
+            <li>Be om CSS-styling för snygg formatering</li>
+            <li>Kopiera resultatet till en .html-fil</li>
+        </ol>
+
+        <div class="warning">
+            <strong>❌ Vanlig prompt (bara text):</strong><br>
+            "Förklara hur async/await fungerar i JavaScript"
+        </div>
+
+        <div class="success">
+            <strong>✅ Förbättrad prompt (HTML-dokument):</strong><br>
+            "Skapa ett komplett HTML-dokument (async_await_guide.html) som förklarar async/await i JavaScript. 
+            Inkludera kod-exempel, visuella diagram, interaktiva exempel och modern CSS-styling. 
+            Komplett struktur från &lt;!DOCTYPE html&gt; till &lt;/html&gt;."
+        </div>
+
+        <p><strong>Fördelar med HTML-output:</strong></p>
+        <ul>
+            <li>📄 Spara som permanent referensdokument</li>
+            <li>🎨 Snygg formatering och layout</li>
+            <li>🔍 Sökbar och lätt att navigera</li>
+            <li>📤 Dela med andra</li>
+            <li>💾 Bygg upp ditt eget kunskapsbibliotek</li>
+        </ul>
+
+        <p><strong>Exempel på dokument du kan generera:</strong></p>
+        <ul>
+            <li>📚 Guider och tutorials</li>
+            <li>📖 API-dokumentation</li>
+            <li>🔍 Kodanalys-rapporter</li>
+            <li>📊 Tekniska specifikationer</li>
+            <li>🎓 Läringsmaterial</li>
+        </ul>
     </div>
 
     <h2>🚨 Vanliga Problem och Lösningar</h2>
