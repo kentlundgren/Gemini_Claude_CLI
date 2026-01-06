@@ -272,6 +272,18 @@
                 <td class="success">✅ 10 minuter</td>
             </tr>
             <tr>
+                <td><strong>Konfigurationsförmåga</strong></td>
+                <td class="fail">❌ N/A (fungerar ej)</td>
+                <td class="success">✅ GEMINI.md för kontext</td>
+                <td class="success">✅ CLAUDE.md + Agentsystem (kraftfullt!)</td>
+            </tr>
+            <tr>
+                <td><strong>Källhänvisningar</strong></td>
+                <td class="fail">❌ N/A</td>
+                <td style="background-color: #fff3cd;">⚠️ Ej konfigurerat som standard</td>
+                <td class="success">✅ Obligatoriskt via konfiguration</td>
+            </tr>
+            <tr>
                 <td><strong>Rekommendation</strong></td>
                 <td class="fail">❌ Använd INTE</td>
                 <td class="success">✅ FUNGERAR BRA</td>
@@ -283,9 +295,10 @@
             <h3 style="color: #0c5460; margin-top: 0;">📝 Slutsats från Jämförelsen</h3>
             <p><strong>Båda npm-baserade CLI-verktygen fungerar utmärkt:</strong></p>
             <ul style="color: #0c5460;">
-                <li><strong>Gemini CLI (npm):</strong> Bra för Google's AI-modeller, kräver API-nyckel</li>
-                <li><strong>Claude Code:</strong> Exceptionell utvecklarupplevelse med bred funktionalitet</li>
+                <li><strong>Gemini CLI (npm):</strong> Bra för Google's AI-modeller, kräver API-nyckel, grundläggande konfiguration via GEMINI.md</li>
+                <li><strong>Claude Code:</strong> Exceptionell utvecklarupplevelse med brett funktionalitet + kraftfullt agentsystem för djup konfiguration</li>
             </ul>
+            <p><strong>Den stora skillnaden:</strong> Claude Code's agentsystem låter dig enkelt definiera exakt hur AI:n ska bete sig - från källkrav till kodningsstandarder - genom simpla textfiler (CLAUDE.md + agent-filer).</p>
             <p><strong>Det som INTE fungerar:</strong> Google Cloud SDK-metoden (<code>gcloud ai gemini</code>)</p>
         </div>
 
@@ -335,6 +348,44 @@
                 <li>💻 <strong>Web Developer Agent</strong> - Implementerar HTML/CSS/JavaScript</li>
                 <li>🌿 <strong>Git Expert Agent</strong> - Hanterar Git och GitHub</li>
             </ul>
+            
+            <div style="background-color: #fff; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #4caf50;">
+                <h4 style="color: #1b5e20; margin-top: 0;">💡 Kraftfull Konfiguration - Konkret Exempel</h4>
+                <p><strong>Hur enkelt det är att styra Claude Code's beteende:</strong></p>
+                
+                <p>Genom att helt enkelt skriva regler i <code>CLAUDE.md</code> och agent-filerna kan du definiera exakt hur Claude ska arbeta. 
+                Ett konkret exempel från detta projekt:</p>
+                
+                <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                    <p style="font-weight: bold; color: #1b5e20;">Innan konfiguration:</p>
+                    <p>❌ Claude gav fakta utan källor<br>
+                    ❌ Inga källhänvisningar inkluderades<br>
+                    ❌ Ingen verifiering av information</p>
+                    
+                    <p style="font-weight: bold; color: #1b5e20; margin-top: 15px;">Efter att ha lagt till i CLAUDE.md och documentation-agent.md:</p>
+                    <p style="font-style: italic;">"🔴 MANDATORY: ALL factual responses MUST include minimum 2-3 sources in Harvard format"</p>
+                    
+                    <p style="font-weight: bold; color: #1b5e20; margin-top: 15px;">Resultat:</p>
+                    <p>✅ Claude verifierar automatiskt alla fakta<br>
+                    ✅ Inkluderar alltid en "Källor"-sektion<br>
+                    ✅ Använder Harvard-referensstil<br>
+                    ✅ Kontrollerar att länkar fungerar<br>
+                    ✅ Citerar minst 2-3 trovärdiga källor</p>
+                </div>
+                
+                <p style="margin-top: 15px;"><strong>Det fantastiska:</strong> Detta krävde ingen kodändring, ingen API-konfiguration, 
+                ingen komplex setup - bara att skriva klara instruktioner i vanliga textfiler!</p>
+                
+                <p style="background-color: #e8f5e9; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                    <strong>Andra exempel på vad du kan konfigurera:</strong><br>
+                    • Språkpreferenser (svenska/engelska)<br>
+                    • Kodningsstandarder (HTML5, ES6+, etc.)<br>
+                    • Git commit-format (engelska, inga svenska tecken)<br>
+                    • Dokumentationsstil (pedagogisk, strukturerad)<br>
+                    • Projektspecifika regler och best practices
+                </p>
+            </div>
+            
             <p><strong>Läs mer:</strong> <a href="claude_agenter.html" style="color: #2e7d32; font-weight: bold; text-decoration: underline;">Komplett guide till Claude Code agentsystem →</a></p>
         </div>
 
@@ -370,14 +421,21 @@
             <p style="font-size: 1.1em; margin-top: 20px;">
                 <strong>Rekommendationer:</strong>
             </p>
-            <ul style="text-align: left; max-width: 600px; margin: 20px auto;">
-                <li>🟢 <strong>Gemini CLI:</strong> Installera via npm från <a href="https://geminicli.com/" style="color: white; text-decoration: underline;">geminicli.com</a></li>
-                <li>🟢 <strong>Claude Code:</strong> Installera från <a href="https://claude.com/product/claude-code" style="color: white; text-decoration: underline;">claude.com</a></li>
+            <ul style="text-align: left; max-width: 650px; margin: 20px auto;">
+                <li>🟢 <strong>Gemini CLI:</strong> Installera via npm från <a href="https://geminicli.com/" style="color: white; text-decoration: underline;">geminicli.com</a> - Bra för snabb AI-interaktion</li>
+                <li>🟢 <strong>Claude Code:</strong> Installera från <a href="https://claude.com/product/claude-code" style="color: white; text-decoration: underline;">claude.com</a> - Rekommenderas för projekt som kräver anpassad AI-beteende</li>
                 <li>🔴 <strong>INTE via gcloud:</strong> Google Cloud SDK-metoden fungerar inte</li>
             </ul>
+            <p style="background-color: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; margin-top: 25px;">
+                <strong>💡 Viktig upptäckt:</strong> Claude Code's agentsystem är en game-changer!<br>
+                Genom att enkelt skriva instruktioner i textfiler (CLAUDE.md och agent-filer) kan du<br>
+                styra exakt hur AI:n arbetar - från obligatoriska källhänvisningar till kodningsstandarder.<br>
+                Detta projekt visar konkret hur detta implementerades för att garantera verifierade källor.
+            </p>
             <p style="margin-top: 20px;">
                 Dokumentationen sparas som referens för andra som stöter på samma problem,<br>
-                och visar vikten av att testa olika installationsmetoder när något inte fungerar.
+                och visar både vikten av att testa olika installationsmetoder när något inte fungerar,<br>
+                och hur kraftfull konfigurering av AI-assistenter kan vara.
             </p>
         </div>
 

@@ -650,9 +650,24 @@ See .claude/agents/ for specialized configurations
 
         <h2>📚 Källor och Faktakontroll</h2>
 
-        <div class="warning-box">
-            <h3 style="color: #856404; margin-top: 0;">⚠️ VIKTIGT: Alla fakta måste verifieras</h3>
-            <p>För att säkerställa trovärdighet och korrekthet har projektet strikta regler för källor och referenser.</p>
+        <div style="background-color: #ffebee; border-left: 6px solid #c62828; padding: 20px; margin: 20px 0; border-radius: 5px;">
+            <h3 style="color: #c62828; margin-top: 0;">🔴 OBLIGATORISKT: Alla fakta måste verifieras och källor anges</h3>
+            <p style="font-size: 1.1em; font-weight: bold;">
+                Detta är INTE en rekommendation - det är ett KRAV för alla faktabaserade svar.
+            </p>
+            <p>
+                Varje svar som innehåller faktainformation <strong>MÅSTE</strong> inkludera:
+            </p>
+            <ul style="font-weight: bold;">
+                <li>✅ Minst 2-3 källor i Harvard-format</li>
+                <li>✅ En "Källor"-sektion i slutet av varje svar</li>
+                <li>✅ Klickbara hyperlänkar till alla källor</li>
+                <li>✅ Åtkomstdatum för alla online-källor</li>
+                <li>✅ Citeringar i texten (t.ex. "enligt Wikipedia, 2024")</li>
+            </ul>
+            <p style="background-color: #fff; padding: 15px; border-radius: 5px; margin-top: 15px; color: #c62828; font-weight: bold;">
+                ⚠️ INGA UNDANTAG: Om du ger faktainformation, MÅSTE du ge källor.
+            </p>
         </div>
 
         <h3>🔍 Källkrav och Verifiering</h3>
@@ -673,7 +688,7 @@ See .claude/agents/ for specialized configurations
             </ol>
         </div>
 
-        <h3>📖 Harvard Referensstil</h3>
+        <h3>📖 Harvard Referensstil (OBLIGATORISK)</h3>
         <table>
             <tr>
                 <th>Typ</th>
@@ -682,8 +697,8 @@ See .claude/agents/ for specialized configurations
             </tr>
             <tr>
                 <td><strong>I text</strong></td>
-                <td>(Författare, År)</td>
-                <td>Frans G Bengtsson var författare (Wikipedia, 2024)</td>
+                <td>(Författare, År) eller "enligt Författare (År)"</td>
+                <td>Frans G Bengtsson var författare (Wikipedia, 2024)<br><br>Enligt Nationalencyklopedin (2024) studerade han i Lund</td>
             </tr>
             <tr>
                 <td><strong>Webbsida</strong></td>
@@ -697,17 +712,118 @@ See .claude/agents/ for specialized configurations
             </tr>
         </table>
 
-        <h3>✅ Faktakontroll-process</h3>
+        <h3>📋 OBLIGATORISK MALL för Faktabaserade Svar</h3>
         <div class="success-box">
-            <p><strong>Steg-för-steg process som Documentation Agent följer:</strong></p>
+            <p><strong>Varje faktabaserat svar MÅSTE följa denna struktur:</strong></p>
+            <div class="code-block">
+[Ditt svar med citeringar i texten som (Wikipedia, 2024)]<br>
+<br>
+---<br>
+<br>
+## Källor<br>
+<br>
+Källa 1 (År). Titel. [online] Available at: URL [Accessed: Datum]<br>
+Källa 2 (År). Titel. [online] Available at: URL [Accessed: Datum]<br>
+[Minimum 2-3 källor krävs]<br>
+<br>
+## Läs Mer (Valfritt)<br>
+[Ytterligare resurser för fördjupning]
+            </div>
+        </div>
+
+        <h3>✅ EXEMPEL: Korrekt Svarsformat</h3>
+        <div style="background-color: #d4edda; padding: 25px; border-radius: 5px; margin: 20px 0; border: 2px solid #28a745;">
+            <p><strong>Användarens promt:</strong> "Berätta om Frans G Bengtssons liv och leverne"</p>
+            
+            <p style="margin-top: 20px;"><strong>KORREKT Claude Code Svar:</strong></p>
+            
+            <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 15px; border-left: 4px solid #28a745;">
+                <p><strong>Frans Gunnar Bengtsson (1894-1954)</strong> var en svensk författare, poet och essäist, 
+                mest känd för sin vikingaroman "Röde Orm" (Wikipedia, 2024).</p>
+                
+                <p>Han föddes i Tossene i Bohuslän och studerade vid Lunds universitet där han intresserade sig 
+                för filosofi och litteraturhistoria. Bengtsson arbetade som författare och kritiker och blev en 
+                av 1900-talets mest lästa svenska författare (Nationalencyklopedin, 2024).</p>
+                
+                <p>Hans mest berömda verk, "Röde Orm", publicerades i två delar 1941 och 1945 och har blivit en 
+                klassiker inom svensk litteratur. Romanen skildrar vikingatiden med en kombination av historisk 
+                noggrannhet och humor (Litteraturbanken, 2024).</p>
+                
+                <hr style="margin: 20px 0; border: 1px solid #ddd;">
+                
+                <h4 style="color: #28a745;">Källor</h4>
+                
+                <p><strong>Wikipedia</strong> (2024). Frans G Bengtsson. [online]<br>
+                Available at: <a href="https://sv.wikipedia.org/wiki/Frans_G._Bengtsson" style="color: #28a745;">https://sv.wikipedia.org/wiki/Frans_G._Bengtsson</a><br>
+                [Accessed: 6 Jan 2026]</p>
+                
+                <p><strong>Nationalencyklopedin</strong> (2024). Frans G Bengtsson. [online]<br>
+                Available at: <a href="https://www.ne.se/uppslagsverk/encyklopedi/lång/frans-g-bengtsson" style="color: #28a745;">https://www.ne.se/uppslagsverk/encyklopedi/lång/frans-g-bengtsson</a><br>
+                [Accessed: 6 Jan 2026]</p>
+                
+                <p><strong>Litteraturbanken</strong> (2024). Frans G Bengtsson. [online]<br>
+                Available at: <a href="https://litteraturbanken.se/författare/BengtsonFG" style="color: #28a745;">https://litteraturbanken.se/författare/BengtsonFG</a><br>
+                [Accessed: 6 Jan 2026]</p>
+                
+                <h4 style="color: #28a745;">Läs Mer</h4>
+                <ul>
+                    <li>Svenska Akademien - Om "Röde Orm"</li>
+                    <li>Frans G Bengtssons minnesbibliotek i Gullspång</li>
+                </ul>
+            </div>
+            
+            <p style="margin-top: 20px; padding: 15px; background-color: #c8e6c9; border-radius: 5px; font-weight: bold;">
+                ✅ Detta är det OBLIGATORISKA formatet. Även kortare svar behöver källor!
+            </p>
+        </div>
+
+        <div style="background-color: #ffebee; padding: 20px; border-radius: 5px; margin: 20px 0; border: 2px solid #c62828;">
+            <p><strong>❌ INKORREKT svar (UTAN källor):</strong></p>
+            
+            <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 15px; border-left: 4px solid #c62828;">
+                <p>Frans G Bengtsson var en svensk författare som levde 1894-1954. Han skrev "Röde Orm".</p>
+                <p style="color: #c62828; font-style: italic; margin-top: 15px;">
+                    [SLUT PÅ SVAR - INGA KÄLLOR]
+                </p>
+            </div>
+            
+            <p style="margin-top: 20px; padding: 15px; background-color: #ffcdd2; border-radius: 5px; font-weight: bold; color: #c62828;">
+                ❌ Detta är INTE acceptabelt! Faktainformation utan källor ska ALDRIG ges.
+            </p>
+        </div>
+
+        <div style="background-color: #e3f2fd; border-left: 6px solid #2196f3; padding: 20px; margin: 20px 0; border-radius: 5px;">
+            <h4 style="color: #1565c0; margin-top: 0;">📢 VIKTIGT: Uppdaterad Konfiguration (Jan 2026)</h4>
+            <p><strong>Efter att ha upptäckt att källor inte alltid inkluderades automatiskt, har projektet nu förstärkt källkraven:</strong></p>
+            <ul>
+                <li>🔴 Källkrav har flyttats till <strong>PRIMARY DIRECTIVE</strong> i Documentation Agent</li>
+                <li>📋 Ett <strong>obligatoriskt template</strong> har lagts till som MÅSTE följas</li>
+                <li>✅ Konkreta exempel på <strong>korrekt</strong> vs <strong>inkorrekt</strong> format har lagts till</li>
+                <li>⚠️ Tydlig varning: "NO SOURCES = INCOMPLETE RESPONSE"</li>
+                <li>📖 Harvard-format är nu specificerat som MANDATORY, inte optional</li>
+            </ul>
+            <p style="background-color: #fff; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                <strong>Resultat:</strong> Från och med nu ska VARJE faktabaserat svar från Claude Code automatiskt 
+                inkludera en "Källor"-sektion med minst 2-3 verifierade källor i Harvard-format.
+            </p>
+        </div>
+
+        <h3>✅ Faktakontroll-process (NU OBLIGATORISK)</h3>
+        <div class="success-box">
+            <p><strong>Steg-för-steg process som Documentation Agent MÅSTE följa:</strong></p>
             <ol>
-                <li>🔍 <strong>Initial Research:</strong> Använd webbsökning för faktainformation</li>
-                <li>✔️ <strong>Korsverifiering:</strong> Kontrollera mot minst 2 oberoende källor</li>
-                <li>📝 <strong>Dokumentera Källa:</strong> Notera URL och åtkomstdatum</li>
+                <li>🔍 <strong>Initial Research:</strong> Använd webbsökning för faktainformation INNAN du svarar</li>
+                <li>✔️ <strong>Korsverifiering:</strong> Kontrollera mot minst 2 oberoende källor (3+ föredraget)</li>
+                <li>📝 <strong>Dokumentera Källa:</strong> Notera URL och åtkomstdatum för ALLA källor</li>
                 <li>🔗 <strong>Länka:</strong> Skapa hyperlänkar till källor i dokumentationen</li>
+                <li>📋 <strong>Formatera:</strong> Använd Harvard-format för ALLA källor</li>
+                <li>✅ <strong>Inkludera:</strong> Lägg ALLTID till en "Källor"-sektion i slutet av svaret</li>
                 <li>🔄 <strong>Uppdatera:</strong> Kontrollera länkar regelbundet</li>
                 <li>⚠️ <strong>Vid Osäkerhet:</strong> Erkänn om källor är motstridiga</li>
             </ol>
+            <p style="font-weight: bold; color: #155724; margin-top: 15px;">
+                ⚠️ Om steg 1-6 inte utförs, är svaret INKOMPLETT och ska inte ges.
+            </p>
         </div>
 
         <h3>💡 Exempel: Frans G Bengtsson-fallet</h3>

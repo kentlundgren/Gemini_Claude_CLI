@@ -42,6 +42,15 @@ A comprehensive documentation website that serves as a reference for developers 
 - **English** for code, technical terms, and Git commits
 - **Bilingual** approach when appropriate
 
+### 🔴 CRITICAL: Source Citation Requirement
+**EVERY factual response MUST include:**
+- ✅ Minimum 2-3 sources in Harvard format
+- ✅ A "Källor" (Sources) section at the end
+- ✅ Clickable hyperlinks to all sources
+- ✅ Access dates for online sources
+
+**This is a MANDATORY requirement, not optional. See detailed instructions in "Sources and Fact-Checking" section below.**
+
 ### Writing Style
 - Clear, pedagogical explanations
 - Step-by-step instructions with visual aids
@@ -50,31 +59,118 @@ A comprehensive documentation website that serves as a reference for developers 
 - Extensive troubleshooting sections
 
 ### Sources and Fact-Checking
-**All factual claims must be verified and properly cited**
+**⚠️ CRITICAL: All factual claims MUST be verified and properly cited**
 
-#### Source Priorities
-1. **Swedish Topics:** Prefer Swedish Wikipedia (sv.wikipedia.org)
+#### 🔴 MANDATORY SOURCE REQUIREMENTS
+**EVERY response containing factual information MUST include:**
+
+1. **At least 2-3 sources** in Harvard format
+2. **Clickable hyperlinks** to all sources
+3. **Access dates** for online sources
+4. **A dedicated "Källor" (Sources) section** at the end of each response
+
+**This is NOT optional. This is a CORE requirement for all factual content.**
+
+#### Source Priorities (in order)
+1. **Swedish Topics:** Swedish Wikipedia (sv.wikipedia.org) - ALWAYS check first
 2. **Technical Documentation:** Official sites (geminicli.com, claude.com, microsoft.com)
-3. **Community Resources:** GitHub, StackOverflow, official forums
+3. **Academic Sources:** University sites, research papers
+4. **Community Resources:** GitHub, StackOverflow, official forums
+5. **News/Media:** Reputable Swedish media (DN, SvD, etc.)
 
-#### Citation Format
-- Use **Harvard referencing style** for all sources
-- Include clickable hyperlinks to all references
-- Verify all links are functional before publishing
-- Document access dates for online sources
-
-#### Fact-Checking Protocol
-1. Cross-reference with at least 2 independent sources
-2. Use web search tools to verify claims
-3. Correct errors immediately when discovered
-4. Document source URLs and access dates
-5. Admit uncertainty if sources conflict
-
-#### Example Reference
+#### Harvard Citation Format (MANDATORY)
+**In-text citation:**
 ```
-Wikipedia (2024). Frans G Bengtsson. [online] Available at: 
-https://sv.wikipedia.org/wiki/Frans_G._Bengtsson [Accessed: 6 Jan 2026]
+Author/Organization (Year)
+Example: enligt Wikipedia (2024)
 ```
+
+**Reference list format (REQUIRED at end of response):**
+```
+## Källor
+
+Wikipedia (2024). Frans G Bengtsson. [online] 
+Available at: https://sv.wikipedia.org/wiki/Frans_G._Bengtsson 
+[Accessed: 6 Jan 2026]
+
+Nationalencyklopedin (2024). Frans G Bengtsson. [online]
+Available at: https://www.ne.se/uppslagsverk/encyklopedi/lång/frans-g-bengtsson
+[Accessed: 6 Jan 2026]
+```
+
+#### Fact-Checking Protocol (BEFORE responding)
+1. **BEFORE answering:** Use web search to verify ALL facts
+2. **Cross-reference:** Minimum 2 independent sources required
+3. **Document:** Save source URLs and access dates
+4. **Format:** Add "Källor" section with Harvard format
+5. **Verify links:** Ensure all URLs work
+6. **If uncertain:** Explicitly state "Källor är motstridiga" and explain
+
+#### 🚨 CRITICAL RULE: NO SOURCES = INCOMPLETE RESPONSE
+If you cannot find reliable sources for factual claims:
+- State clearly: "Jag kunde inte verifiera denna information med trovärdiga källor"
+- Provide partial information with disclaimer
+- Suggest where user could search for information
+- NEVER present unverified information as fact
+
+#### 📋 REQUIRED RESPONSE TEMPLATE
+**Every factual response MUST follow this structure:**
+
+```
+[Response content with in-text citations like (Wikipedia, 2024)]
+
+---
+
+## Källor
+
+Source 1 (Year). Title. [online] Available at: URL [Accessed: Date]
+Source 2 (Year). Title. [online] Available at: URL [Accessed: Date]
+[Minimum 2-3 sources required]
+
+## Läs Mer (Optional)
+[Additional resources]
+```
+
+#### ✅ EXAMPLE: Correct Response Format
+
+**User asks:** "Berätta om Frans G Bengtssons liv och leverne"
+
+**CORRECT Claude Response:**
+
+```
+Frans Gunnar Bengtsson (1894-1954) var en svensk författare, poet och essäist, 
+mest känd för sin vikingaroman "Röde Orm" (Wikipedia, 2024).
+
+Han föddes i Tossene i Bohuslän och studerade vid Lunds universitet där han 
+intresserade sig för filosofi och litteraturhistoria. Bengtsson arbetade som 
+författare och kritiker och blev en av 1900-talets mest lästa svenska 
+författare (Nationalencyklopedin, 2024).
+
+Hans mest berömda verk, "Röde Orm", publicerades i två delar 1941 och 1945 
+och har blivit en klassiker inom svensk litteratur (Litteraturbanken, 2024).
+
+---
+
+## Källor
+
+Wikipedia (2024). Frans G Bengtsson. [online] 
+Available at: https://sv.wikipedia.org/wiki/Frans_G._Bengtsson 
+[Accessed: 6 Jan 2026]
+
+Nationalencyklopedin (2024). Frans G Bengtsson. [online]
+Available at: https://www.ne.se/uppslagsverk/encyklopedi/lång/frans-g-bengtsson
+[Accessed: 6 Jan 2026]
+
+Litteraturbanken (2024). Frans G Bengtsson. [online]
+Available at: https://litteraturbanken.se/författare/BengtsonFG
+[Accessed: 6 Jan 2026]
+
+## Läs Mer
+- Svenska Akademien - Om "Röde Orm"
+- Frans G Bengtssons minnesbibliotek i Gullspång
+```
+
+**This format is MANDATORY for all factual responses. No exceptions.**
 
 ## Code Standards
 
