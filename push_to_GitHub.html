@@ -117,7 +117,24 @@
     
     <div class="info">
         <strong>Skapad:</strong> 6 januari 2026<br>
-        <strong>Syfte:</strong> Dokumentation av problem och lösningar vid push till GitHub
+        <strong>Syfte:</strong> Dokumentation av problem och lösningar vid push till GitHub<br>
+        <strong>Repository:</strong> <a href="https://github.com/kentlundgren/Gemini_Claude_CLI">github.com/kentlundgren/Gemini_Claude_CLI</a>
+    </div>
+
+    <div class="success-box">
+        <h3>⚡ SNABBGUIDE: Konfigurera Remote Repository</h3>
+        <p><strong>Kör dessa tre kommandon i PowerShell:</strong></p>
+        <div class="code-block">
+            <span class="command"># 1. Ta bort eventuellt felaktigt remote</span><br>
+            git remote remove origin<br><br>
+            
+            <span class="command"># 2. Lägg till RÄTT remote</span><br>
+            git remote add origin https://github.com/kentlundgren/Gemini_Claude_CLI.git<br><br>
+            
+            <span class="command"># 3. Verifiera att det är rätt</span><br>
+            git remote -v
+        </div>
+        <p>👉 <strong>Sedan kan du pusha från Cursor IDE eller med:</strong> <code>git push -u origin main</code></p>
     </div>
 
     <h2>❌ Problem Som Uppstod</h2>
@@ -156,24 +173,98 @@
         </ul>
     </div>
 
-    <h2>✅ Lösning - Steg för Steg</h2>
+    <h2>🔧 FÖRST: Konfigurera Remote Repository</h2>
+
+    <div class="info">
+        <h3>📍 Viktigt: Remote Repository Måste Vara Rätt!</h3>
+        <p>Ditt repository på GitHub heter: <strong>Gemini_Claude_CLI</strong></p>
+        <p>URL: <code>https://github.com/kentlundgren/Gemini_Claude_CLI</code></p>
+        <p>Men Git kan peka på fel repository (t.ex. "Test_BS"). Vi måste fixa detta först!</p>
+    </div>
 
     <div class="step">
-        <h3><span class="step-number">1</span> Kontrollera Nuvarande Git-status</h3>
+        <h3><span class="step-number">1</span> Kontrollera Nuvarande Remote</h3>
         <div class="code-block">
-            <span class="command"># Kontrollera vilka filer som är staged</span><br>
-            git status
+            <span class="command"># Lista alla remotes och se vart de pekar</span><br>
+            git remote -v
+        </div>
+        
+        <p><strong>Du kommer se något av följande:</strong></p>
+        
+        <div class="warning">
+            <h4>❌ Scenario A: Felaktigt Remote (måste fixas!)</h4>
+            <div class="code-block" style="background-color: #c0392b;">
+                <span class="error">origin  https://github.com/kentlundgren/Test_BS.git (fetch)</span><br>
+                <span class="error">origin  https://github.com/kentlundgren/Test_BS.git (push)</span>
+            </div>
+            <p>👉 <strong>Om du ser detta:</strong> Gå till steg 2a nedan!</p>
+        </div>
+
+        <div class="success-box">
+            <h4>✅ Scenario B: Korrekt Remote (bra!)</h4>
+            <div class="code-block">
+                <span class="success">origin  https://github.com/kentlundgren/Gemini_Claude_CLI.git (fetch)</span><br>
+                <span class="success">origin  https://github.com/kentlundgren/Gemini_Claude_CLI.git (push)</span>
+            </div>
+            <p>👉 <strong>Om du ser detta:</strong> Perfekt! Hoppa till steg 3!</p>
+        </div>
+
+        <div class="info">
+            <h4>💡 Scenario C: Inget Remote (tomt)</h4>
+            <div class="code-block">
+                <span class="command"># Om kommandot inte visar något alls:</span><br>
+                <span style="color: #95a5a6;">(ingen output)</span>
+            </div>
+            <p>👉 <strong>Om du ser detta:</strong> Gå direkt till steg 2b nedan!</p>
         </div>
     </div>
 
     <div class="step">
-        <h3><span class="step-number">2</span> Ta Bort Felaktigt Remote (Om Det Finns)</h3>
+        <h3><span class="step-number">2a</span> Ta Bort Felaktigt Remote</h3>
+        <p><strong>Kör detta OM remote pekar på fel repository (Test_BS eller annat):</strong></p>
         <div class="code-block">
-            <span class="command"># Lista alla remotes</span><br>
+            <span class="command"># Ta bort det felaktiga remote</span><br>
+            git remote remove origin<br><br>
+            
+            <span class="command"># Verifiera att det är borta (ska inte visa något):</span><br>
+            git remote -v
+        </div>
+        <p>✅ Nu är det gamla remote borttaget. Fortsätt till steg 2b!</p>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">2b</span> Lägg Till RÄTT Remote Repository</h3>
+        <div class="success-box">
+            <p><strong>Nu lägger vi till det korrekta remote repository:</strong></p>
+            <div class="code-block">
+                <span class="command"># Lägg till remote med RÄTT namn</span><br>
+                git remote add origin https://github.com/kentlundgren/Gemini_Claude_CLI.git
+            </div>
+        </div>
+
+        <h4>Verifiera att det är korrekt:</h4>
+        <div class="code-block">
+            <span class="command"># Lista remotes igen</span><br>
             git remote -v<br><br>
             
-            <span class="command"># Om "origin" pekar på fel repository, ta bort det:</span><br>
-            git remote remove origin
+            <span class="success"># Du SKA nu se:</span><br>
+            <span class="success">origin  https://github.com/kentlundgren/Gemini_Claude_CLI.git (fetch)</span><br>
+            <span class="success">origin  https://github.com/kentlundgren/Gemini_Claude_CLI.git (push)</span>
+        </div>
+
+        <div class="success-box">
+            <h3>🎉 Perfekt! Remote är nu korrekt konfigurerat!</h3>
+            <p>Nu kan du pusha till rätt repository.</p>
+        </div>
+    </div>
+
+    <h2>✅ Lösning - Steg för Steg (Efter Remote är Konfigurerat)</h2>
+
+    <div class="step">
+        <h3><span class="step-number">3</span> Kontrollera Git-status</h3>
+        <div class="code-block">
+            <span class="command"># Kontrollera vilka filer som är staged</span><br>
+            git status
         </div>
     </div>
 
@@ -229,12 +320,65 @@
 
     <div class="step">
         <h3><span class="step-number">6</span> Pusha Till GitHub</h3>
+        
+        <h4>Alternativ A: Pusha via PowerShell/Terminal</h4>
         <div class="code-block">
             <span class="command"># Första gången - pusha och sätt upstream:</span><br>
             git push -u origin main<br><br>
             
             <span class="command"># Om det finns konflikter eller fel, force push (VAR FÖRSIKTIG!):</span><br>
             git push -u origin main --force
+        </div>
+
+        <h4>Alternativ B: Pusha via Cursor IDE (Rekommenderas!) ✨</h4>
+        <div class="success-box">
+            <p><strong>Så här pushar du från Cursor IDE:</strong></p>
+            <ol>
+                <li><strong>Öppna Source Control:</strong>
+                    <ul>
+                        <li>Klicka på Source Control-ikonen i vänster sidebar (ikonen ser ut som en förgrening)</li>
+                        <li>Eller tryck <code>Ctrl+Shift+G</code></li>
+                    </ul>
+                </li>
+                <li><strong>Kontrollera remote:</strong>
+                    <ul>
+                        <li>Klicka på "..." (tre punkter) längst upp i Source Control-panelen</li>
+                        <li>Välj "Remote" → "Remove Remote..." → "origin" (om den är fel)</li>
+                        <li>Välj "Remote" → "Add Remote..."</li>
+                        <li>Ange: <code>https://github.com/kentlundgren/Gemini_Claude_CLI.git</code></li>
+                        <li>Namnge den: <code>origin</code></li>
+                    </ul>
+                </li>
+                <li><strong>Stage ändringar:</strong>
+                    <ul>
+                        <li>Klicka på "+" vid "Changes" för att stage alla filer</li>
+                        <li>Eller klicka på enskilda filers "+" för att stage dem individuellt</li>
+                    </ul>
+                </li>
+                <li><strong>Committa:</strong>
+                    <ul>
+                        <li>Skriv commit-meddelande i textfältet (t.ex. "Add documentation")</li>
+                        <li>Klicka på ✓ (checkmark) eller tryck <code>Ctrl+Enter</code></li>
+                    </ul>
+                </li>
+                <li><strong>Pusha:</strong>
+                    <ul>
+                        <li>Klicka på "..." igen</li>
+                        <li>Välj "Push" eller "Push to..."</li>
+                        <li>Om det är första gången: välj "Publish Branch"</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="info">
+            <h4>💡 Fördelar med Cursor IDE:</h4>
+            <ul>
+                <li>✅ Visuellt gränssnitt - lättare att se ändringar</li>
+                <li>✅ Ingen risk för svenska tecken-problem i commit-meddelanden</li>
+                <li>✅ Enklare konflikthantering</li>
+                <li>✅ Direkt feedback på vad som händer</li>
+            </ul>
         </div>
 
         <div class="warning">
