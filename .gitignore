@@ -1,0 +1,28 @@
+# Node modules (om du använder npm/node)
+node_modules/
+
+# Build-filer
+dist/
+build/
+
+# IDE och editor-filer
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS-filer
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporära filer
+*.log
+*.tmp
+.cache/
+
+# Känslig information
+.env
+.env.local
+
