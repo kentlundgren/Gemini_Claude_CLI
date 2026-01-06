@@ -102,6 +102,26 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+        .screenshot {
+            max-width: 100%;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .image-caption {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
@@ -257,21 +277,59 @@ desktop.ini<br><br>
     </div>
 
     <div class="step">
-        <h3><span class="step-number">6</span> Uppdatera IDE (Cursor/VS Code)</h3>
-        <p>Om IDE:t fortfarande visar fel Git-repository:</p>
+        <h3><span class="step-number">6</span> Uppdatera IDE (Cursor/VS Code) - VIKTIGT!</h3>
         
+        <div class="warning">
+            <strong>⚠️ Särskilt Viktigt När Du Har Överliggande Git:</strong><br>
+            När du skapar ett nytt lokalt Git-repository i en mapp som ligger under ett annat Git-repository, 
+            kommer Cursor/VS Code <strong>INTE automatiskt</strong> att uppdatera sig. Du MÅSTE tvinga IDE:t 
+            att ladda om och upptäcka det nya lokala repositoryt.
+        </div>
+
+        <h4>✅ Rekommenderad Metod (Fungerar Alltid!):</h4>
+        <ol>
+            <li>Tryck <code>Ctrl+Shift+P</code> för att öppna Command Palette</li>
+            <li>Skriv "reload" i sökfältet</li>
+            <li>Välj <strong>"Developer: Reload Window"</strong></li>
+            <li>Vänta tills Cursor/VS Code har laddat om helt</li>
+        </ol>
+
+        <div class="success">
+            <strong>✅ Detta är den säkraste metoden!</strong><br>
+            "Developer: Reload Window" tvingar IDE:t att starta om helt och omidentifiera alla Git-repositories. 
+            Detta fungerar särskilt bra när du har skapat ett nytt lokalt Git under ett överliggande repository.
+        </div>
+
+        <h4>Alternativa Metoder (om reload inte räcker):</h4>
         <ul>
-            <li><strong>Stäng och öppna projektmappen igen</strong> i IDE:t</li>
             <li>Tryck <code>Ctrl+Shift+P</code> och sök på "Git: Refresh"</li>
-            <li>Ladda om fönstret: <code>Ctrl+Shift+P</code> → "Developer: Reload Window"</li>
-            <li>Kontrollera att rätt Git-repository används: Längst ner i IDE:t ska det stå "main" (inte "master") 
-                och rätt antal commits</li>
+            <li><strong>Stäng och öppna projektmappen igen</strong> i IDE:t</li>
+            <li>I värsta fall: Stäng helt Cursor/VS Code och öppna mappen igen</li>
+        </ul>
+
+        <h4>Så här verifierar du att det fungerade:</h4>
+        <p>Kontrollera längst ner till vänster i IDE-fönstret:</p>
+        
+        <div class="image-container">
+            <img src="right_branch_name_and_map.jpg" alt="Korrekt Git branch och mapp visas i Cursor IDE" class="screenshot">
+            <p class="image-caption">
+                ✅ <strong>Så här ska det se ut:</strong> Branch-namnet "main" och rätt mappnamn ska visas längst ner i fönstret. 
+                Om du fortfarande ser ett överliggande repository-namn eller "master" istället för "main", behöver du ladda om igen.
+            </p>
+        </div>
+
+        <p><strong>Vad du ska se efter reload:</strong></p>
+        <ul>
+            <li>✅ Branch-namn: <strong>"main"</strong> (inte "master")</li>
+            <li>✅ Mappnamn: Namnet på din <strong>lokala projektmapp</strong> (t.ex. "Test_BS")</li>
+            <li>✅ Commit-antal: Rätt antal commits från ditt <strong>nya</strong> repository</li>
+            <li>✅ Ingen Git-historik från överliggande mappar</li>
         </ul>
 
         <div class="info">
-            <strong>💡 Starkaste Uppdateringskommando:</strong><br>
-            Om inget annat fungerar, stäng helt Cursor/VS Code och öppna mappen igen. Detta tvingar IDE:t 
-            att omidentifiera Git-repositoryt.
+            <strong>💡 Pro-tips:</strong><br>
+            Om du ofta arbetar med nästlade Git-repositories, kom ihåg att <strong>alltid</strong> göra 
+            "Developer: Reload Window" efter <code>git init</code>. Detta sparar tid och förvirring!
         </div>
     </div>
 
@@ -514,15 +572,29 @@ desktop.ini<br><br>
     <div class="step">
         <h3>Problem 1: IDE visar fortfarande fel repository</h3>
         <div class="warning">
-            <strong>Symptom:</strong> Cursor/VS Code visar commits från överliggande mapp
+            <strong>Symptom:</strong> Cursor/VS Code visar commits från överliggande mapp, fel branch-namn eller historik från annat repository
         </div>
-        <strong>Lösningar (prova i ordning):</strong>
+        
+        <div class="success">
+            <strong>✅ Beprövad Lösning (Fungerar i 99% av fallen):</strong><br>
+            <ol>
+                <li>Tryck <code><strong>Ctrl+Shift+P</strong></code></li>
+                <li>Skriv "reload"</li>
+                <li>Välj <strong>"Developer: Reload Window"</strong></li>
+            </ol>
+            Detta är <strong>särskilt viktigt när du har ett överliggande Git-repository</strong>. 
+            IDE:t behöver starta om för att upptäcka det nya lokala .git-mappen.
+        </div>
+
+        <strong>Om "Developer: Reload Window" inte räcker (sällsynt):</strong>
         <ol>
-            <li>Stäng och öppna projektmappen igen</li>
-            <li><code>Ctrl+Shift+P</code> → "Developer: Reload Window"</li>
-            <li>Kontrollera att .git-mappen finns: <code>ls -Force</code> (PowerShell) eller <code>dir /a</code> (CMD)</li>
-            <li>Stäng helt IDE:t och öppna igen</li>
+            <li>Kontrollera att .git-mappen finns i din projektmapp: <code>ls -Force</code> (PowerShell)</li>
+            <li>Stäng projektmappen och öppna den igen i IDE:t</li>
+            <li>Stäng helt Cursor/VS Code och starta om</li>
         </ol>
+
+        <p><strong>Verifiera att det fungerade:</strong></p>
+        <p>Efter reload ska du längst ner i IDE-fönstret se rätt branch-namn ("main") och rätt mappnamn. Se bild ovan för exempel.</p>
     </div>
 
     <div class="step">
@@ -643,6 +715,8 @@ git status
     <div style="margin-top: 50px; padding: 20px; background-color: #2c3e50; color: white; text-align: center; border-radius: 5px;">
         <p><strong>📝 Dokumentet skapad av Kent Lundgren</strong></p>
         <p>Senast uppdaterad: 2025-01-06</p>
+        <p><strong>Senaste uppdatering:</strong> Lade till viktig information om "Developer: Reload Window" 
+        och visualisering av korrekt Git-branch i IDE:t</p>
         <p><em>Använd denna guide som referens när du skapar nya Git-repositories!</em></p>
     </div>
 
