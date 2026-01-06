@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Agentsystem - Komplett Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.6;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #9b59b6;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .success-box {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        .agent-card {
+            background-color: white;
+            border: 2px solid #9b59b6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .agent-icon {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .agent-title {
+            color: #9b59b6;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #9b59b6;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .file-structure {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Consolas', monospace;
+            margin: 15px 0;
+        }
+        .back-link {
+            display: inline-block;
+            background-color: #9b59b6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #8e44ad;
+            transform: scale(1.05);
+        }
+        ul {
+            margin-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Tillbaka till Huvudsidan</a>
+
+        <h1>🤖 Claude Code Agentsystem</h1>
+        <p style="text-align: center; font-size: 1.2em; color: #7f8c8d;">
+            <strong>Komplett guide till specialiserade AI-agenter för utveckling</strong>
+        </p>
+
+        <div class="info-box">
+            <h3 style="color: #0c5460; margin-top: 0;">📋 Vad är Claude Code Agenter?</h3>
+            <p><strong>Claude Code</strong> stödjer ett kraftfullt agentsystem där olika AI-agenter har specialiserade roller och expertis. 
+            Varje agent är konfigurerad för specifika uppgifter, vilket ger mer fokuserad och effektiv hjälp.</p>
+            
+            <p><strong>Fördelar:</strong></p>
+            <ul>
+                <li>🎯 Specialiserad expertis för varje uppgift</li>
+                <li>📚 Konsistenta standarder över hela projektet</li>
+                <li>🚀 Snabbare och mer relevanta svar</li>
+                <li>🔄 Agenter kan samarbeta på komplexa uppgifter</li>
+            </ul>
+        </div>
+
+        <h2>📁 Projektstruktur</h2>
+        <p>För att använda agentsystemet behöver du följande struktur:</p>
+        
+        <div class="file-structure">
+Test_BS/<br>
+├── <strong>CLAUDE.md</strong>              <span style="color: #28a745;">← Huvudkonfiguration för Claude Code</span><br>
+├── <strong>GEMINI.md</strong>              <span style="color: #4285f4;">← Huvudkonfiguration för Gemini CLI</span><br>
+└── <strong>.claude/</strong>               <span style="color: #7f8c8d;">← Agent-konfigurationer</span><br>
+    ├── README.md            <span style="color: #7f8c8d;">← Översikt av agentsystemet</span><br>
+    └── <strong>agents/</strong>            <span style="color: #7f8c8d;">← Specialist-agenter</span><br>
+        ├── documentation-agent.md     <span style="color: #7f8c8d;">📝 Dokumentationsskribent</span><br>
+        ├── troubleshooting-agent.md   <span style="color: #7f8c8d;">🔧 Felsökningsexpert</span><br>
+        ├── web-developer-agent.md     <span style="color: #7f8c8d;">💻 Frontend-utvecklare</span><br>
+        └── git-expert-agent.md        <span style="color: #7f8c8d;">🌿 Git & GitHub-specialist</span>
+        </div>
+
+        <h2>🎯 De Fyra Agenterna</h2>
+
+        <div class="agent-card">
+            <div class="agent-icon">📝</div>
+            <div class="agent-title">Documentation Agent</div>
+            
+            <h3>Ansvar:</h3>
+            <ul>
+                <li>Skriver och underhåller all dokumentation på svenska</li>
+                <li>Skapar pedagogiska guider med steg-för-steg instruktioner</li>
+                <li>Hanterar HTML-dokumentation</li>
+                <li>Lägger till screenshots och visuella hjälpmedel</li>
+                <li>Skriver troubleshooting-sektioner</li>
+            </ul>
+
+            <h3>Expertis:</h3>
+            <ul>
+                <li>Teknisk skrivande på svenska</li>
+                <li>HTML/CSS för dokumentationssidor</li>
+                <li>Pedagogisk design</li>
+                <li>Visuell dokumentation</li>
+            </ul>
+
+            <h3>Exempel på användning:</h3>
+            <div class="code-block">
+"Som documentation agent, uppdatera index.html med information om CLAUDE.md"<br>
+<br>
+"Som documentation agent, skapa en ny guide för Git-konfiguration"
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">🔧</div>
+            <div class="agent-title">Troubleshooting Agent</div>
+            
+            <h3>Ansvar:</h3>
+            <ul>
+                <li>Analyserar felmeddelanden och loggar</li>
+                <li>Hittar grundorsaker till tekniska problem</li>
+                <li>Testar flera lösningsmetoder</li>
+                <li>Dokumenterar både misslyckanden och framgångar</li>
+                <li>Upptäcker alternativa lösningar</li>
+            </ul>
+
+            <h3>Expertis:</h3>
+            <ul>
+                <li>PowerShell debugging</li>
+                <li>Windows-miljöproblem</li>
+                <li>Google Cloud SDK troubleshooting</li>
+                <li>npm package management</li>
+                <li>Git-konfiguration och PATH-problem</li>
+            </ul>
+
+            <h3>Exempel på användning:</h3>
+            <div class="code-block">
+"Som troubleshooting agent, varför får jag 'gcloud is not recognized'?"<br>
+<br>
+"Som troubleshooting agent, hitta alternativ till Google Cloud SDK för Gemini"
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">💻</div>
+            <div class="agent-title">Web Developer Agent</div>
+            
+            <h3>Ansvar:</h3>
+            <ul>
+                <li>Skapar semantisk HTML5-struktur</li>
+                <li>Skriver modern, responsiv CSS</li>
+                <li>Implementerar JavaScript-funktionalitet</li>
+                <li>Säkerställer tillgänglighet (WCAG)</li>
+                <li>Optimerar för GitHub Pages</li>
+            </ul>
+
+            <h3>Expertis:</h3>
+            <ul>
+                <li>Semantic HTML5</li>
+                <li>Modern CSS (Flexbox, Grid, Gradients)</li>
+                <li>Vanilla JavaScript (ES6+)</li>
+                <li>Responsive design</li>
+                <li>Web accessibility</li>
+            </ul>
+
+            <h3>Exempel på användning:</h3>
+            <div class="code-block">
+"Som web developer agent, skapa en responsiv tabell med tre kolumner"<br>
+<br>
+"Som web developer agent, lägg till smooth scroll till toppen"
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">🌿</div>
+            <div class="agent-title">Git Expert Agent</div>
+            
+            <h3>Ansvar:</h3>
+            <ul>
+                <li>Hanterar Git repository-operationer</li>
+                <li>Konfigurerar GitHub remote</li>
+                <li>Säkerställer korrekta commit-meddelanden (på engelska!)</li>
+                <li>Löser merge-konflikter</li>
+                <li>Hanterar GitHub Pages-deployment</li>
+            </ul>
+
+            <h3>Expertis:</h3>
+            <ul>
+                <li>Git fundamentals och avancerade features</li>
+                <li>GitHub workflows</li>
+                <li>PowerShell Git-operationer</li>
+                <li>Branch management</li>
+                <li>.gitignore-konfiguration</li>
+            </ul>
+
+            <h3>Exempel på användning:</h3>
+            <div class="code-block">
+"Som git expert agent, konfigurera remote till Gemini_Claude_CLI repo"<br>
+<br>
+"Som git expert agent, varför fungerar inte git push?"
+            </div>
+        </div>
+
+        <h2>📖 Hur Man Använder Agenter</h2>
+
+        <div class="success-box">
+            <h3 style="color: #155724; margin-top: 0;">✅ Automatisk Läsning</h3>
+            <p>Claude Code läser automatiskt:</p>
+            <ul>
+                <li><strong>CLAUDE.md</strong> - Övergripande projektkonfiguration</li>
+                <li><strong>.claude/agents/*.md</strong> - Alla agent-konfigurationer</li>
+                <li><strong>GEMINI.md</strong> - För referens och jämförelse</li>
+            </ul>
+            <p>Du behöver inte göra något speciellt - Claude Code förstår kontexten automatiskt!</p>
+        </div>
+
+        <h3>Metod 1: Implicit Användning (Rekommenderas)</h3>
+        <p>Claude Code väljer automatiskt rätt agent baserat på din fråga:</p>
+        <div class="code-block">
+# I Cursor eller Claude Code CLI<br>
+claude<br>
+<br>
+<span style="color: #2ecc71;"># Fråga direkt, Claude väljer rätt agent:</span><br>
+"Uppdatera dokumentationen för npm-versionen av Gemini"<br>
+<span style="color: #7f8c8d;"># → Documentation Agent aktiveras automatiskt</span><br>
+<br>
+"Varför fungerar inte git push?"<br>
+<span style="color: #7f8c8d;"># → Git Expert Agent aktiveras automatiskt</span>
+        </div>
+
+        <h3>Metod 2: Explicit Agentval</h3>
+        <p>Du kan också specifiera vilken agent du vill använda:</p>
+        <div class="code-block">
+"Som documentation agent, skapa en ny HTML-sida för troubleshooting"<br>
+<br>
+"Som troubleshooting agent, analysera varför PATH inte uppdateras"<br>
+<br>
+"Som web developer agent, implementera dark mode"<br>
+<br>
+"Som git expert agent, konfigurera GitHub Pages"
+        </div>
+
+        <h2>🔄 Agentsamarbete</h2>
+
+        <div class="info-box">
+            <h3 style="color: #0c5460; margin-top: 0;">Agenterna Arbetar Tillsammans</h3>
+            <p>För komplexa uppgifter samarbetar agenterna:</p>
+        </div>
+
+        <h3>Exempel: Skapa Ny Dokumentationssida</h3>
+        <table>
+            <tr>
+                <th>Steg</th>
+                <th>Agent</th>
+                <th>Uppgift</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>📝 Documentation Agent</td>
+                <td>Planerar innehåll och struktur</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>💻 Web Developer Agent</td>
+                <td>Skapar HTML/CSS layout</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>📝 Documentation Agent</td>
+                <td>Skriver svenska texten</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>🌿 Git Expert Agent</td>
+                <td>Committar med engelska meddelande</td>
+            </tr>
+        </table>
+
+        <h3>Exempel: Felsöka och Fixa Problem</h3>
+        <table>
+            <tr>
+                <th>Steg</th>
+                <th>Agent</th>
+                <th>Uppgift</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>🔧 Troubleshooting Agent</td>
+                <td>Identifierar problemets grundorsak</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>💻 Web Developer Agent</td>
+                <td>Implementerar fix i koden</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>📝 Documentation Agent</td>
+                <td>Dokumenterar lösningen</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>🌿 Git Expert Agent</td>
+                <td>Committar fixet</td>
+            </tr>
+        </table>
+
+        <h2>⚙️ CLAUDE.md - Huvudkonfigurationen</h2>
+
+        <div class="warning-box">
+            <h3 style="color: #856404; margin-top: 0;">🔑 Viktigt: CLAUDE.md är Navet</h3>
+            <p><strong>CLAUDE.md</strong> är den viktigaste konfigurationsfilen. Den innehåller:</p>
+            <ul>
+                <li>📋 Projektöversikt och sammanhang</li>
+                <li>🇸🇪 Språkpreferenser (Svenska + Engelska)</li>
+                <li>💻 Kodningsstandarder och best practices</li>
+                <li>📚 Dokumentationsstil</li>
+                <li>🔗 Länkar till agent-konfigurationer</li>
+                <li>📝 Viktiga lärdomar från projektet</li>
+            </ul>
+        </div>
+
+        <h3>CLAUDE.md Innehåll:</h3>
+        <div class="code-block">
+# Claude Code - Project Configuration<br>
+<br>
+## Project Overview<br>
+Gemini CLI vs Claude Code Documentation Project<br>
+<br>
+## Language & Communication<br>
+- Primary Language: Swedish (för innehåll)<br>
+- Code & Commits: English<br>
+<br>
+## Code Standards<br>
+- HTML: Semantic HTML5<br>
+- CSS: Modern, responsive<br>
+- JavaScript: ES6+<br>
+- Git: English commit messages (viktigt!)<br>
+<br>
+## Agent Roles<br>
+See .claude/agents/ for specialized configurations
+        </div>
+
+        <h2>💡 Best Practices</h2>
+
+        <div class="success-box">
+            <h3 style="color: #155724; margin-top: 0;">✅ Gör Detta:</h3>
+            <ul>
+                <li>✅ Låt Claude välja agent automatiskt när du är osäker</li>
+                <li>✅ Använd explicit agentval för komplexa uppgifter</li>
+                <li>✅ Håll agent-konfigurationer uppdaterade med nya lärdomar</li>
+                <li>✅ Dokumentera viktiga beslut i CLAUDE.md</li>
+                <li>✅ Testa att alla agenter följer projektets standarder</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h3 style="color: #856404; margin-top: 0;">⚠️ Undvik Detta:</h3>
+            <ul>
+                <li>❌ Skapa för många agenter (håll det enkelt)</li>
+                <li>❌ Dublera information mellan CLAUDE.md och agent-filer</li>
+                <li>❌ Glömma uppdatera agenter när projektet utvecklas</li>
+                <li>❌ Motstridiga instruktioner i olika agent-filer</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Projektspecifika Regler</h2>
+
+        <div class="info-box">
+            <h3 style="color: #0c5460; margin-top: 0;">Kritiska Regler för Detta Projekt</h3>
+            <p>Alla agenter följer dessa regler:</p>
+            
+            <table>
+                <tr>
+                    <th>Regel</th>
+                    <th>Varför?</th>
+                    <th>Exempel</th>
+                </tr>
+                <tr>
+                    <td><strong>Engelska Git commits</strong></td>
+                    <td>Svenska tecken kraschar PowerShell</td>
+                    <td>✅ "Update: Add docs"<br>❌ "Uppdatera: Lägg till"</td>
+                </tr>
+                <tr>
+                    <td><strong>Ingen && i PowerShell</strong></td>
+                    <td>PowerShell stödjer inte &&</td>
+                    <td>✅ git add .<br>✅ git commit<br>❌ git add . && git commit</td>
+                </tr>
+                <tr>
+                    <td><strong>Svenska UI, Engelsk kod</strong></td>
+                    <td>Användare är svenska, kod är internationell</td>
+                    <td>✅ <code>&lt;h1&gt;Välkommen&lt;/h1&gt;</code><br>✅ <code>function init()</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Separera HTML/CSS/JS</strong></td>
+                    <td>Projektstandard för tydlighet</td>
+                    <td>✅ Extern CSS i &lt;style&gt;<br>❌ Inline styles överallt</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>📚 Lägg Till Egna Agenter</h2>
+
+        <p>Du kan lätt skapa egna agenter för specifika behov:</p>
+
+        <h3>Steg 1: Skapa Agent-fil</h3>
+        <div class="code-block">
+# Skapa ny fil i .claude/agents/<br>
+New-Item .claude/agents/my-agent.md
+        </div>
+
+        <h3>Steg 2: Definiera Agenten</h3>
+        <div class="code-block">
+# My Custom Agent<br>
+<br>
+## Role<br>
+[Beskriv agentens roll]<br>
+<br>
+## Responsibilities<br>
+- [Uppgift 1]<br>
+- [Uppgift 2]<br>
+<br>
+## Expertise<br>
+- [Expertis 1]<br>
+- [Expertis 2]<br>
+<br>
+## Example Tasks<br>
+- [Exempel 1]<br>
+- [Exempel 2]
+        </div>
+
+        <h3>Steg 3: Referera i CLAUDE.md</h3>
+        <div class="code-block">
+## Agent Roles<br>
+<br>
+See .claude/agents/ for specialized configurations:<br>
+- documentation-agent<br>
+- troubleshooting-agent<br>
+- web-developer-agent<br>
+- git-expert-agent<br>
+- my-agent  <span style="color: #2ecc71;">← Din nya agent</span>
+        </div>
+
+        <h2>🔗 Användbara Länkar</h2>
+
+        <ul>
+            <li><a href="index.html">← Tillbaka till Huvudsidan</a></li>
+            <li><a href="CLAUDE.md">CLAUDE.md - Huvudkonfiguration</a></li>
+            <li><a href="GEMINI.md">GEMINI.md - Gemini CLI-konfiguration</a></li>
+            <li><a href=".claude/README.md">.claude/README.md - Agent-översikt</a></li>
+            <li><a href="https://claude.com/product/claude-code" target="_blank">Claude Code Official Site</a></li>
+        </ul>
+
+        <h2>✅ Sammanfattning</h2>
+
+        <div class="success-box">
+            <h3 style="color: #155724; margin-top: 0;">🎉 Nyckelpunkter</h3>
+            <ul>
+                <li>✅ <strong>Agentsystemet</strong> ger specialiserad expertis för olika uppgifter</li>
+                <li>✅ <strong>Fyra huvudagenter:</strong> Documentation, Troubleshooting, Web Developer, Git Expert</li>
+                <li>✅ <strong>CLAUDE.md</strong> är huvudkonfigurationen som alla agenter läser</li>
+                <li>✅ <strong>Automatisk aktivering</strong> - Claude väljer rätt agent baserat på din fråga</li>
+                <li>✅ <strong>Samarbete</strong> - Agenter arbetar tillsammans på komplexa uppgifter</li>
+                <li>✅ <strong>Skalbart</strong> - Lätt att lägga till egna agenter när behov uppstår</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="index.html" class="back-link" style="font-size: 1.2em; padding: 15px 30px;">
+                ← Tillbaka till Huvudsidan
+            </a>
+        </div>
+
+        <div style="margin-top: 50px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; border-radius: 10px;">
+            <p><strong>📝 Dokumentet skapat av Kent Lundgren</strong></p>
+            <p>Skapad: 6 januari 2026</p>
+            <p><em>Del av Gemini CLI vs Claude Code-projektet</em></p>
+        </div>
+    </div>
+</body>
+</html>
+
