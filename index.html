@@ -109,6 +109,22 @@
             border-top: 2px solid #9b59b6;
             color: #7f8c8d;
         }
+        .github-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #24292e 0%, #1a1d21 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .github-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
     </style>
 </head>
 <body>
@@ -155,7 +171,7 @@
             
             <p><strong>Vad som krävdes:</strong></p>
             <ul>
-                <li>✅ Ett enda installationskommando</li>
+                <li>✅ Ett ende installationskommando</li>
                 <li>✅ Enkel autentisering</li>
                 <li>✅ Inga komplicerade konfigurationer</li>
             </ul>
@@ -163,6 +179,14 @@
             <p><strong>Slutsats:</strong></p>
             <p style="font-size: 1.1em; font-weight: bold;">
                 ✅ Det bara fungerar - precis som det ska!
+            </p>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <img src="ClaudeCode_och_Frans_G.jpg" alt="Claude Code i action - Svarar på fråga om Frans G Bengtsson" style="max-width: 100%; border: 2px solid #28a745; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <p style="font-style: italic; color: #7f8c8d; margin-top: 15px;">
+                🎉 <strong>Claude Code i action!</strong> Här svarar Claude Code på en svensk fråga om Frans G Bengtsson direkt i terminalen - 
+                snabbt, enkelt och utan krångel. Detta är skillnaden mellan ett verktyg som fungerar och ett som inte gör det.
             </p>
         </div>
 
@@ -210,13 +234,30 @@
         <ul>
             <li><strong>Gemini_CLI.html</strong> - Fullständig dokumentation av Gemini CLI-försöket med alla felsökningssteg</li>
             <li><strong>init_Git.html</strong> - Guide för att initiera Git i nya projekt</li>
+            <li><strong>push_to_GitHub.html</strong> - Guide för att pusha till GitHub med felsökning</li>
             <li><strong>Screenshots</strong> - Bilder som dokumenterar hela processen</li>
             <li><strong>PowerShell-scripts</strong> - Hjälpscript för PATH-konfiguration</li>
         </ul>
 
         <div style="text-align: center; margin: 40px 0;">
-            <a href="Gemini_CLI.html" class="link-button">📖 Läs Fullständig Dokumentation</a>
+            <a href="Gemini_CLI.html" class="link-button">📖 Fullständig Dokumentation</a>
+            <a href="push_to_GitHub.html" class="link-button">🔧 Push till GitHub Guide</a>
             <a href="https://claude.com/product/claude-code" class="link-button" target="_blank">🚀 Prova Claude Code</a>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, #24292e 0%, #1a1d21 100%); border-radius: 10px;">
+            <h3 style="color: white; margin-top: 0;">🌐 GitHub Repository</h3>
+            <p style="color: #ecf0f1; font-size: 1.1em; margin: 20px 0;">
+                Hela projektet finns tillgängligt på GitHub med all källkod, dokumentation och screenshots.
+            </p>
+            <a href="https://github.com/kentlundgren/Gemini_Claude_CLI" class="github-link" target="_blank">
+                📦 Besök GitHub Repository →
+            </a>
+            <p style="color: #95a5a6; font-size: 0.9em; margin-top: 20px;">
+                <code style="background-color: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 3px;">
+                    https://github.com/kentlundgren/Gemini_Claude_CLI
+                </code>
+            </p>
         </div>
 
         <div class="summary">
