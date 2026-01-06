@@ -310,15 +310,89 @@
     </div>
 
     <div class="step">
-        <h3><span class="step-number">3</span> Aktivera Gemini CLI</h3>
-        <p>Nu ska vi aktivera Gemini CLI och se till att allt fungerar:</p>
+        <h3><span class="step-number">3</span> Skapa/Välj Google Cloud-projekt och Aktivera Gemini API</h3>
+        
+        <div class="warning">
+            <strong>⚠️ VIKTIGT: Gemini kräver ett Google Cloud-projekt!</strong>
+            <p>Du kan INTE använda Gemini CLI utan ett konfigurerat projekt med aktiverat Vertex AI API.</p>
+        </div>
+
+        <h4>A. Skapa eller Välj Projekt</h4>
+        
+        <p><strong>Alternativ 1: Skapa nytt projekt</strong></p>
+        <div class="code-block">
+            <span class="command"># Skapa ett nytt projekt</span><br>
+            gcloud projects create mitt-gemini-projekt --name="Mitt Gemini Projekt"<br><br>
+            
+            <span class="command"># Sätt det som aktivt projekt</span><br>
+            gcloud config set project mitt-gemini-projekt
+        </div>
+
+        <p><strong>Alternativ 2: Använd befintligt projekt</strong></p>
+        <div class="code-block">
+            <span class="command"># Lista dina projekt</span><br>
+            gcloud projects list<br><br>
+            
+            <span class="command"># Välj ett projekt</span><br>
+            gcloud config set project DITT-PROJEKT-ID
+        </div>
+
+        <h4>B. Aktivera Vertex AI API (Gemini)</h4>
+        <div class="code-block">
+            <span class="command"># Aktivera Vertex AI API (tar 1-2 minuter)</span><br>
+            gcloud services enable aiplatform.googleapis.com<br><br>
+            
+            <span class="command"># Verifiera att det är aktiverat</span><br>
+            gcloud services list --enabled | Select-String "aiplatform"
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Billing krävs!</strong>
+            <p>Vertex AI API kräver att billing är aktiverat på projektet. Du måste:</p>
+            <ul>
+                <li>Gå till <a href="https://console.cloud.google.com/billing" target="_blank">console.cloud.google.com/billing</a></li>
+                <li>Skapa eller länka ett billing-konto</li>
+                <li>Koppla det till ditt projekt</li>
+            </ul>
+            <p><strong>Obs:</strong> Det finns ofta en gratis tier/provperiod, men kreditkort krävs ändå.</p>
+        </div>
+
+        <h4>C. Verifiera Konfiguration</h4>
+        <div class="code-block">
+            <span class="command"># Kontrollera aktivt projekt</span><br>
+            gcloud config get-value project<br><br>
+            
+            <span class="command"># Kontrollera inloggat konto</span><br>
+            gcloud auth list<br><br>
+            
+            <span class="command"># Lista aktiverade API:er</span><br>
+            gcloud services list --enabled
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">4</span> Testa Gemini CLI</h3>
+        <p>Nu när allt är konfigurerat, testa Gemini:</p>
         
         <div class="code-block">
-            <span class="command"># Sätt ditt Google Cloud-projekt (om du har ett)</span><br>
-            gcloud config set project DITT-PROJEKT-ID<br><br>
-            
-            <span class="command"># Testa Gemini CLI - starta ett interactive session</span><br>
+            <span class="command"># Enkel test-prompt</span><br>
+            gcloud ai generative-ai models generate-content --model=gemini-pro --prompt="Hej, vad är 2+2?"
+        </div>
+
+        <p><strong>Alternativ kommandosyntax (beroende på version):</strong></p>
+        <div class="code-block">
+            <span class="command"># Äldre syntax (kan vara deprecated)</span><br>
             gcloud ai gemini chat
+        </div>
+
+        <div class="info">
+            <strong>💡 Kommandosyntax kan variera!</strong>
+            <p>Google uppdaterar ofta sina CLI-kommandon. Om <code>gcloud ai gemini</code> inte fungerar, prova:</p>
+            <ul>
+                <li><code>gcloud ai generative-ai models generate-content</code></li>
+                <li><code>gcloud alpha ai</code> (alpha/beta-versioner)</li>
+                <li>Kör <code>gcloud ai --help</code> för att se tillgängliga kommandon</li>
+            </ul>
         </div>
 
         <div class="image-container">
@@ -1129,16 +1203,66 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
     </div>
 
     <div class="step">
-        <h3>Problem 3: "Command not found: gcloud"</h3>
+        <h3>Problem 3: "Invalid choice: 'gemini'" eller "Command not found"</h3>
         <div class="warning">
-            <strong>Symptom:</strong> PowerShell eller terminal känner inte igen gcloud-kommandot
+            <strong>Symptom:</strong> Du får felmeddelandet:<br>
+            <code>ERROR: (gcloud.ai) Invalid choice: 'gemini'.</code>
+            <br>eller<br>
+            <code>Your current project is [None]</code>
+        </div>
+        
+        <div class="warning" style="background-color: #fff3cd;">
+            <strong>🎯 Detta betyder:</strong><br>
+            Du har INTE konfigurerat ett Google Cloud-projekt eller aktiverat Vertex AI API!
+        </div>
+
+        <strong>Lösning:</strong>
+        <ol>
+            <li><strong>Skapa eller välj ett projekt:</strong>
+                <div class="code-block">
+                    <span class="command"># Lista projekt</span><br>
+                    gcloud projects list<br><br>
+                    
+                    <span class="command"># Välj ett projekt</span><br>
+                    gcloud config set project DITT-PROJEKT-ID
+                </div>
+            </li>
+            <li><strong>Aktivera Vertex AI API:</strong>
+                <div class="code-block">
+                    gcloud services enable aiplatform.googleapis.com
+                </div>
+            </li>
+            <li><strong>Aktivera billing</strong> (kreditkort krävs):
+                <ul>
+                    <li>Gå till: <a href="https://console.cloud.google.com/billing" target="_blank">console.cloud.google.com/billing</a></li>
+                    <li>Skapa billing-konto</li>
+                    <li>Koppla till ditt projekt</li>
+                </ul>
+            </li>
+            <li><strong>Testa kommandot igen</strong></li>
+        </ol>
+
+        <div class="info">
+            <strong>💡 Alternativ kommandosyntax:</strong>
+            <p>Om <code>gcloud ai gemini</code> inte fungerar, prova:</p>
+            <div class="code-block">
+                gcloud ai generative-ai models generate-content --model=gemini-pro --prompt="Test"
+            </div>
+            <p>Eller kör <code>gcloud ai --help</code> för att se tillgängliga kommandon.</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Problem 4: Andra tekniska problem</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> Andra fel relaterade till gcloud eller terminal
         </div>
         <strong>Lösning:</strong>
         <ol>
-            <li>Kontrollera att Google Cloud CLI är installerat</li>
-            <li>Starta om terminalen efter installation</li>
-            <li>Kontrollera PATH-variabeln</li>
-            <li>Windows: Kör om installationsprogrammet</li>
+            <li>Kontrollera att Google Cloud CLI är installerat: <code>gcloud --version</code></li>
+            <li>Starta om terminalen efter installation eller konfigurationsändringar</li>
+            <li>Kontrollera PATH-variabeln om gcloud inte hittas</li>
+            <li>Windows: Kör om installationsprogrammet om allt annat misslyckas</li>
         </ol>
     </div>
 
