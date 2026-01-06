@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide: Initiera Git i Nytt Projekt</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        .command {
+            color: #3498db;
+            font-weight: bold;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .step {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .step-number {
+            background-color: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Komplett Guide: Initiera Git i Nytt Projekt</h1>
+    
+    <div class="info">
+        <strong>Skapad:</strong> 2025-01-06<br>
+        <strong>Syfte:</strong> En komplett referensguide för att skapa och konfigurera ett nytt lokalt Git-repository
+    </div>
+
+    <h2>🎯 Huvudproblem och Lösning</h2>
+    
+    <div class="warning">
+        <strong>⚠️ Vanligt Problem:</strong><br>
+        När du skapar en ny mapp och öppnar den i Cursor/VS Code, kan IDE:t fortfarande visa ett Git-repository från en 
+        <strong>överliggande mapp</strong>. Detta händer eftersom Git söker uppåt i mappstrukturen efter en <code>.git</code>-mapp.
+    </div>
+
+    <div class="success">
+        <strong>✅ Lösning:</strong><br>
+        Skapa ett <strong>nytt lokalt Git-repository</strong> i din projektmapp genom att köra <code>git init</code>. 
+        När Git hittar en <code>.git</code>-mapp i den nuvarande katalogen, används denna istället för överliggande repositories.
+    </div>
+
+    <h2>🔧 Komplett Steg-för-Steg Process</h2>
+
+    <div class="step">
+        <h3><span class="step-number">1</span> Konfigurera Git Globalt (Gör EN gång)</h3>
+        <p>Innan du skapar ditt första Git-repository, konfigurera Git med dina uppgifter och preferenser:</p>
+        
+        <div class="code-block">
+            <span class="command"># Sätt ditt namn</span><br>
+            git config --global user.name "Ditt Namn"<br><br>
+            
+            <span class="command"># Sätt din email</span><br>
+            git config --global user.email "din.email@example.com"<br><br>
+            
+            <span class="command"># Sätt 'main' som standardbranch (VIKTIGT!)</span><br>
+            git config --global init.defaultBranch main<br><br>
+            
+            <span class="command"># Verifiera dina inställningar</span><br>
+            git config --list
+        </div>
+
+        <div class="info">
+            <strong>💡 Varför '--global'?</strong><br>
+            <code>--global</code> sparar inställningarna för alla dina Git-repositories på din dator. 
+            Du behöver bara göra detta EN gång!
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">2</span> Navigera till Din Projektmapp</h3>
+        <p>Öppna PowerShell och navigera till mappen där du vill skapa Git-repository:</p>
+        
+        <div class="code-block">
+            <span class="command"># Byt katalog till din projektmapp</span><br>
+            cd "D:\MittProjekt\MinApp"<br><br>
+            
+            <span class="command"># Kontrollera att du är i rätt mapp</span><br>
+            pwd
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">3</span> Skapa .gitignore (Innan git init!)</h3>
+        <p>Skapa en <code>.gitignore</code>-fil INNAN du initierar Git. Detta förhindrar att oönskade filer trackas:</p>
+        
+        <div class="code-block">
+            <span class="command"># Skapa .gitignore med PowerShell</span><br>
+            New-Item .gitignore -ItemType File
+        </div>
+
+        <p><strong>Exempel på innehåll i .gitignore:</strong></p>
+        <div class="code-block">
+# Node modules (om du använder npm/node)<br>
+node_modules/<br><br>
+
+# Build-filer<br>
+dist/<br>
+build/<br><br>
+
+# IDE och editor-filer<br>
+.vscode/<br>
+.idea/<br>
+*.swp<br>
+*.swo<br>
+*~<br><br>
+
+# OS-filer<br>
+.DS_Store<br>
+Thumbs.db<br>
+desktop.ini<br><br>
+
+# Temporära filer<br>
+*.log<br>
+*.tmp<br>
+.cache/<br><br>
+
+# Känslig information<br>
+.env<br>
+.env.local
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">4</span> Initiera Git Repository</h3>
+        <p>Nu skapar vi det lokala Git-repository i den nuvarande mappen:</p>
+        
+        <div class="code-block">
+            <span class="command"># Initiera ett nytt Git-repository</span><br>
+            git init<br><br>
+            
+            <span class="command"># Du bör se detta meddelande:</span><br>
+            # Initialized empty Git repository in D:/MittProjekt/MinApp/.git/
+        </div>
+
+        <div class="success">
+            <strong>✅ Vad har hänt?</strong>
+            <ul>
+                <li>En dold mapp <code>.git</code> har skapats i din projektmapp</li>
+                <li>Denna mapp innehåller all Git-historik och konfiguration</li>
+                <li>Git kommer NU använda DETTA repository när du arbetar i denna mapp</li>
+                <li>Du är INTE längre kopplad till något överliggande repository</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">5</span> Gör Din Första Commit</h3>
+        <p>Lägg till dina filer och gör din första commit:</p>
+        
+        <div class="code-block">
+            <span class="command"># Lägg till alla filer till staging area</span><br>
+            git add .<br><br>
+            
+            <span class="command"># Kontrollera vad som ska committas</span><br>
+            git status<br><br>
+            
+            <span class="command"># Gör din första commit</span><br>
+            git commit -m "Initial commit"
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Om branchen heter 'master':</strong><br>
+            Om du glömde sätta <code>init.defaultBranch</code> till 'main' och din branch heter 'master', 
+            kan du byta namn EFTER första commit:
+            <div class="code-block">
+                <span class="command"># Byt namn på branchen från master till main</span><br>
+                git branch -m master main
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">6</span> Uppdatera IDE (Cursor/VS Code)</h3>
+        <p>Om IDE:t fortfarande visar fel Git-repository:</p>
+        
+        <ul>
+            <li><strong>Stäng och öppna projektmappen igen</strong> i IDE:t</li>
+            <li>Tryck <code>Ctrl+Shift+P</code> och sök på "Git: Refresh"</li>
+            <li>Ladda om fönstret: <code>Ctrl+Shift+P</code> → "Developer: Reload Window"</li>
+            <li>Kontrollera att rätt Git-repository används: Längst ner i IDE:t ska det stå "main" (inte "master") 
+                och rätt antal commits</li>
+        </ul>
+
+        <div class="info">
+            <strong>💡 Starkaste Uppdateringskommando:</strong><br>
+            Om inget annat fungerar, stäng helt Cursor/VS Code och öppna mappen igen. Detta tvingar IDE:t 
+            att omidentifiera Git-repositoryt.
+        </div>
+    </div>
+
+    <h2>🌿 Master vs Main - Förklaringen</h2>
+
+    <div class="info">
+        <h3>Historik och Bakgrund</h3>
+        <p><strong>'master'</strong> var det traditionella namnet på huvudbranchen i Git, men detta har ändrats av flera skäl:</p>
+        
+        <table>
+            <tr>
+                <th>Branch-namn</th>
+                <th>Status</th>
+                <th>När användes/används?</th>
+            </tr>
+            <tr>
+                <td><strong>master</strong></td>
+                <td>❌ Gammalt</td>
+                <td>Användes som standard fram till 2020</td>
+            </tr>
+            <tr>
+                <td><strong>main</strong></td>
+                <td>✅ Modernt</td>
+                <td>Ny standard sedan 2020 (GitHub, GitLab, etc.)</td>
+            </tr>
+        </table>
+
+        <h3>Varför Bytte Man?</h3>
+        <ul>
+            <li><strong>Inklusivitet:</strong> Termer som "master/slave" har historiska kopplingar som många finner problematiska</li>
+            <li><strong>Tydlighet:</strong> "main" är mer beskrivande - det är helt enkelt huvudbranchen</li>
+            <li><strong>Branschstandard:</strong> GitHub, GitLab och andra plattformar använder nu "main" som standard</li>
+            <li><strong>Bättre språk:</strong> "main" är enklare att förstå för internationella team</li>
+        </ul>
+
+        <h3>Vad Ska Du Använda?</h3>
+        <div class="success">
+            <strong>✅ Rekommendation: Använd 'main'</strong>
+            <ul>
+                <li>Det är den moderna standarden</li>
+                <li>Alla nya projekt på GitHub/GitLab använder "main"</li>
+                <li>Undviker förvirring när du pushar till remote repositories</li>
+                <li>Framtidssäkert - alla nya verktyg förväntar sig "main"</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>📋 Komplett Kommandoreferens</h2>
+
+    <div class="step">
+        <h3>Grundläggande Kommandon för Nytt Repository</h3>
+        <table>
+            <tr>
+                <th>Kommando</th>
+                <th>Beskrivning</th>
+                <th>När?</th>
+            </tr>
+            <tr>
+                <td><code>git init</code></td>
+                <td>Skapar ett nytt Git-repository</td>
+                <td>Första gången i en ny projektmapp</td>
+            </tr>
+            <tr>
+                <td><code>git add .</code></td>
+                <td>Lägger till alla filer till staging</td>
+                <td>Innan commit</td>
+            </tr>
+            <tr>
+                <td><code>git add filnamn</code></td>
+                <td>Lägger till specifik fil till staging</td>
+                <td>När du bara vill committa vissa filer</td>
+            </tr>
+            <tr>
+                <td><code>git status</code></td>
+                <td>Visar status på filer (staged, unstaged, etc.)</td>
+                <td>Ofta! Innan commit, för att se vad som händer</td>
+            </tr>
+            <tr>
+                <td><code>git commit -m "meddelande"</code></td>
+                <td>Skapar en commit med ett meddelande</td>
+                <td>När du har stageat filer</td>
+            </tr>
+            <tr>
+                <td><code>git log</code></td>
+                <td>Visar commit-historik</td>
+                <td>För att se alla commits</td>
+            </tr>
+            <tr>
+                <td><code>git log --oneline</code></td>
+                <td>Visar kompakt commit-historik</td>
+                <td>För en snabb överblick</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="step">
+        <h3>Branch-hantering</h3>
+        <table>
+            <tr>
+                <th>Kommando</th>
+                <th>Beskrivning</th>
+            </tr>
+            <tr>
+                <td><code>git branch</code></td>
+                <td>Listar alla branches</td>
+            </tr>
+            <tr>
+                <td><code>git branch namn</code></td>
+                <td>Skapar en ny branch</td>
+            </tr>
+            <tr>
+                <td><code>git branch -m gammalt nytt</code></td>
+                <td>Byter namn på en branch</td>
+            </tr>
+            <tr>
+                <td><code>git branch -m main</code></td>
+                <td>Byter namn på nuvarande branch till "main"</td>
+            </tr>
+            <tr>
+                <td><code>git checkout branch-namn</code></td>
+                <td>Byter till en annan branch</td>
+            </tr>
+            <tr>
+                <td><code>git checkout -b ny-branch</code></td>
+                <td>Skapar och byter till ny branch</td>
+            </tr>
+            <tr>
+                <td><code>git switch branch-namn</code></td>
+                <td>Modernt sätt att byta branch (Git 2.23+)</td>
+            </tr>
+            <tr>
+                <td><code>git switch -c ny-branch</code></td>
+                <td>Skapar och byter till ny branch (modernt)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="step">
+        <h3>Konfigurations-kommandon</h3>
+        <table>
+            <tr>
+                <th>Kommando</th>
+                <th>Beskrivning</th>
+            </tr>
+            <tr>
+                <td><code>git config --global user.name "Namn"</code></td>
+                <td>Sätter ditt namn globalt</td>
+            </tr>
+            <tr>
+                <td><code>git config --global user.email "email"</code></td>
+                <td>Sätter din email globalt</td>
+            </tr>
+            <tr>
+                <td><code>git config --global init.defaultBranch main</code></td>
+                <td>Sätter "main" som standardbranch</td>
+            </tr>
+            <tr>
+                <td><code>git config --list</code></td>
+                <td>Visar alla Git-inställningar</td>
+            </tr>
+            <tr>
+                <td><code>git config --global --list</code></td>
+                <td>Visar globala inställningar</td>
+            </tr>
+            <tr>
+                <td><code>git config user.name</code></td>
+                <td>Visar ditt konfigurerade namn</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="step">
+        <h3>Informations-kommandon</h3>
+        <table>
+            <tr>
+                <th>Kommando</th>
+                <th>Beskrivning</th>
+            </tr>
+            <tr>
+                <td><code>git status</code></td>
+                <td>Visar status på working directory och staging area</td>
+            </tr>
+            <tr>
+                <td><code>git diff</code></td>
+                <td>Visar ändringar som inte är stagade</td>
+            </tr>
+            <tr>
+                <td><code>git diff --staged</code></td>
+                <td>Visar ändringar som är stagade</td>
+            </tr>
+            <tr>
+                <td><code>git log</code></td>
+                <td>Visar commit-historik</td>
+            </tr>
+            <tr>
+                <td><code>git log --graph --oneline --all</code></td>
+                <td>Visar grafisk commit-historik</td>
+            </tr>
+            <tr>
+                <td><code>git show</code></td>
+                <td>Visar detaljer om senaste commit</td>
+            </tr>
+            <tr>
+                <td><code>git remote -v</code></td>
+                <td>Visar remote repositories (om några)</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>✅ Checklista för Nytt Git-Repository</h2>
+
+    <div class="step">
+        <strong>Innan du börjar:</strong>
+        <ul>
+            <li>☐ Konfigurera Git globalt (user.name, user.email, init.defaultBranch)</li>
+            <li>☐ Navigera till din projektmapp</li>
+            <li>☐ Skapa .gitignore-fil</li>
+        </ul>
+
+        <strong>Initiera repository:</strong>
+        <ul>
+            <li>☐ Kör <code>git init</code></li>
+            <li>☐ Verifiera att .git-mapp skapades</li>
+            <li>☐ Kör <code>git add .</code></li>
+            <li>☐ Kör <code>git status</code> (kontrollera att rätt filer är staged)</li>
+            <li>☐ Kör <code>git commit -m "Initial commit"</code></li>
+        </ul>
+
+        <strong>Verifiera:</strong>
+        <ul>
+            <li>☐ Kör <code>git branch</code> - ska visa "main" (inte "master")</li>
+            <li>☐ Kör <code>git log</code> - ska visa din första commit</li>
+            <li>☐ Öppna Cursor/VS Code - ska visa "main" längst ner</li>
+            <li>☐ IDE ska visa rätt antal commits</li>
+        </ul>
+    </div>
+
+    <h2>🚨 Felsökning</h2>
+
+    <div class="step">
+        <h3>Problem 1: IDE visar fortfarande fel repository</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> Cursor/VS Code visar commits från överliggande mapp
+        </div>
+        <strong>Lösningar (prova i ordning):</strong>
+        <ol>
+            <li>Stäng och öppna projektmappen igen</li>
+            <li><code>Ctrl+Shift+P</code> → "Developer: Reload Window"</li>
+            <li>Kontrollera att .git-mappen finns: <code>ls -Force</code> (PowerShell) eller <code>dir /a</code> (CMD)</li>
+            <li>Stäng helt IDE:t och öppna igen</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Problem 2: Branchen heter "master" istället för "main"</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> Efter <code>git init</code> skapades branch "master"
+        </div>
+        <strong>Lösningar:</strong>
+        <ol>
+            <li>Byt namn på branchen: <code>git branch -m master main</code></li>
+            <li>Sätt framtida standard: <code>git config --global init.defaultBranch main</code></li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>Problem 3: Kan inte se .git-mappen</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> .git-mappen syns inte i File Explorer
+        </div>
+        <strong>Lösning:</strong>
+        <p>.git är en <strong>dold mapp</strong>. För att se den:</p>
+        <ul>
+            <li><strong>PowerShell:</strong> <code>ls -Force</code></li>
+            <li><strong>CMD:</strong> <code>dir /a</code></li>
+            <li><strong>File Explorer:</strong> View → Show → Hidden items (kryssa i)</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>Problem 4: Git hittar inte min config</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> <code>git commit</code> ger fel om user.name eller user.email
+        </div>
+        <strong>Lösning:</strong>
+        <div class="code-block">
+            <span class="command"># Sätt namn och email</span><br>
+            git config --global user.name "Ditt Namn"<br>
+            git config --global user.email "din.email@example.com"<br><br>
+            
+            <span class="command"># Verifiera</span><br>
+            git config --list
+        </div>
+    </div>
+
+    <h2>💡 Bästa Praxis</h2>
+
+    <div class="success">
+        <h3>Gör ALLTID detta när du startar nytt projekt:</h3>
+        <ol>
+            <li><strong>Skapa .gitignore FÖRST</strong> - Innan git init och första commit</li>
+            <li><strong>Använd 'main' som branch-namn</strong> - Modern standard</li>
+            <li><strong>Skriv tydliga commit-meddelanden</strong> - Börja med verb ("Add", "Fix", "Update")</li>
+            <li><strong>Committa tidigt och ofta</strong> - Små, logiska commits är bättre än stora</li>
+            <li><strong>Kontrollera med git status</strong> - Innan VARJE commit</li>
+            <li><strong>Ha en README.md</strong> - Beskriv projektet</li>
+        </ol>
+    </div>
+
+    <div class="info">
+        <h3>PowerShell-tips för Git:</h3>
+        <ul>
+            <li>❌ <strong>Fungerar INTE i PowerShell:</strong> <code>cd mapp && git init</code> (dubbel-ampersand)</li>
+            <li>✅ <strong>Gör istället:</strong> Dela upp i två kommandon:</li>
+        </ul>
+        <div class="code-block">
+            cd mapp<br>
+            git init
+        </div>
+        <p>Eller använd semikolon:</p>
+        <div class="code-block">
+            cd mapp; git init
+        </div>
+    </div>
+
+    <h2>📚 Sammanfattning - Snabbguide</h2>
+
+    <div class="step">
+        <h3>Komplett kommandosekvens för nytt projekt:</h3>
+        <div class="code-block">
+<span class="command"># 1. Engångskonfiguration (om inte redan gjort)</span><br>
+git config --global user.name "Ditt Namn"<br>
+git config --global user.email "din.email@example.com"<br>
+git config --global init.defaultBranch main<br><br>
+
+<span class="command"># 2. Navigera till projektmapp</span><br>
+cd "D:\MittProjekt"<br><br>
+
+<span class="command"># 3. Skapa .gitignore (använd editor eller New-Item)</span><br>
+New-Item .gitignore -ItemType File<br>
+<span class="command"># Redigera .gitignore med dina ignorer-regler</span><br><br>
+
+<span class="command"># 4. Initiera Git</span><br>
+git init<br><br>
+
+<span class="command"># 5. Lägg till filer och committa</span><br>
+git add .<br>
+git status<br>
+git commit -m "Initial commit"<br><br>
+
+<span class="command"># 6. Verifiera</span><br>
+git branch<br>
+git log --oneline<br>
+git status
+        </div>
+    </div>
+
+    <h2>🔗 Viktiga Resurser</h2>
+
+    <div class="info">
+        <ul>
+            <li><strong>Officiell Git-dokumentation:</strong> <a href="https://git-scm.com/doc" target="_blank">git-scm.com/doc</a></li>
+            <li><strong>GitHub Git Cheat Sheet:</strong> <a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank">GitHub Cheat Sheet</a></li>
+            <li><strong>Learn Git Branching (interaktiv):</strong> <a href="https://learngitbranching.js.org/" target="_blank">learngitbranching.js.org</a></li>
+            <li><strong>.gitignore templates:</strong> <a href="https://github.com/github/gitignore" target="_blank">github.com/github/gitignore</a></li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 50px; padding: 20px; background-color: #2c3e50; color: white; text-align: center; border-radius: 5px;">
+        <p><strong>📝 Dokumentet skapad av Kent Lundgren</strong></p>
+        <p>Senast uppdaterad: 2025-01-06</p>
+        <p><em>Använd denna guide som referens när du skapar nya Git-repositories!</em></p>
+    </div>
+
+</body>
+</html>
+
