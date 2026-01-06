@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini CLI vs Claude Code - En Jämförelse</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.6;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #9b59b6;
+            padding-left: 15px;
+        }
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 6px solid #c62828;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .success-box {
+            background-color: #d4edda;
+            border-left: 6px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #9b59b6;
+            color: white;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .fail {
+            background-color: #ffebee;
+            color: #c62828;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .link-button {
+            display: inline-block;
+            background-color: #9b59b6;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .link-button:hover {
+            background-color: #8e44ad;
+            transform: scale(1.05);
+        }
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #9b59b6;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Gemini CLI vs Claude Code</h1>
+        <p style="text-align: center; font-size: 1.2em; color: #7f8c8d;">
+            <strong>En dokumenterad jämförelse av två AI CLI-verktyg</strong>
+        </p>
+
+        <div class="summary">
+            <h2 style="color: white; border: none; margin-top: 0;">📋 Projektsammanfattning</h2>
+            <p style="font-size: 1.1em;">
+                Detta projekt dokumenterar ett verkligt försök att installera och använda <strong>Gemini CLI</strong> 
+                från Google, och jämför det med <strong>Claude Code</strong> från Anthropic.
+            </p>
+        </div>
+
+        <h2>❌ Gemini CLI - Resultatet</h2>
+        <div class="warning-box">
+            <p><strong>Status: MISSLYCKADES</strong></p>
+            <p>Trots omfattande installation och konfiguration fungerade Gemini CLI inte via Google Cloud SDK (gcloud).</p>
+            
+            <p><strong>Vad som gjordes:</strong></p>
+            <ul>
+                <li>✅ Google Cloud SDK installerat (version 551.0.0)</li>
+                <li>✅ Autentisering genomförd</li>
+                <li>✅ Google Cloud-projekt skapat</li>
+                <li>✅ Vertex AI API aktiverat</li>
+                <li>✅ Generative Language API aktiverat</li>
+                <li>✅ Billing konfigurerat</li>
+                <li>✅ Alpha-komponenter installerade</li>
+            </ul>
+            
+            <p><strong>Slutsats:</strong></p>
+            <p style="font-size: 1.1em; font-weight: bold;">
+                ❌ Kommandot <code>gcloud ai gemini</code> existerar inte och fungerar inte som dokumenterat.
+            </p>
+        </div>
+
+        <h2>✅ Claude Code - Resultatet</h2>
+        <div class="success-box">
+            <p><strong>Status: FUNGERAR PERFEKT</strong></p>
+            <p>Claude Code installerades och fungerade direkt utan problem!</p>
+            
+            <p><strong>Vad som krävdes:</strong></p>
+            <ul>
+                <li>✅ Ett enda installationskommando</li>
+                <li>✅ Enkel autentisering</li>
+                <li>✅ Inga komplicerade konfigurationer</li>
+            </ul>
+            
+            <p><strong>Slutsats:</strong></p>
+            <p style="font-size: 1.1em; font-weight: bold;">
+                ✅ Det bara fungerar - precis som det ska!
+            </p>
+        </div>
+
+        <h2>📊 Jämförelse</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Aspekt</th>
+                <th>Gemini CLI</th>
+                <th>Claude Code</th>
+            </tr>
+            <tr>
+                <td><strong>Installation</strong></td>
+                <td class="fail">❌ Komplicerad, flera timmar</td>
+                <td class="success">✅ Ett kommando, 2 minuter</td>
+            </tr>
+            <tr>
+                <td><strong>Konfiguration</strong></td>
+                <td class="fail">❌ Projekt, API:er, billing</td>
+                <td class="success">✅ Minimal</td>
+            </tr>
+            <tr>
+                <td><strong>Dokumentation</strong></td>
+                <td class="fail">❌ Föråldrad, fungerar inte</td>
+                <td class="success">✅ Uppdaterad, korrekt</td>
+            </tr>
+            <tr>
+                <td><strong>Slutresultat</strong></td>
+                <td class="fail">❌ FUNGERAR INTE</td>
+                <td class="success">✅ FUNGERAR PERFEKT</td>
+            </tr>
+            <tr>
+                <td><strong>Tid investerad</strong></td>
+                <td class="fail">❌ Flera timmar, bortkastade</td>
+                <td class="success">✅ 10 minuter, produktiv</td>
+            </tr>
+            <tr>
+                <td><strong>Rekommendation</strong></td>
+                <td class="fail">❌ Använd INTE</td>
+                <td class="success">✅ STARKT REKOMMENDERAD</td>
+            </tr>
+        </table>
+
+        <h2>📚 Dokumentation</h2>
+        <p>Detta repository innehåller:</p>
+        <ul>
+            <li><strong>Gemini_CLI.html</strong> - Fullständig dokumentation av Gemini CLI-försöket med alla felsökningssteg</li>
+            <li><strong>init_Git.html</strong> - Guide för att initiera Git i nya projekt</li>
+            <li><strong>Screenshots</strong> - Bilder som dokumenterar hela processen</li>
+            <li><strong>PowerShell-scripts</strong> - Hjälpscript för PATH-konfiguration</li>
+        </ul>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="Gemini_CLI.html" class="link-button">📖 Läs Fullständig Dokumentation</a>
+            <a href="https://claude.com/product/claude-code" class="link-button" target="_blank">🚀 Prova Claude Code</a>
+        </div>
+
+        <div class="summary">
+            <h2 style="color: white; border: none; margin-top: 0;">🎯 Slutsats</h2>
+            <p style="font-size: 1.2em; font-weight: bold;">
+                Hoppa över Gemini CLI.<br>
+                Använd Claude Code istället!
+            </p>
+            <p>
+                Dokumentationen sparas som referens för andra som stöter på samma problem,<br>
+                och som bevis på att Claude Code är det överlägsna alternativet.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p><strong>📅 Datum:</strong> 6 januari 2026</p>
+            <p><strong>👤 Författare:</strong> Kent Lundgren</p>
+            <p><strong>🔗 GitHub:</strong> <a href="https://github.com/kentlundgren/Gemini_Claude_CLI">github.com/kentlundgren/Gemini_Claude_CLI</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

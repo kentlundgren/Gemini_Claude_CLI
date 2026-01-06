@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide: Pusha Till GitHub - Felsökning</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #e74c3c;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        .command {
+            color: #3498db;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .success {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .error-box {
+            background-color: #ffebee;
+            border-left: 4px solid #c62828;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success-box {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .step {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .step-number {
+            background-color: #e74c3c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #e74c3c;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Guide: Pusha Till GitHub - Felsökning</h1>
+    
+    <div class="info">
+        <strong>Skapad:</strong> 6 januari 2026<br>
+        <strong>Syfte:</strong> Dokumentation av problem och lösningar vid push till GitHub
+    </div>
+
+    <h2>❌ Problem Som Uppstod</h2>
+
+    <div class="error-box">
+        <h3>Problem 1: Commit-meddelande med Svenska Tecken</h3>
+        <p><strong>Felmeddelande:</strong></p>
+        <div class="code-block">
+            <span class="error">mislyckades : The term 'mislyckades' is not recognized as the name of a cmdlet, function, script file, or operable program.</span>
+        </div>
+        
+        <p><strong>Orsak:</strong></p>
+        <ul>
+            <li>PowerShell tolkade ordet "misslyckades" i commit-meddelandet som ett kommando</li>
+            <li>Detta händer när citattecken inte hanteras korrekt med svenska tecken</li>
+            <li>Parenteser i commit-meddelandet kan också orsaka problem</li>
+        </ul>
+
+        <p><strong>Ursprungligt commit-meddelande:</strong></p>
+        <div class="code-block">
+            git commit -m "Add: Komplett dokumentation av Gemini CLI (misslyckades) vs Claude Code (fungerar)"
+        </div>
+    </div>
+
+    <div class="error-box">
+        <h3>Problem 2: Fel Repository-namn</h3>
+        <p><strong>Felmeddelande:</strong></p>
+        <div class="code-block">
+            <span class="error">fatal: repository 'https://github.com/kentlundgren/Test_BS.git/' not found</span>
+        </div>
+        
+        <p><strong>Orsak:</strong></p>
+        <ul>
+            <li>Git-remote var redan konfigurerat till ett gammalt repository-namn</li>
+            <li>Scriptet försökte pusha till "Test_BS" istället för "Gemini_Claude_CLI"</li>
+        </ul>
+    </div>
+
+    <h2>✅ Lösning - Steg för Steg</h2>
+
+    <div class="step">
+        <h3><span class="step-number">1</span> Kontrollera Nuvarande Git-status</h3>
+        <div class="code-block">
+            <span class="command"># Kontrollera vilka filer som är staged</span><br>
+            git status
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">2</span> Ta Bort Felaktigt Remote (Om Det Finns)</h3>
+        <div class="code-block">
+            <span class="command"># Lista alla remotes</span><br>
+            git remote -v<br><br>
+            
+            <span class="command"># Om "origin" pekar på fel repository, ta bort det:</span><br>
+            git remote remove origin
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">3</span> Lägg Till Alla Filer</h3>
+        <div class="code-block">
+            <span class="command"># Lägg till alla filer för commit</span><br>
+            git add .
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">4</span> Committa Med Engelsk Text (SÄKRAST!)</h3>
+        <div class="warning">
+            <strong>⚠️ VIKTIGT: Använd ENDAST engelska tecken i commit-meddelanden!</strong>
+            <p>Svenska tecken (å, ä, ö) och parenteser kan orsaka problem i PowerShell.</p>
+        </div>
+
+        <h4>✅ Rekommenderat Commit-meddelande (Engelska):</h4>
+        <div class="code-block">
+            git commit -m "Add: Complete documentation of Gemini CLI failure vs Claude Code success"
+        </div>
+
+        <h4>Eller kortare version:</h4>
+        <div class="code-block">
+            git commit -m "Add: Gemini CLI vs Claude Code documentation"
+        </div>
+
+        <h4>❌ Undvik dessa (Svenska tecken):</h4>
+        <div class="code-block" style="background-color: #c0392b;">
+            <span class="error"># DÅLIGT - Svenska tecken:</span><br>
+            git commit -m "Lägg till dokumentation"<br><br>
+            
+            <span class="error"># DÅLIGT - Parenteser med svenska ord:</span><br>
+            git commit -m "Dokumentation (misslyckades)"
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">5</span> Lägg Till Rätt Remote</h3>
+        <div class="code-block">
+            <span class="command"># Lägg till remote med RÄTT repository-namn</span><br>
+            git remote add origin https://github.com/kentlundgren/Gemini_Claude_CLI.git<br><br>
+            
+            <span class="command"># Verifiera att det är rätt:</span><br>
+            git remote -v<br><br>
+            
+            <span class="success"># Du ska se:</span><br>
+            <span class="success">origin  https://github.com/kentlundgren/Gemini_Claude_CLI.git (fetch)</span><br>
+            <span class="success">origin  https://github.com/kentlundgren/Gemini_Claude_CLI.git (push)</span>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">6</span> Pusha Till GitHub</h3>
+        <div class="code-block">
+            <span class="command"># Första gången - pusha och sätt upstream:</span><br>
+            git push -u origin main<br><br>
+            
+            <span class="command"># Om det finns konflikter eller fel, force push (VAR FÖRSIKTIG!):</span><br>
+            git push -u origin main --force
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Autentisering kan krävas!</strong>
+            <p>GitHub kan be dig logga in. Följ instruktionerna i webbläsaren som öppnas.</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">7</span> Verifiera På GitHub</h3>
+        <p>Öppna i webbläsare:</p>
+        <div class="code-block">
+            https://github.com/kentlundgren/Gemini_Claude_CLI
+        </div>
+        <p>Kontrollera att alla filer är uppladdade.</p>
+    </div>
+
+    <h2>📝 Komplett Kommandosekvens (Kopierad klar att köra)</h2>
+
+    <div class="success-box">
+        <h3>Kör Dessa Kommandon I Ordning:</h3>
+        <div class="code-block">
+            <span class="command"># 1. Kontrollera status</span><br>
+            git status<br><br>
+            
+            <span class="command"># 2. Ta bort felaktigt remote (om det finns)</span><br>
+            git remote remove origin<br><br>
+            
+            <span class="command"># 3. Lägg till alla filer</span><br>
+            git add .<br><br>
+            
+            <span class="command"># 4. Committa med ENGELSK text</span><br>
+            git commit -m "Add: Complete documentation of Gemini CLI failure vs Claude Code success"<br><br>
+            
+            <span class="command"># 5. Lägg till rätt remote</span><br>
+            git remote add origin https://github.com/kentlundgren/Gemini_Claude_CLI.git<br><br>
+            
+            <span class="command"># 6. Pusha till GitHub</span><br>
+            git push -u origin main
+        </div>
+    </div>
+
+    <h2>🔧 Om Du Får Fler Problem</h2>
+
+    <div class="step">
+        <h3>Problem: "fatal: refusing to merge unrelated histories"</h3>
+        <p><strong>Lösning:</strong></p>
+        <div class="code-block">
+            git pull origin main --allow-unrelated-histories<br>
+            git push -u origin main
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Problem: "Updates were rejected"</h3>
+        <p><strong>Lösning (om du är säker på att lokala filer är rätt):</strong></p>
+        <div class="code-block">
+            git push -u origin main --force
+        </div>
+        <div class="warning">
+            <strong>⚠️ VARNING:</strong> <code>--force</code> skriver över allt på GitHub. Använd endast om du är säker!
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Problem: "Authentication failed"</h3>
+        <p><strong>Lösningar:</strong></p>
+        <ul>
+            <li>GitHub kan kräva Personal Access Token (PAT) istället för lösenord</li>
+            <li>Gå till GitHub Settings → Developer settings → Personal access tokens</li>
+            <li>Skapa en ny token med "repo" rättigheter</li>
+            <li>Använd token som lösenord vid push</li>
+        </ul>
+        
+        <p><strong>Alternativt, använd GitHub CLI:</strong></p>
+        <div class="code-block">
+            <span class="command"># Installera GitHub CLI (om du inte har det):</span><br>
+            winget install --id GitHub.cli<br><br>
+            
+            <span class="command"># Logga in:</span><br>
+            gh auth login<br><br>
+            
+            <span class="command"># Pusha med GitHub CLI:</span><br>
+            gh repo create Gemini_Claude_CLI --public --source=. --push
+        </div>
+    </div>
+
+    <h2>💡 Tips För Framtiden</h2>
+
+    <div class="info">
+        <h3>Best Practices:</h3>
+        <table>
+            <tr>
+                <th>Gör</th>
+                <th>Undvik</th>
+            </tr>
+            <tr>
+                <td>✅ Använd engelska i commit-meddelanden</td>
+                <td>❌ Svenska tecken (å, ä, ö)</td>
+            </tr>
+            <tr>
+                <td>✅ Håll commit-meddelanden enkla</td>
+                <td>❌ Komplexa meddelanden med parenteser</td>
+            </tr>
+            <tr>
+                <td>✅ Verifiera remote URL innan push</td>
+                <td>❌ Anta att remote är korrekt</td>
+            </tr>
+            <tr>
+                <td>✅ Använd <code>git status</code> ofta</td>
+                <td>❌ Pusha utan att kontrollera status</td>
+            </tr>
+            <tr>
+                <td>✅ Test med <code>git remote -v</code></td>
+                <td>❌ Skippa verifiering av remote</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>✅ När Du Är Klar</h2>
+
+    <div class="success-box">
+        <h3>🎉 Succé!</h3>
+        <p>När allt är uppladdat, kommer ditt repository att vara tillgängligt på:</p>
+        <div class="code-block">
+            <a href="https://github.com/kentlundgren/Gemini_Claude_CLI" style="color: #2ecc71;">https://github.com/kentlundgren/Gemini_Claude_CLI</a>
+        </div>
+        
+        <p><strong>Vad som kommer synas:</strong></p>
+        <ul>
+            <li>📄 README.md - Automatisk förhandsvisning på GitHub</li>
+            <li>🌐 index.html - Kan öppnas direkt via GitHub Pages</li>
+            <li>📖 Gemini_CLI.html - Fullständig dokumentation</li>
+            <li>📸 Alla screenshots och bilder</li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 50px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; border-radius: 10px;">
+        <p><strong>📝 Dokumentet skapat av Kent Lundgren</strong></p>
+        <p>Skapad: 6 januari 2026</p>
+        <p><em>Lycka till med din GitHub-push! 🚀</em></p>
+    </div>
+
+</body>
+</html>
+
