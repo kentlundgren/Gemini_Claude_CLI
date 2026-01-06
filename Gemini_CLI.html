@@ -396,6 +396,108 @@
         </div>
     </div>
 
+    <h2>⚠️ RÄTT vs FEL - Lär dig skillnaden!</h2>
+
+    <div class="step">
+        <h3>❌ FEL Sätt (Fungerar INTE!)</h3>
+        
+        <div class="warning">
+            <strong>Fel 1: Glömma kommandot helt</strong>
+            <div class="code-block" style="background-color: #c0392b;">
+                berätta om Frans G Bengtsson
+            </div>
+            <p><strong>Resultat:</strong> <code>The term 'berätta' is not recognized...</code></p>
+            <p><strong>Problem:</strong> PowerShell försöker köra "berätta" som ett kommando!</p>
+        </div>
+
+        <div class="warning">
+            <strong>Fel 2: Använd Interactive Mode för långa prompts</strong>
+            <div class="code-block" style="background-color: #c0392b;">
+                gcloud ai gemini chat<br>
+                <span class="output">Gemini> </span>[Klistra in jättelång prompt här] ← Bara en rad input!
+            </div>
+            <p><strong>Problem:</strong> Opraktiskt - du ser bara en rad!</p>
+        </div>
+
+        <div class="warning">
+            <strong>Fel 3: Inkludera output-omdirigering i prompten</strong>
+            <div class="code-block" style="background-color: #c0392b;">
+                gcloud ai gemini generate "Förklara Git > output.html"
+            </div>
+            <p><strong>Problem:</strong> <code>> output.html</code> är inte del av prompten!</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>✅ RÄTT Sätt (Fungerar!)</h3>
+        
+        <div class="success">
+            <strong>Rätt 1: Kort prompt direkt i terminalen</strong>
+            <div class="code-block">
+                gcloud ai gemini generate "berätta om Frans G Bengtsson"
+            </div>
+            <p><strong>Resultat:</strong> Svar visas direkt i terminalen</p>
+        </div>
+
+        <div class="success">
+            <strong>Rätt 2: Kort prompt med output till fil</strong>
+            <div class="code-block">
+                gcloud ai gemini generate "berätta om Frans G Bengtsson" > frans.txt
+            </div>
+            <p><strong>Resultat:</strong> Svar sparas i <code>frans.txt</code></p>
+        </div>
+
+        <div class="success">
+            <strong>Rätt 3: Lång prompt från fil</strong>
+            <div class="code-block">
+                gcloud ai gemini generate "$(Get-Content prompt3.txt -Raw)" > output.html
+            </div>
+            <p><strong>Resultat:</strong> Perfekt för långa prompts!</p>
+        </div>
+
+        <div class="success">
+            <strong>Rätt 4: Interactive mode för korta frågor</strong>
+            <div class="code-block">
+                gcloud ai gemini chat<br>
+                <span class="output">Gemini> </span>Vad är Python?<br>
+                <span class="output">Gemini> </span>Förklara listor i Python<br>
+                <span class="output">Gemini> </span>exit
+            </div>
+            <p><strong>Resultat:</strong> Bra för snabba, korta frågor!</p>
+        </div>
+    </div>
+
+    <div class="info">
+        <h3>🎯 Snabbguide - När ska jag använda vad?</h3>
+        <table>
+            <tr>
+                <th>Situation</th>
+                <th>Använd Denna Metod</th>
+                <th>Exempel</th>
+            </tr>
+            <tr>
+                <td>Kort fråga, vill se svar direkt</td>
+                <td><code>gcloud ai gemini generate "prompt"</code></td>
+                <td>"Vad är recursion?"</td>
+            </tr>
+            <tr>
+                <td>Kort fråga, vill spara svar</td>
+                <td><code>gcloud ai gemini generate "prompt" > fil.txt</code></td>
+                <td>"Förklara async/await" → async.txt</td>
+            </tr>
+            <tr>
+                <td>Lång prompt, vill ha HTML-dokument</td>
+                <td><code>generate "$(Get-Content fil.txt -Raw)" > out.html</code></td>
+                <td>Prompt 3 → git_merge_rebase.html</td>
+            </tr>
+            <tr>
+                <td>Flera korta frågor i följd</td>
+                <td><code>gcloud ai gemini chat</code> (Interactive)</td>
+                <td>Fråga, svar, fråga, svar...</td>
+            </tr>
+        </table>
+    </div>
+
     <h2>💡 Användbara Kommandon</h2>
 
     <table>
@@ -756,6 +858,71 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
     </div>
 
     <h2>🚨 Vanliga Problem och Lösningar</h2>
+
+    <div class="step">
+        <h3>Problem 0: "The term 'xxx' is not recognized" (VANLIGASTE FELET!) 🔴</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> Du får felmeddelandet:<br>
+            <code>berätta : The term 'berätta' is not recognized as the name of a cmdlet, function, script file, or operable program.</code>
+            <br><br>
+            Eller liknande med andra ord från din prompt.
+        </div>
+
+        <div class="warning">
+            <strong>❌ Vad du troligen gjorde:</strong><br>
+            Du skrev bara prompten direkt i PowerShell:
+            <div class="code-block">
+                <span style="color: #e74c3c;">berätta om Frans G Bengtssons liv och leverne</span>
+            </div>
+        </div>
+
+        <div class="success">
+            <strong>✅ Rätt sätt:</strong><br>
+            Du måste ALLTID ha <code>gcloud ai gemini generate</code> före din prompt:
+            <div class="code-block">
+                <span class="command">gcloud ai gemini generate</span> <span class="prompt-example">"berätta om Frans G Bengtssons liv och leverne"</span>
+            </div>
+
+            <strong>Eller spara till fil:</strong>
+            <div class="code-block">
+                <span class="command">gcloud ai gemini generate</span> <span class="prompt-example">"berätta om Frans G Bengtssons liv och leverne"</span> <span style="color: #f39c12;">> frans_bengtsson.txt</span>
+            </div>
+        </div>
+
+        <h4>📚 Förstå Kommandostrukturen:</h4>
+        <table>
+            <tr>
+                <th>Del</th>
+                <th>Exempel</th>
+                <th>Obligatorisk?</th>
+            </tr>
+            <tr>
+                <td><strong>Verktyg + Sub-kommando</strong></td>
+                <td><code>gcloud ai gemini generate</code></td>
+                <td>✅ JA - ALLTID!</td>
+            </tr>
+            <tr>
+                <td><strong>Din prompt (i citattecken)</strong></td>
+                <td><code>"Din fråga här"</code></td>
+                <td>✅ JA</td>
+            </tr>
+            <tr>
+                <td><strong>Output-omdirigering</strong></td>
+                <td><code>> filnamn.txt</code></td>
+                <td>❌ NEJ - men rekommenderas!</td>
+            </tr>
+        </table>
+
+        <div class="info">
+            <strong>💡 Kom ihåg:</strong>
+            <ul>
+                <li>PowerShell är INTE Gemini - du pratar med PowerShell först</li>
+                <li>PowerShell startar sedan Gemini via <code>gcloud</code></li>
+                <li>Din prompt måste vara inom citattecken <code>"..."</code></li>
+                <li>Glöm ALDRIG <code>gcloud ai gemini generate</code> före prompten!</li>
+            </ul>
+        </div>
+    </div>
 
     <div class="step">
         <h3>Problem 1: "Authentication failed"</h3>
