@@ -1,0 +1,12 @@
+Skapa ett komplett, vackert formaterat HTML-dokument (git_merge_rebase.html) som förklarar skillnaden mellan git merge och git rebase. Dokumentet ska innehålla:
+
+1. En tydlig introduktion
+2. Visuella ASCII-diagram som visar commit-historik före och efter merge respektive rebase
+3. Konkreta exempel på när man ska använda vardera
+4. Best practices och vanliga fallgropar att undvika
+5. Kod-exempel i färgade code-block
+6. Modern CSS-styling med boxar, färger och responsiv design
+7. En sammanfattning med checklista
+
+Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett HTML-struktur från <!DOCTYPE html> till </html>.
+

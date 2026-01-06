@@ -327,9 +327,9 @@
     <h2>🎮 Hur man Använder Gemini CLI i Cursor</h2>
 
     <div class="step">
-        <h3>Starta Gemini CLI</h3>
+        <h3>Två Sätt att Köra Gemini CLI - VIKTIGT ATT FÖRSTÅ!</h3>
         
-        <h4>Metod 1: Interactive Chat Session</h4>
+        <h4>Metod 1: Interactive Mode (Bra för korta frågor) 💬</h4>
         <div class="code-block">
             <span class="command"># Öppna en interaktiv chat-session med Gemini</span><br>
             gcloud ai gemini chat<br><br>
@@ -338,25 +338,50 @@
             <span class="output">Gemini> </span>_
         </div>
 
-        <h4>Metod 2: Direkt Fråga (utan att starta session)</h4>
-        <div class="code-block">
-            <span class="command"># Ställ en direkt fråga och få svar</span><br>
-            gcloud ai gemini generate "Din fråga här"
+        <div class="warning">
+            <strong>⚠️ Problem med Interactive Mode:</strong>
+            <ul>
+                <li>❌ Input-rutan är bara EN RAD - svårt att se långa prompts</li>
+                <li>❌ Opraktiskt för långa prompts som Prompt 3</li>
+                <li>❌ Svårt att redigera om du gjort fel</li>
+                <li>✅ Bra för korta frågor och snabb testning</li>
+            </ul>
         </div>
 
-        <h4>Metod 3: Från Terminal i Cursor</h4>
-        <ol>
-            <li>Öppna Cursor IDE</li>
-            <li>Öppna terminalen: <code>Ctrl+Ö</code> eller <code>View → Terminal</code></li>
-            <li>Se till att du är i rätt mapp (din projektmapp)</li>
-            <li>Kör: <code>gcloud ai gemini chat</code></li>
-            <li>Börja chatta med Gemini direkt i terminalen!</li>
-        </ol>
+        <h4>Metod 2: Direct Mode (REKOMMENDERAS för långa prompts!) ⚡</h4>
+        <div class="code-block">
+            <span class="command"># Ställ en direkt fråga och få svar</span><br>
+            gcloud ai gemini generate "Din fråga här"<br><br>
+
+            <span class="command"># Spara svaret direkt till fil (BÄST!)</span><br>
+            gcloud ai gemini generate "Din fråga här" > output.html
+        </div>
+
+        <div class="success">
+            <strong>✅ Fördelar med Direct Mode:</strong>
+            <ul>
+                <li>✅ Hela kommandot på en rad - enklare att hantera</li>
+                <li>✅ Lätt att spara output direkt till fil</li>
+                <li>✅ Kan använda textfiler för prompts</li>
+                <li>✅ Perfekt för långa prompts</li>
+            </ul>
+        </div>
+
+        <h4>Metod 3: Använd Prompt-fil (SMARTAST för långa prompts!) 📄</h4>
+        <p>För långa prompts som Prompt 3, spara prompten i en textfil först:</p>
+        <div class="code-block">
+            <span class="command"># Skapa en textfil med din prompt (prompt3.txt)</span><br>
+            <span class="command"># Sedan kör:</span><br>
+            gcloud ai gemini generate "$(Get-Content prompt3.txt -Raw)" > git_merge_rebase.html
+        </div>
 
         <div class="info">
-            <strong>💡 Pro-tips:</strong><br>
-            Du kan ha Gemini CLI öppen i en terminal samtidigt som du kodar i Cursor. 
-            Perfekt för att snabbt få hjälp med kod, felsökning eller dokumentation!
+            <strong>💡 Vilken metod ska du välja?</strong>
+            <ul>
+                <li><strong>Korta frågor:</strong> Interactive Mode (<code>gcloud ai gemini chat</code>)</li>
+                <li><strong>Långa prompts:</strong> Direct Mode med fil (<code>generate "$(Get-Content fil.txt -Raw)"</code>)</li>
+                <li><strong>Spara resultat:</strong> Alltid använd <code>> filnamn.html</code> i slutet</li>
+            </ul>
         </div>
     </div>
 
@@ -405,6 +430,20 @@
     </table>
 
     <h2>🎯 Tre Exempel-Prompter att Testa</h2>
+
+    <div class="warning">
+        <h3>⚠️ VIKTIGT: Förstå Skillnaden!</h3>
+        <p><strong>PowerShell-kommando</strong> (hela raden):</p>
+        <div class="code-block">
+            gcloud ai gemini generate "<span style="background-color: #e74c3c; padding: 2px 5px;">DIN PROMPT HÄR</span>" <span style="background-color: #f39c12; padding: 2px 5px;">> output.html</span>
+        </div>
+        <ul>
+            <li>🔴 <strong>Röd del</strong> = Din prompt (frågan till Gemini)</li>
+            <li>🟠 <strong>Orange del</strong> = PowerShell-omdirigering (spara till fil)</li>
+            <li>⚪ <strong>Vit text</strong> = PowerShell-kommando</li>
+        </ul>
+        <p><strong>Prompten innehåller ALDRIG</strong> <code>> filnamn.html</code> - det är PowerShell-syntax!</p>
+    </div>
 
     <p>Här är tre olika exempel som visar vad du kan göra med Gemini CLI:</p>
 
@@ -482,13 +521,34 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
         </ul>
         
         <div class="success">
-            <strong>💾 Efter att Gemini genererat koden:</strong>
+            <strong>💾 Så Kör Du Denna Prompt (Rekommenderad Metod):</strong>
+            
+            <h4>Alternativ A: Använd Prompt-fil (ENKLAST!)</h4>
+            <p>Filen <code>prompt3.txt</code> har skapats åt dig med exakt denna prompt.</p>
+            <div class="code-block">
+                <span class="command"># Kör detta kommando i PowerShell:</span><br>
+                gcloud ai gemini generate "$(Get-Content prompt3.txt -Raw)" > git_merge_rebase.html<br><br>
+                
+                <span class="output"># Filen skapas automatiskt - inga manuella kopieringar!</span>
+            </div>
+
+            <h4>Alternativ B: Kopiera och Klistra In</h4>
             <ol>
-                <li>Kopiera hela HTML-koden från terminalen</li>
-                <li>Skapa en ny fil: <code>git_merge_rebase.html</code></li>
-                <li>Klistra in koden</li>
-                <li>Öppna i webbläsare och njut av ditt nya dokument! 🎉</li>
+                <li>Klicka på <strong>"📋 Kopiera Prompt"</strong> knappen ovan</li>
+                <li>Öppna PowerShell i ditt projekt</li>
+                <li>Skriv: <code>gcloud ai gemini generate "</code></li>
+                <li>Klistra in prompten (Ctrl+V)</li>
+                <li>Avsluta med: <code>" > git_merge_rebase.html</code></li>
+                <li>Tryck Enter</li>
             </ol>
+
+            <div class="warning">
+                <strong>⚠️ FEL att göra:</strong>
+                <ul>
+                    <li>❌ Använd INTE interactive mode (<code>gcloud ai gemini chat</code>) - inputrutan är bara en rad!</li>
+                    <li>❌ Prompten ska INTE innehålla <code>> git_merge_rebase.html</code> - det är PowerShell-omdirigering, inte del av prompten!</li>
+                </ul>
+            </div>
         </div>
     </div>
 
