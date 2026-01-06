@@ -292,6 +292,213 @@ Test_BS/<br>
             </div>
         </div>
 
+        <h2>🔍 Skillnad Med och Utan Agentsystem - Ett Praktiskt Exempel</h2>
+
+        <div class="warning-box">
+            <h3 style="color: #856404; margin-top: 0;">💡 Varför Gör Agenter Skillnad?</h3>
+            <p>Låt oss se på ett konkret exempel med prompten: <strong>"Berätta om Frans G Bengtssons liv och leverne"</strong></p>
+            <p>Detta var en faktisk prompt som testades i projektet för att jämföra Claude Code med Gemini CLI.</p>
+        </div>
+
+        <h3>❌ UTAN Agenter & CLAUDE.md</h3>
+        <div style="background-color: #ffebee; padding: 20px; border-radius: 5px; margin: 15px 0;">
+            <p><strong>Vad som händer:</strong></p>
+            <ul>
+                <li>Claude har ingen kontext om ditt projekt</li>
+                <li>Vet inte att du föredrar svenska</li>
+                <li>Känner inte till projektets dokumentationsstil</li>
+                <li>Förstår inte projektets mål och sammanhang</li>
+                <li>Ger ett generiskt svar</li>
+            </ul>
+
+            <p><strong>Förmodat svar (förenklat):</strong></p>
+            <div class="code-block" style="background-color: #c62828;">
+<strong>Claude (utan konfiguration):</strong><br>
+<br>
+Frans Gunnar Bengtsson (1894-1954) was a Swedish author, historian, and translator. 
+He is best known for his historical novel "The Long Ships" (Röde Orm) published in 1941-1945.<br>
+<br>
+Born in Tossene, Bohuslän, he studied at Uppsala University and became a prominent 
+figure in Swedish literature...<br>
+<br>
+<span style="color: #ffcdd2;">// Svar på engelska (Claude's default)</span><br>
+<span style="color: #ffcdd2;">// Generisk biografisk information</span><br>
+<span style="color: #ffcdd2;">// Ingen koppling till projektet</span><br>
+<span style="color: #ffcdd2;">// Ingen förståelse för kontext</span>
+            </div>
+        </div>
+
+        <h3>✅ MED Agenter & CLAUDE.md</h3>
+        <div style="background-color: #d4edda; padding: 20px; border-radius: 5px; margin: 15px 0;">
+            <p><strong>Vad som händer:</strong></p>
+            <ul>
+                <li>Claude läser CLAUDE.md och förstår projektkontexten</li>
+                <li>Vet att svaret ska vara på svenska (primärt språk i projektet)</li>
+                <li>Documentation Agent aktiveras automatiskt</li>
+                <li>Förstår att detta är ett dokumentationsprojekt</li>
+                <li>Kan anpassa svaret till projektets stil och mål</li>
+            </ul>
+
+            <p><strong>Förmodat svar (förenklat):</strong></p>
+            <div class="code-block" style="background-color: #28a745;">
+<strong>Claude (med agentsystem):</strong><br>
+<br>
+<em>[Documentation Agent aktiveras]</em><br>
+<br>
+<strong>Frans Gunnar Bengtsson (1894-1954)</strong><br>
+<br>
+Frans G. Bengtsson var en svensk författare, essäist och översättare, mest känd för 
+sin historiska äventyrsroman "Röde Orm" (publicerad i två delar 1941 och 1945).<br>
+<br>
+<strong>Liv och karriär:</strong><br>
+- Född i Tossene, Bohuslän<br>
+- Studerade i Lund och blev filosof<br>
+- Arbetade som bibliotekarie och kritiker<br>
+- Känd för sin eleganta prosa och ironiska stil<br>
+<br>
+<strong>Viktiga verk:</strong><br>
+- "Röde Orm" - hans mest berömda verk<br>
+- Essäsamlingar och historiska verk<br>
+- Översättningar av klassiska texter<br>
+<br>
+<span style="color: #c8e6c9;">// Svar på svenska (projektets språk)</span><br>
+<span style="color: #c8e6c9;">// Pedagogiskt strukturerat (Documentation Agent)</span><br>
+<span style="color: #c8e6c9;">// Relevant för svensk publik</span><br>
+<span style="color: #c8e6c9;">// Följer projektets dokumentationsstil</span>
+            </div>
+        </div>
+
+        <h3>📊 Detaljerad Jämförelse</h3>
+        <table>
+            <tr>
+                <th>Aspekt</th>
+                <th>Utan Agenter/CLAUDE.md</th>
+                <th>Med Agenter/CLAUDE.md</th>
+            </tr>
+            <tr>
+                <td><strong>Språk</strong></td>
+                <td style="background-color: #ffebee;">Engelska (default)</td>
+                <td style="background-color: #d4edda;">Svenska (projektstandard)</td>
+            </tr>
+            <tr>
+                <td><strong>Struktur</strong></td>
+                <td style="background-color: #ffebee;">Fri text, löpande</td>
+                <td style="background-color: #d4edda;">Välstrukturerad med rubriker</td>
+            </tr>
+            <tr>
+                <td><strong>Stil</strong></td>
+                <td style="background-color: #ffebee;">Generisk, encyklopedisk</td>
+                <td style="background-color: #d4edda;">Pedagogisk, anpassad för projektet</td>
+            </tr>
+            <tr>
+                <td><strong>Kontext</strong></td>
+                <td style="background-color: #ffebee;">Ingen projektförståelse</td>
+                <td style="background-color: #d4edda;">Förstår att detta är ett dokumentationsprojekt</td>
+            </tr>
+            <tr>
+                <td><strong>Formatering</strong></td>
+                <td style="background-color: #ffebee;">Enkel text</td>
+                <td style="background-color: #d4edda;">Kan erbjuda HTML-formatering om relevant</td>
+            </tr>
+            <tr>
+                <td><strong>Agent aktiverad</strong></td>
+                <td style="background-color: #ffebee;">Ingen specifik agent</td>
+                <td style="background-color: #d4edda;">Documentation Agent</td>
+            </tr>
+            <tr>
+                <td><strong>Relevans</strong></td>
+                <td style="background-color: #ffebee;">Allmän information</td>
+                <td style="background-color: #d4edda;">Anpassad för svensk publik</td>
+            </tr>
+        </table>
+
+        <h3>🎯 Vad Händer Bakom Kulisserna?</h3>
+
+        <div class="info-box">
+            <h4 style="color: #0c5460; margin-top: 0;">När Du Skriver Prompten "Berätta om Frans G Bengtsson":</h4>
+            
+            <p><strong>Steg 1: Claude Läser Konfigurationsfilerna</strong></p>
+            <ol>
+                <li>📄 <strong>CLAUDE.md</strong> - "Aha, detta är ett svenskt dokumentationsprojekt"</li>
+                <li>📝 <strong>documentation-agent.md</strong> - "Jag ska svara pedagogiskt och strukturerat"</li>
+                <li>🇸🇪 <strong>Språkpreferens</strong> - "Primärt språk: Svenska"</li>
+                <li>📚 <strong>Dokumentationsstil</strong> - "Tydliga rubriker, punktlistor, exempel"</li>
+            </ol>
+
+            <p><strong>Steg 2: Claude Analyserar Prompten</strong></p>
+            <ul>
+                <li>"Detta är en informationsfråga" → Documentation Agent är mest lämplig</li>
+                <li>"Användaren vill lära sig något" → Pedagogisk approach</li>
+                <li>"Frans G Bengtsson är svensk författare" → Svenska är naturligt språk</li>
+            </ul>
+
+            <p><strong>Steg 3: Documentation Agent Aktiveras</strong></p>
+            <ul>
+                <li>Strukturerar svaret med tydliga rubriker</li>
+                <li>Använder punktlistor för läsbarhet</li>
+                <li>Skriver på svenska enligt projektstandard</li>
+                <li>Anpassar tonen till projektets pedagogiska stil</li>
+            </ul>
+
+            <p><strong>Steg 4: Svaret Levereras</strong></p>
+            <ul>
+                <li>Välformulerat, strukturerat svar på svenska</li>
+                <li>Följer projektets dokumentationsstil</li>
+                <li>Relevant och användbart för projektets sammanhang</li>
+            </ul>
+        </div>
+
+        <h3>💡 Ytterligare Fördelar i Projektkontext</h3>
+
+        <div class="success-box">
+            <p><strong>Om du följer upp med:</strong> "Kan du formatera detta som HTML?"</p>
+            
+            <p><strong>Med agentsystem:</strong></p>
+            <ul>
+                <li>Web Developer Agent aktiveras automatiskt</li>
+                <li>Känner till projektets HTML-standarder</li>
+                <li>Använder projektets CSS-klasser och färgschema</li>
+                <li>Följer semantic HTML5-struktur</li>
+                <li>Inkluderar projektets gradient-bakgrunder och styling</li>
+            </ul>
+
+            <p><strong>Utan agentsystem:</strong></p>
+            <ul>
+                <li>Generisk HTML utan projektspecifik stil</li>
+                <li>Ingen koppling till befintlig CSS</li>
+                <li>Måste manuellt anpassa koden</li>
+            </ul>
+        </div>
+
+        <h3>🔄 Verkligt Exempel från Projektet</h3>
+
+        <div class="warning-box">
+            <h4 style="color: #856404; margin-top: 0;">📸 I Praktiken</h4>
+            <p>Detta projektet testade faktiskt denna prompt med Claude Code, och resultatet finns dokumenterat i 
+            <code>ClaudeCode_och_Frans_G.jpg</code>!</p>
+            
+            <p><strong>Vad som hände:</strong></p>
+            <ul>
+                <li>✅ Claude Code svarade omedelbart på svenska</li>
+                <li>✅ Gav en välstrukturerad biografi</li>
+                <li>✅ Anpassade svaret till terminalmiljön</li>
+                <li>✅ Följde dokumentationsstil automatiskt</li>
+            </ul>
+
+            <p><strong>Jämförelse med Gemini CLI:</strong> Detta var en av de avgörande testerna som visade 
+            Claude Codes överlägsenhet - inte bara att verktyget fungerade tekniskt, utan att det gav 
+            <em>kontextmedvetna, relevanta svar</em> direkt.</p>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <img src="ClaudeCode_och_Frans_G.jpg" alt="Claude Code svarar på svenska om Frans G Bengtsson" style="max-width: 100%; border: 2px solid #28a745; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <p style="font-style: italic; color: #7f8c8d; margin-top: 15px;">
+                📸 <strong>Verkligt resultat från projektet:</strong> Claude Code svarade direkt på svenska med välstrukturerad 
+                information om Frans G Bengtsson - utan någon explicit instruktion att svara på svenska! 
+                Detta är kraften i att ha CLAUDE.md och agentsystemet konfigurerat.
+            </p>
+        </div>
+
         <h2>📖 Hur Man Använder Agenter</h2>
 
         <div class="success-box">
@@ -554,6 +761,52 @@ See .claude/agents/ for specialized configurations:<br>
                 <li>✅ <strong>Samarbete</strong> - Agenter arbetar tillsammans på komplexa uppgifter</li>
                 <li>✅ <strong>Skalbart</strong> - Lätt att lägga till egna agenter när behov uppstår</li>
             </ul>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+            <h3 style="color: #0c5460; margin-top: 0;">🎯 Verklig Påverkan - Exemplet Med Frans G Bengtsson</h3>
+            <p><strong>Sammanfattning av skillnaden:</strong></p>
+            
+            <table>
+                <tr>
+                    <th style="width: 50%;">Utan Agentsystem</th>
+                    <th style="width: 50%;">Med Agentsystem</th>
+                </tr>
+                <tr>
+                    <td>
+                        ❌ Svar på engelska<br>
+                        ❌ Generisk information<br>
+                        ❌ Ingen projektkontext<br>
+                        ❌ Måste omformatera manuellt
+                    </td>
+                    <td>
+                        ✅ Svar på svenska (automatiskt)<br>
+                        ✅ Välstrukturerad, pedagogisk<br>
+                        ✅ Följer projektstandard<br>
+                        ✅ Redo att använda direkt
+                    </td>
+                </tr>
+            </table>
+
+            <p style="margin-top: 20px; font-size: 1.1em; font-weight: bold; color: #0c5460;">
+                Skillnaden är inte bara teknisk - det handlar om att få <em>rätt svar i rätt format</em> 
+                från första försöket, utan att behöva omformulera eller justera.
+            </p>
+
+            <p><strong>Tidsbesparing:</strong> Med agentsystem får du direkt ett användbart svar som följer 
+            projektets standarder. Utan det måste du spendera tid på att:</p>
+            <ul>
+                <li>Be om översättning till svenska</li>
+                <li>Be om omformatering till projektets stil</li>
+                <li>Manuellt anpassa strukturen</li>
+                <li>Säkerställa att tonen är rätt</li>
+            </ul>
+
+            <p style="background-color: #fff; padding: 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid #17a2b8;">
+                <strong>💡 Insikt:</strong> Detta är anledningen till att Claude Code fungerade så bra i detta projekt 
+                jämfört med andra AI-verktyg - inte för att AI:n är "smartare", utan för att den har 
+                <strong>rätt kontext och konfiguration</strong> för att ge relevanta svar direkt.
+            </p>
         </div>
 
         <div style="text-align: center; margin: 40px 0;">
