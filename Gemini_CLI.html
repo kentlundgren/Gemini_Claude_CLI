@@ -215,14 +215,35 @@
 
     <h2>📋 Förutsättningar</h2>
 
-    <div class="warning">
-        <strong>⚠️ Vad du behöver innan du börjar:</strong>
+    <div class="warning" style="background-color: #ffebee; border-left: 6px solid #c62828;">
+        <strong>⚠️ VIKTIGT - Läs Detta Först!</strong>
+        <p style="font-size: 1.1em; margin: 10px 0;">
+            <strong>Om du får felet <code>"gcloud is not recognized"</code></strong>, 
+            betyder det att du INTE har installerat Google Cloud CLI ännu. 
+            <strong>Detta är det första du måste göra!</strong>
+        </p>
+    </div>
+
+    <div class="info">
+        <strong>✅ Vad du behöver innan du börjar:</strong>
         <ul>
-            <li>✅ <strong>Google Cloud Account</strong> - Du måste ha ett Google-konto</li>
-            <li>✅ <strong>Google Cloud CLI (gcloud)</strong> installerat</li>
+            <li>✅ <strong>Google Cloud Account</strong> - Du måste ha ett Google-konto (gratis att skapa)</li>
+            <li>✅ <strong>Google Cloud CLI (gcloud) installerat</strong> - Detta är det VIKTIGASTE! Utan detta fungerar ingenting!</li>
             <li>✅ <strong>Gemini API-åtkomst</strong> aktiverad i ditt Google Cloud-projekt</li>
             <li>✅ <strong>Cursor IDE</strong> eller annan terminal-applikation</li>
         </ul>
+    </div>
+
+    <div class="success">
+        <strong>🎯 Kontrollera om du har gcloud installerat:</strong>
+        <div class="code-block">
+            <span class="command"># Kör detta i PowerShell:</span><br>
+            gcloud --version<br><br>
+            
+            <span class="output"># Om installerat, ser du version-info</span><br>
+            <span class="output"># Om INTE installerat: "gcloud is not recognized"</span>
+        </div>
+        <p><strong>Om du får felmeddelande → Gå direkt till Steg 1 nedan för att installera!</strong></p>
     </div>
 
     <h2>🔧 Steg-för-Steg: Komma igång med Gemini CLI</h2>
@@ -859,8 +880,108 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
 
     <h2>🚨 Vanliga Problem och Lösningar</h2>
 
+    <div class="warning" style="background-color: #ffebee; border-left: 6px solid #c62828; padding: 20px; margin: 20px 0;">
+        <h3 style="color: #c62828; margin-top: 0;">⛔ KONTROLLERA DETTA FÖRST - Innan du ens börjar!</h3>
+        <p><strong>Har du installerat Google Cloud CLI?</strong></p>
+        <p>Om du får felmeddelandet <code>"gcloud : The term 'gcloud' is not recognized..."</code> 
+        betyder det att Google Cloud CLI <strong>inte är installerat</strong> på din dator!</p>
+        <p>👉 <strong>Gå till steg 1 i guiden och installera Google Cloud CLI först!</strong></p>
+        <p>👉 <strong>Glöm inte att starta om PowerShell efter installation!</strong></p>
+    </div>
+
     <div class="step">
-        <h3>Problem 0: "The term 'xxx' is not recognized" (VANLIGASTE FELET!) 🔴</h3>
+        <h3>Problem -1: "gcloud is not recognized" (GRUNDPROBLEMET!) ⛔</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> Du får felmeddelandet:<br>
+            <code>gcloud : The term 'gcloud' is not recognized as the name of a cmdlet, function, script file, or operable program.</code>
+        </div>
+
+        <div class="warning" style="background-color: #fff3cd;">
+            <strong>🎯 Detta betyder:</strong><br>
+            Google Cloud CLI är <strong>INTE INSTALLERAT</strong> på din dator, eller så är det inte i din PATH-variabel.
+        </div>
+
+        <h4>✅ Lösning: Installera Google Cloud CLI</h4>
+
+        <div class="success">
+            <strong>Steg 1: Ladda Ner</strong>
+            <ol>
+                <li>Gå till: <a href="https://cloud.google.com/sdk/docs/install" target="_blank" class="external-link">https://cloud.google.com/sdk/docs/install</a></li>
+                <li>Välj "Windows" (om du använder Windows)</li>
+                <li>Ladda ner installationsprogrammet (.exe)</li>
+            </ol>
+        </div>
+
+        <div class="success">
+            <strong>Steg 2: Installera</strong>
+            <ol>
+                <li>Kör installationsprogrammet som administrator</li>
+                <li>Följ installationsguiden</li>
+                <li>Acceptera standardinställningar</li>
+                <li><strong>VIKTIGT:</strong> Kryssa i "Run 'gcloud init'" vid slutet (om tillgängligt)</li>
+            </ol>
+        </div>
+
+        <div class="success">
+            <strong>Steg 3: Starta Om PowerShell</strong>
+            <div class="code-block">
+                <span class="command"># Stäng alla PowerShell-fönster</span><br>
+                <span class="command"># Öppna ett NYTT PowerShell-fönster</span><br>
+                <span class="command"># Detta är viktigt så att PATH uppdateras!</span>
+            </div>
+        </div>
+
+        <div class="success">
+            <strong>Steg 4: Verifiera Installationen</strong>
+            <div class="code-block">
+                <span class="command"># Kör detta kommando:</span><br>
+                gcloud --version<br><br>
+                
+                <span class="output"># Du bör se något liknande:</span><br>
+                <span class="output">Google Cloud SDK 450.0.0</span><br>
+                <span class="output">bq 2.0.97</span><br>
+                <span class="output">core 2023.10.30</span>
+            </div>
+        </div>
+
+        <div class="success">
+            <strong>Steg 5: Logga In</strong>
+            <div class="code-block">
+                <span class="command"># Autentisera med Google-konto:</span><br>
+                gcloud auth login<br><br>
+                
+                <span class="command"># Application default credentials:</span><br>
+                gcloud auth application-default login
+            </div>
+        </div>
+
+        <div class="info">
+            <strong>💡 Efter dessa steg:</strong>
+            <ul>
+                <li>✅ <code>gcloud</code> kommandot ska fungera</li>
+                <li>✅ Du kan köra <code>gcloud ai gemini generate "din fråga"</code></li>
+                <li>✅ Du är redo att använda Gemini CLI!</li>
+            </ul>
+        </div>
+
+        <h4>🚨 Om det fortfarande inte fungerar:</h4>
+        <div class="warning">
+            <strong>Problem: PATH är inte uppdaterad</strong>
+            <ol>
+                <li>Starta om <strong>hela datorn</strong> (inte bara PowerShell)</li>
+                <li>Eller lägg till manuellt i PATH:
+                    <ul>
+                        <li>Standardplats: <code>C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin</code></li>
+                        <li>Sök på "Environment Variables" i Windows</li>
+                        <li>Lägg till ovanstående sökväg i PATH</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Problem 0: "The term '[din prompt]' is not recognized" (VANLIGASTE FELET EFTER INSTALLATION!) 🔴</h3>
         <div class="warning">
             <strong>Symptom:</strong> Du får felmeddelandet:<br>
             <code>berätta : The term 'berätta' is not recognized as the name of a cmdlet, function, script file, or operable program.</code>
