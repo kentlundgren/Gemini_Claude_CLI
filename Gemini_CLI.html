@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide: Gemini CLI i Cursor Terminal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #9b59b6;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #95a5a6;
+            margin-top: 15px;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        .command {
+            color: #3498db;
+            font-weight: bold;
+        }
+        .output {
+            color: #2ecc71;
+        }
+        .prompt-example {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .gemini-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .step {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .step-number {
+            background-color: #9b59b6;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .screenshot {
+            max-width: 100%;
+            border: 2px solid #9b59b6;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .image-caption {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #9b59b6;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .prompt-card {
+            background-color: white;
+            border-left: 4px solid #9b59b6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .prompt-title {
+            color: #9b59b6;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #9b59b6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .external-link {
+            color: #3498db;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Komplett Guide: Gemini CLI i Cursor Terminal</h1>
+    
+    <div class="gemini-box">
+        <h2 style="color: white; border: none; margin-top: 0;">Vad är Gemini CLI?</h2>
+        <p><strong>Gemini CLI</strong> (Command Line Interface) är ett kraftfullt verktyg från Google som låter dig 
+        interagera med Gemini AI direkt från terminalen i Cursor eller andra utvecklingsmiljöer.</p>
+        <p><strong>Fördelar:</strong></p>
+        <ul>
+            <li>✨ Snabb tillgång till AI-assistans direkt i terminalen</li>
+            <li>💻 Kodgenerering och kodförklaring</li>
+            <li>🔍 Felsökning och problemlösning</li>
+            <li>📝 Dokumentation och skriptautomatisering</li>
+            <li>🌐 Integrerad med Google Cloud</li>
+        </ul>
+    </div>
+
+    <div class="info">
+        <strong>Skapad:</strong> 2025-01-06<br>
+        <strong>Syfte:</strong> En komplett guide för att komma igång med Gemini CLI i Cursor terminalen
+    </div>
+
+    <h2>📋 Förutsättningar</h2>
+
+    <div class="warning">
+        <strong>⚠️ Vad du behöver innan du börjar:</strong>
+        <ul>
+            <li>✅ <strong>Google Cloud Account</strong> - Du måste ha ett Google-konto</li>
+            <li>✅ <strong>Google Cloud CLI (gcloud)</strong> installerat</li>
+            <li>✅ <strong>Gemini API-åtkomst</strong> aktiverad i ditt Google Cloud-projekt</li>
+            <li>✅ <strong>Cursor IDE</strong> eller annan terminal-applikation</li>
+        </ul>
+    </div>
+
+    <h2>🔧 Steg-för-Steg: Komma igång med Gemini CLI</h2>
+
+    <div class="step">
+        <h3><span class="step-number">1</span> Installera Google Cloud CLI</h3>
+        <p>Om du inte redan har Google Cloud CLI installerat:</p>
+        
+        <h4>Windows (PowerShell):</h4>
+        <div class="code-block">
+            <span class="command"># Ladda ner och installera Google Cloud CLI</span><br>
+            # Besök: https://cloud.google.com/sdk/docs/install<br><br>
+            
+            <span class="command"># Efter installation, verifiera:</span><br>
+            gcloud --version
+        </div>
+
+        <h4>Mac/Linux:</h4>
+        <div class="code-block">
+            <span class="command"># Installera med curl</span><br>
+            curl https://sdk.cloud.google.com | bash<br><br>
+            
+            <span class="command"># Starta om terminalen och verifiera:</span><br>
+            gcloud --version
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">2</span> Autentisera med Google Cloud</h3>
+        <p>Första gången du använder Gemini CLI måste du autentisera dig:</p>
+        
+        <div class="code-block">
+            <span class="command"># Starta autentiseringsprocessen</span><br>
+            gcloud auth login<br><br>
+            
+            <span class="command"># För att använda Gemini specifikt:</span><br>
+            gcloud auth application-default login
+        </div>
+
+        <p><strong>Vad händer nu?</strong></p>
+        <ol>
+            <li>En webbläsare öppnas automatiskt</li>
+            <li>Du loggar in med ditt Google-konto</li>
+            <li>Du godkänner behörigheter för Gemini Code Assist, Cloud Code och Gemini CLI</li>
+            <li>Du ser en bekräftelsesida</li>
+        </ol>
+
+        <div class="image-container">
+            <img src="Authentication_successful.jpg" alt="Autentisering lyckad - Google Gemini" class="screenshot">
+            <p class="image-caption">
+                ✅ <strong>Autentiseringen lyckades!</strong> När du ser denna sida är följande produkter auktoriserade:
+                Gemini Code Assist, Cloud Code with Gemini Code Assist, och Gemini CLI.
+                <br><br>
+                <a href="https://developers.google.com/gemini-code-assist/auth/auth_success_gemini" target="_blank" class="external-link">
+                    📖 Läs mer på Google's autentiseringssida →
+                </a>
+            </p>
+        </div>
+
+        <div class="success">
+            <strong>✅ Klart!</strong><br>
+            Du kan nu stänga webbläsarfönstret och återgå till din terminal. Autentiseringen är klar!
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">3</span> Aktivera Gemini CLI</h3>
+        <p>Nu ska vi aktivera Gemini CLI och se till att allt fungerar:</p>
+        
+        <div class="code-block">
+            <span class="command"># Sätt ditt Google Cloud-projekt (om du har ett)</span><br>
+            gcloud config set project DITT-PROJEKT-ID<br><br>
+            
+            <span class="command"># Testa Gemini CLI - starta ett interactive session</span><br>
+            gcloud ai gemini chat
+        </div>
+
+        <div class="image-container">
+            <img src="Gemini_CLI_terminalen.jpg" alt="Gemini CLI körandes i Cursor terminal" class="screenshot">
+            <p class="image-caption">
+                🎉 <strong>Gemini CLI är igång!</strong> När du ser Gemini-prompten i terminalen är du redo att börja använda AI-assistans.
+            </p>
+        </div>
+    </div>
+
+    <div class="step">
+        <h3><span class="step-number">4</span> Verifiera att Allt Fungerar</h3>
+        
+        <h4>✅ Checklist - Så här ser du att allt är klart:</h4>
+        <ul>
+            <li>☑️ <strong>Autentiseringssidan visades</strong> - Du såg "Authentication successful" i webbläsaren</li>
+            <li>☑️ <strong>Terminalen visar Gemini-prompt</strong> - Du ser en prompt där du kan skriva frågor</li>
+            <li>☑️ <strong>Inga felmeddelanden</strong> - Inga "authentication failed" eller "permission denied" errors</li>
+            <li>☑️ <strong>Du kan skriva kommandon</strong> - Prompten accepterar inmatning</li>
+        </ul>
+
+        <div class="success">
+            <strong>🎯 Perfekt! Du är nu redo att använda Gemini CLI!</strong>
+        </div>
+    </div>
+
+    <h2>🎮 Hur man Använder Gemini CLI i Cursor</h2>
+
+    <div class="step">
+        <h3>Starta Gemini CLI</h3>
+        
+        <h4>Metod 1: Interactive Chat Session</h4>
+        <div class="code-block">
+            <span class="command"># Öppna en interaktiv chat-session med Gemini</span><br>
+            gcloud ai gemini chat<br><br>
+            
+            <span class="output"># Du får en prompt där du kan skriva dina frågor:</span><br>
+            <span class="output">Gemini> </span>_
+        </div>
+
+        <h4>Metod 2: Direkt Fråga (utan att starta session)</h4>
+        <div class="code-block">
+            <span class="command"># Ställ en direkt fråga och få svar</span><br>
+            gcloud ai gemini generate "Din fråga här"
+        </div>
+
+        <h4>Metod 3: Från Terminal i Cursor</h4>
+        <ol>
+            <li>Öppna Cursor IDE</li>
+            <li>Öppna terminalen: <code>Ctrl+Ö</code> eller <code>View → Terminal</code></li>
+            <li>Se till att du är i rätt mapp (din projektmapp)</li>
+            <li>Kör: <code>gcloud ai gemini chat</code></li>
+            <li>Börja chatta med Gemini direkt i terminalen!</li>
+        </ol>
+
+        <div class="info">
+            <strong>💡 Pro-tips:</strong><br>
+            Du kan ha Gemini CLI öppen i en terminal samtidigt som du kodar i Cursor. 
+            Perfekt för att snabbt få hjälp med kod, felsökning eller dokumentation!
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Avsluta Gemini CLI</h3>
+        <div class="code-block">
+            <span class="command"># För att avsluta interactive session:</span><br>
+            exit<br><br>
+            
+            <span class="command"># Eller tryck:</span><br>
+            Ctrl+C
+        </div>
+    </div>
+
+    <h2>💡 Användbara Kommandon</h2>
+
+    <table>
+        <tr>
+            <th>Kommando</th>
+            <th>Beskrivning</th>
+        </tr>
+        <tr>
+            <td><code>gcloud ai gemini chat</code></td>
+            <td>Startar interaktiv chat-session</td>
+        </tr>
+        <tr>
+            <td><code>gcloud ai gemini generate "prompt"</code></td>
+            <td>Genererar svar på en specifik prompt</td>
+        </tr>
+        <tr>
+            <td><code>gcloud ai models list</code></td>
+            <td>Listar tillgängliga AI-modeller</td>
+        </tr>
+        <tr>
+            <td><code>gcloud config list</code></td>
+            <td>Visar din nuvarande konfiguration</td>
+        </tr>
+        <tr>
+            <td><code>gcloud auth list</code></td>
+            <td>Visar auktoriserade konton</td>
+        </tr>
+        <tr>
+            <td><code>gcloud help</code></td>
+            <td>Visar hjälp och dokumentation</td>
+        </tr>
+    </table>
+
+    <h2>🎯 Tre Exempel-Prompter att Testa</h2>
+
+    <p>Här är tre olika exempel som visar vad du kan göra med Gemini CLI:</p>
+
+    <div class="prompt-card">
+        <div class="prompt-title">📝 Prompt 1: Kodgenerering (Python Script)</div>
+        <p><strong>Använd när:</strong> Du vill skapa ny kod från grunden</p>
+        <p><strong>Prompt:</strong></p>
+        <div class="code-block">
+            <span class="prompt-example">Skapa ett Python-script som läser en CSV-fil med försäljningsdata (kolumner: datum, produkt, antal, pris) och genererar en rapport med totala intäkter per produkt. Inkludera felhantering för saknade filer och visualisera resultatet med matplotlib.</span>
+        </div>
+        <p><strong>Detta visar:</strong></p>
+        <ul>
+            <li>✅ Kodgenerering från beskrivning</li>
+            <li>✅ Kompletta, fungerande script</li>
+            <li>✅ Best practices (felhantering, dokumentation)</li>
+            <li>✅ Integration med bibliotek (pandas, matplotlib)</li>
+        </ul>
+    </div>
+
+    <div class="prompt-card">
+        <div class="prompt-title">🔍 Prompt 2: Kodgranskning och Förbättring</div>
+        <p><strong>Använd när:</strong> Du vill förbättra eller debugga befintlig kod</p>
+        <p><strong>Prompt:</strong></p>
+        <div class="code-block">
+            <span class="prompt-example">Granska följande JavaScript-funktion och föreslå förbättringar för prestanda, läsbarhet och säkerhet:<br><br>
+
+function processUsers(users) {<br>
+&nbsp;&nbsp;var result = [];<br>
+&nbsp;&nbsp;for (var i = 0; i < users.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (users[i].age > 18) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push(users[i].name);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return result;<br>
+}<br><br>
+
+Förklara varje förbättring du föreslår.</span>
+        </div>
+        <p><strong>Detta visar:</strong></p>
+        <ul>
+            <li>✅ Kodgranskning och analys</li>
+            <li>✅ Modernisering av kod (ES6+)</li>
+            <li>✅ Prestandaoptimering</li>
+            <li>✅ Detaljerade förklaringar</li>
+        </ul>
+    </div>
+
+    <div class="prompt-card">
+        <div class="prompt-title">📚 Prompt 3: Konceptförklaring och Vägledning</div>
+        <p><strong>Använd när:</strong> Du vill lära dig något nytt eller förstå koncept</p>
+        <p><strong>Prompt:</strong></p>
+        <div class="code-block">
+            <span class="prompt-example">Förklara skillnaden mellan git merge och git rebase för mig. Ge konkreta exempel på när jag ska använda vardera, och visa med diagram hur commit-historiken ser ut efter varje operation. Inkludera också best practices för att undvika vanliga fallgropar.</span>
+        </div>
+        <p><strong>Detta visar:</strong></p>
+        <ul>
+            <li>✅ Pedagogiska förklaringar</li>
+            <li>✅ Visuella representationer</li>
+            <li>✅ Best practices och tips</li>
+            <li>✅ Praktiska användningsfall</li>
+        </ul>
+    </div>
+
+    <h2>🎨 Användningsområden för Gemini CLI</h2>
+
+    <div class="step">
+        <h3>Vad kan du göra med Gemini CLI?</h3>
+        
+        <table>
+            <tr>
+                <th>Användningsområde</th>
+                <th>Exempel</th>
+            </tr>
+            <tr>
+                <td><strong>Kodgenerering</strong></td>
+                <td>Skapa funktioner, klasser, script från beskrivning</td>
+            </tr>
+            <tr>
+                <td><strong>Debugging</strong></td>
+                <td>Hitta och fixa buggar i din kod</td>
+            </tr>
+            <tr>
+                <td><strong>Kodförklaring</strong></td>
+                <td>Få förklaringar av komplex kod</td>
+            </tr>
+            <tr>
+                <td><strong>Refaktorering</strong></td>
+                <td>Förbättra kodkvalitet och struktur</td>
+            </tr>
+            <tr>
+                <td><strong>Dokumentation</strong></td>
+                <td>Generera README, kommentarer, API-docs</td>
+            </tr>
+            <tr>
+                <td><strong>Testing</strong></td>
+                <td>Skapa enhetstester och testfall</td>
+            </tr>
+            <tr>
+                <td><strong>Konvertering</strong></td>
+                <td>Översätt kod mellan programmeringsspråk</td>
+            </tr>
+            <tr>
+                <td><strong>Arkitektur</strong></td>
+                <td>Design patterns, systemdesign, best practices</td>
+            </tr>
+            <tr>
+                <td><strong>Lärande</strong></td>
+                <td>Förklara koncept, algoritmer, verktyg</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>⚙️ Tips och Tricks</h2>
+
+    <div class="step">
+        <h3>🚀 Bli mer effektiv med Gemini CLI</h3>
+        
+        <h4>1. Var Specifik i dina Prompter</h4>
+        <div class="warning">
+            <strong>❌ Dålig prompt:</strong> "Gör en funktion"<br>
+            <strong>✅ Bra prompt:</strong> "Skapa en JavaScript-funktion som validerar svenska personnummer enligt formatet ÅÅMMDD-XXXX, med felhantering och returnerande av boolean"
+        </div>
+
+        <h4>2. Be om Förklaringar</h4>
+        <p>Lägg till "förklara varje steg" eller "kommentera koden" för att få pedagogiska svar.</p>
+
+        <h4>3. Använd Context</h4>
+        <p>Ge Gemini kontext om ditt projekt:</p>
+        <div class="code-block">
+            <span class="prompt-example">"Jag bygger en React-app med TypeScript och Vite. Hur skapar jag en custom hook för att hantera localStorage?"</span>
+        </div>
+
+        <h4>4. Iterera</h4>
+        <p>I interaktiv session kan du fortsätta konversationen:</p>
+        <div class="code-block">
+            <span class="output">Gemini></span> <span class="prompt-example">Skapa en Python-funktion för att läsa CSV</span><br>
+            <span class="output">[Gemini genererar kod]</span><br>
+            <span class="output">Gemini></span> <span class="prompt-example">Lägg till felhantering</span><br>
+            <span class="output">[Gemini förbättrar koden]</span><br>
+            <span class="output">Gemini></span> <span class="prompt-example">Lägg till enhetstester</span>
+        </div>
+
+        <h4>5. Kombinera med Git</h4>
+        <p>Använd Gemini för att förbättra commit-meddelanden:</p>
+        <div class="code-block">
+            <span class="command"># Se dina ändringar</span><br>
+            git diff<br><br>
+            
+            <span class="command"># Fråga Gemini om ett bra commit-meddelande</span><br>
+            gcloud ai gemini generate "Föreslå ett commit-meddelande för dessa ändringar: [klistra in diff]"
+        </div>
+    </div>
+
+    <h2>🚨 Vanliga Problem och Lösningar</h2>
+
+    <div class="step">
+        <h3>Problem 1: "Authentication failed"</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> Kan inte logga in eller får felmeddelande om autentisering
+        </div>
+        <strong>Lösning:</strong>
+        <div class="code-block">
+            <span class="command"># Logga ut och in igen</span><br>
+            gcloud auth revoke<br>
+            gcloud auth login<br>
+            gcloud auth application-default login
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Problem 2: "Project not found"</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> Får meddelande om att projekt saknas
+        </div>
+        <strong>Lösning:</strong>
+        <div class="code-block">
+            <span class="command"># Lista dina projekt</span><br>
+            gcloud projects list<br><br>
+            
+            <span class="command"># Sätt rätt projekt</span><br>
+            gcloud config set project DITT-PROJEKT-ID
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>Problem 3: "Command not found: gcloud"</h3>
+        <div class="warning">
+            <strong>Symptom:</strong> PowerShell eller terminal känner inte igen gcloud-kommandot
+        </div>
+        <strong>Lösning:</strong>
+        <ol>
+            <li>Kontrollera att Google Cloud CLI är installerat</li>
+            <li>Starta om terminalen efter installation</li>
+            <li>Kontrollera PATH-variabeln</li>
+            <li>Windows: Kör om installationsprogrammet</li>
+        </ol>
+    </div>
+
+    <h2>📖 Ytterligare Resurser</h2>
+
+    <div class="info">
+        <h3>Användbara Länkar:</h3>
+        <ul>
+            <li><a href="https://developers.google.com/gemini-code-assist/auth/auth_success_gemini" target="_blank" class="external-link">
+                Gemini Code Assist Authentication →
+            </a></li>
+            <li><a href="https://cloud.google.com/sdk/docs" target="_blank" class="external-link">
+                Google Cloud CLI Dokumentation →
+            </a></li>
+            <li><a href="https://cloud.google.com/sdk/gcloud/reference/ai" target="_blank" class="external-link">
+                Gcloud AI Kommandoreferens →
+            </a></li>
+            <li><a href="https://cloud.google.com/vertex-ai/docs/generative-ai/start/quickstarts/quickstart-multimodal" target="_blank" class="external-link">
+                Vertex AI Quickstart →
+            </a></li>
+        </ul>
+    </div>
+
+    <h2>✅ Sammanfattning</h2>
+
+    <div class="success">
+        <h3>Snabbguide för att Komma Igång:</h3>
+        <ol>
+            <li>✅ Installera Google Cloud CLI</li>
+            <li>✅ Autentisera: <code>gcloud auth login</code></li>
+            <li>✅ Application Default: <code>gcloud auth application-default login</code></li>
+            <li>✅ Starta Gemini: <code>gcloud ai gemini chat</code></li>
+            <li>✅ Börja chatta och få AI-assistans direkt i terminalen!</li>
+        </ol>
+
+        <p><strong>Du är nu redo att använda Gemini CLI för att:</strong></p>
+        <ul>
+            <li>🎨 Generera kod</li>
+            <li>🔍 Debugga problem</li>
+            <li>📚 Lära dig nya koncept</li>
+            <li>⚡ Förbättra din produktivitet</li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 50px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; border-radius: 10px;">
+        <p><strong>📝 Dokumentet skapad av Kent Lundgren</strong></p>
+        <p>Skapad: 2025-01-06</p>
+        <p><em>Lycka till med Gemini CLI - Din AI-assistent i terminalen! 🚀</em></p>
+    </div>
+
+</body>
+</html>
+
