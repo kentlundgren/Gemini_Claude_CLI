@@ -1215,11 +1215,22 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
                 <span class="command"># 2. Starta om datorn</span><br>
                 <span class="command"># 3. Öppna PowerShell efter omstart</span><br>
                 PS> gcloud --version<br>
-                <span style="color: #2ecc71;">Google Cloud SDK 450.0.0</span><br>
-                <span style="color: #2ecc71;">bq 2.0.97</span><br>
-                <span style="color: #2ecc71;">core 2023.10.30</span>
+                <span style="color: #2ecc71;">Google Cloud SDK 551.0.0</span><br>
+                <span style="color: #2ecc71;">bq 2.1.26</span><br>
+                <span style="color: #2ecc71;">core 2026.01.02</span><br>
+                <span style="color: #2ecc71;">gcloud-crc32c 1.0.0</span><br>
+                <span style="color: #2ecc71;">gsutil 5.35</span>
             </div>
             <h3 style="color: #28a745;">🎉 DET FUNGERAR!</h3>
+            <p><strong>✅ Bekräftat fungerande!</strong> Version 551.0.0 (Januari 2026)</p>
+        </div>
+
+        <div class="info">
+            <h4>💡 Vad Lärde Vi Oss?</h4>
+            <p><strong>Problemet:</strong> PATH-miljövariabeln uppdaterades inte förrän efter omstart</p>
+            <p><strong>Lösningen:</strong> Starta om hela datorn (inte bara PowerShell)</p>
+            <p><strong>Varför?</strong> Windows laddar miljövariabler vid systemuppstart. Även om installation och script uppdaterar PATH i registret, ser processer som redan körs (inklusive Windows Explorer som startar nya PowerShell-fönster) inte ändringen förrän systemet startas om.</p>
+            <p><strong>Framtida installation:</strong> Kom alltid ihåg - efter installation av verktyg som ändrar PATH → Starta om datorn!</p>
         </div>
     </div>
 
