@@ -131,19 +131,26 @@
     <div class="container">
         <h1>🔬 Gemini CLI vs Claude Code</h1>
         <p style="text-align: center; font-size: 1.2em; color: #7f8c8d;">
-            <strong>En dokumenterad jämförelse av två AI CLI-verktyg</strong>
+            <strong>En dokumenterad jämförelse av AI CLI-verktyg</strong><br>
+            <span style="font-size: 0.9em; color: #95a5a6;">Med en viktig upptäckt: Det finns två olika Gemini CLI!</span>
         </p>
 
         <div class="summary">
             <h2 style="color: white; border: none; margin-top: 0;">📋 Projektsammanfattning</h2>
             <p style="font-size: 1.1em;">
                 Detta projekt dokumenterar ett verkligt försök att installera och använda <strong>Gemini CLI</strong> 
-                från Google, och jämför det med <strong>Claude Code</strong> från Anthropic.
+                från Google via två olika metoder, och jämför med <strong>Claude Code</strong> från Anthropic.
+            </p>
+            <p style="font-size: 1em; margin-top: 15px; background-color: rgba(255,255,255,0.2); padding: 15px; border-radius: 5px;">
+                <strong>Viktig upptäckt:</strong> Google Cloud SDK-metoden (<code>gcloud ai gemini</code>) fungerar INTE, 
+                men npm-versionen (<code>@google/gemini-cli</code>) fungerar perfekt!
             </p>
         </div>
 
-        <h2>❌ Gemini CLI - Resultatet</h2>
+        <h2>⚠️ Gemini CLI - Den Viktiga Upptäckten</h2>
+        
         <div class="warning-box">
+            <h3 style="color: #c62828; margin-top: 0;">❌ Via Google Cloud SDK (gcloud) - FUNGERAR INTE</h3>
             <p><strong>Status: MISSLYCKADES</strong></p>
             <p>Trots omfattande installation och konfiguration fungerade Gemini CLI inte via Google Cloud SDK (gcloud).</p>
             
@@ -162,6 +169,42 @@
             <p style="font-size: 1.1em; font-weight: bold;">
                 ❌ Kommandot <code>gcloud ai gemini</code> existerar inte och fungerar inte som dokumenterat.
             </p>
+        </div>
+
+        <div class="success-box">
+            <h3 style="color: #28a745; margin-top: 0;">✅ Via npm (@google/gemini-cli) - FUNGERAR! 🎉</h3>
+            <p><strong>Status: FUNGERAR PERFEKT</strong></p>
+            <p>Efter omfattande felsökning upptäcktes att det finns en <strong>annan</strong> Gemini CLI som installeras via npm!</p>
+            
+            <p><strong>Installation:</strong></p>
+            <div style="background-color: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; font-family: 'Consolas', monospace; margin: 10px 0;">
+                npm install -g @google/gemini-cli<br>
+                gemini
+            </div>
+            
+            <p><strong>Resultat:</strong> Det fungerade direkt! Ingen Google Cloud SDK, inga API-aktiveringar, ingen billing - bara ett npm-kommando.</p>
+            
+            <p><strong>Officiell sida:</strong> <a href="https://geminicli.com/" target="_blank" style="color: #28a745; font-weight: bold;">https://geminicli.com/</a></p>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <img src="Google_CLI_funkar_plotsligt.jpg" alt="Gemini CLI via npm fungerar!" style="max-width: 100%; border: 2px solid #28a745; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <p style="font-style: italic; color: #7f8c8d; margin-top: 15px;">
+                🎉 <strong>Genombrott!</strong> Efter att ha försökt med Google Cloud SDK i flera timmar, fungerade plötsligt Gemini CLI 
+                via npm-installation. Ett kommando - och det fungerade!
+            </p>
+        </div>
+
+        <div style="background-color: #fff3cd; border-left: 6px solid #ffc107; padding: 20px; margin: 20px 0; border-radius: 5px;">
+            <h3 style="color: #856404; margin-top: 0;">💡 Den Viktiga Lärdomen</h3>
+            <p><strong>Det finns TVÅ olika sätt att använda Gemini CLI:</strong></p>
+            <ol>
+                <li><strong>Via Google Cloud SDK (<code>gcloud ai gemini</code>)</strong> - Fungerar INTE, trots dokumentation</li>
+                <li><strong>Via npm (<code>@google/gemini-cli</code>)</strong> - Fungerar perfekt! ✅</li>
+            </ol>
+            <p><strong>Slutsats:</strong> Om du vill använda Gemini CLI, använd npm-versionen från 
+            <a href="https://geminicli.com/" target="_blank" style="color: #856404; font-weight: bold;">geminicli.com</a>, 
+            inte Google Cloud SDK!</p>
         </div>
 
         <h2>✅ Claude Code - Resultatet</h2>
@@ -190,59 +233,77 @@
             </p>
         </div>
 
-        <h2>📊 Jämförelse</h2>
+        <h2>📊 Jämförelse av Tre Alternativ</h2>
         <table class="comparison-table">
             <tr>
                 <th>Aspekt</th>
-                <th>Gemini CLI</th>
+                <th>Gemini CLI<br>(via gcloud)</th>
+                <th>Gemini CLI<br>(via npm)</th>
                 <th>Claude Code</th>
             </tr>
             <tr>
                 <td><strong>Installation</strong></td>
-                <td class="fail">❌ Komplicerad, flera timmar</td>
+                <td class="fail">❌ Flera timmar med GCloud SDK</td>
+                <td class="success">✅ Ett npm-kommando, 2 min</td>
                 <td class="success">✅ Ett kommando, 2 minuter</td>
             </tr>
             <tr>
                 <td><strong>Konfiguration</strong></td>
                 <td class="fail">❌ Projekt, API:er, billing</td>
+                <td class="success">✅ Ingen (kräver API-nyckel)</td>
                 <td class="success">✅ Minimal</td>
             </tr>
             <tr>
                 <td><strong>Dokumentation</strong></td>
                 <td class="fail">❌ Föråldrad, fungerar inte</td>
+                <td class="success">✅ Tydlig på geminicli.com</td>
                 <td class="success">✅ Uppdaterad, korrekt</td>
             </tr>
             <tr>
                 <td><strong>Slutresultat</strong></td>
                 <td class="fail">❌ FUNGERAR INTE</td>
+                <td class="success">✅ FUNGERAR!</td>
                 <td class="success">✅ FUNGERAR PERFEKT</td>
             </tr>
             <tr>
-                <td><strong>Tid investerad</strong></td>
-                <td class="fail">❌ Flera timmar, bortkastade</td>
-                <td class="success">✅ 10 minuter, produktiv</td>
+                <td><strong>Tid till produktivitet</strong></td>
+                <td class="fail">❌ Flera timmar, misslyckades</td>
+                <td class="success">✅ 5 minuter</td>
+                <td class="success">✅ 10 minuter</td>
             </tr>
             <tr>
                 <td><strong>Rekommendation</strong></td>
                 <td class="fail">❌ Använd INTE</td>
+                <td class="success">✅ FUNGERAR BRA</td>
                 <td class="success">✅ STARKT REKOMMENDERAD</td>
             </tr>
         </table>
 
+        <div style="background-color: #d1ecf1; border-left: 4px solid #17a2b8; padding: 20px; margin: 20px 0; border-radius: 5px;">
+            <h3 style="color: #0c5460; margin-top: 0;">📝 Slutsats från Jämförelsen</h3>
+            <p><strong>Båda npm-baserade CLI-verktygen fungerar utmärkt:</strong></p>
+            <ul style="color: #0c5460;">
+                <li><strong>Gemini CLI (npm):</strong> Bra för Google's AI-modeller, kräver API-nyckel</li>
+                <li><strong>Claude Code:</strong> Exceptionell utvecklarupplevelse med bred funktionalitet</li>
+            </ul>
+            <p><strong>Det som INTE fungerar:</strong> Google Cloud SDK-metoden (<code>gcloud ai gemini</code>)</p>
+        </div>
+
         <h2>📚 Dokumentation</h2>
         <p>Detta repository innehåller:</p>
         <ul>
-            <li><strong>Gemini_CLI.html</strong> - Fullständig dokumentation av Gemini CLI-försöket med alla felsökningssteg</li>
+            <li><strong>Gemini_CLI.html</strong> - Fullständig dokumentation av Gemini CLI-försöket via Google Cloud SDK (misslyckades) och upptäckten av npm-versionen (fungerar!)</li>
             <li><strong>init_Git.html</strong> - Guide för att initiera Git i nya projekt</li>
             <li><strong>push_to_GitHub.html</strong> - Guide för att pusha till GitHub med felsökning</li>
-            <li><strong>Screenshots</strong> - Bilder som dokumenterar hela processen</li>
+            <li><strong>Screenshots</strong> - Bilder som dokumenterar hela processen, inklusive genombrott med npm-versionen</li>
             <li><strong>PowerShell-scripts</strong> - Hjälpscript för PATH-konfiguration</li>
         </ul>
 
         <div style="text-align: center; margin: 40px 0;">
             <a href="Gemini_CLI.html" class="link-button">📖 Fullständig Dokumentation</a>
             <a href="push_to_GitHub.html" class="link-button">🔧 Push till GitHub Guide</a>
-            <a href="https://claude.com/product/claude-code" class="link-button" target="_blank">🚀 Prova Claude Code</a>
+            <a href="https://geminicli.com/" class="link-button" target="_blank" style="background-color: #4285f4;">✨ Gemini CLI (npm)</a>
+            <a href="https://claude.com/product/claude-code" class="link-button" target="_blank">🚀 Claude Code</a>
         </div>
 
         <div style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, #24292e 0%, #1a1d21 100%); border-radius: 10px;">
@@ -261,14 +322,22 @@
         </div>
 
         <div class="summary">
-            <h2 style="color: white; border: none; margin-top: 0;">🎯 Slutsats</h2>
+            <h2 style="color: white; border: none; margin-top: 0;">🎯 Uppdaterad Slutsats</h2>
             <p style="font-size: 1.2em; font-weight: bold;">
-                Hoppa över Gemini CLI.<br>
-                Använd Claude Code istället!
+                ✅ Båda npm-baserade CLI-verktygen fungerar utmärkt!<br>
+                ❌ Undvik Google Cloud SDK-metoden (gcloud ai gemini)
             </p>
-            <p>
+            <p style="font-size: 1.1em; margin-top: 20px;">
+                <strong>Rekommendationer:</strong>
+            </p>
+            <ul style="text-align: left; max-width: 600px; margin: 20px auto;">
+                <li>🟢 <strong>Gemini CLI:</strong> Installera via npm från <a href="https://geminicli.com/" style="color: white; text-decoration: underline;">geminicli.com</a></li>
+                <li>🟢 <strong>Claude Code:</strong> Installera från <a href="https://claude.com/product/claude-code" style="color: white; text-decoration: underline;">claude.com</a></li>
+                <li>🔴 <strong>INTE via gcloud:</strong> Google Cloud SDK-metoden fungerar inte</li>
+            </ul>
+            <p style="margin-top: 20px;">
                 Dokumentationen sparas som referens för andra som stöter på samma problem,<br>
-                och som bevis på att Claude Code är det överlägsna alternativet.
+                och visar vikten av att testa olika installationsmetoder när något inte fungerar.
             </p>
         </div>
 
