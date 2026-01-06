@@ -1,5 +1,23 @@
 # Claude Code - Project Configuration
 
+---
+## 🔴🔴🔴 CRITICAL: READ THIS FIRST BEFORE EVERY RESPONSE 🔴🔴🔴
+
+**MANDATORY SOURCE REQUIREMENT - NO EXCEPTIONS:**
+
+**EVERY single response containing factual information MUST include:**
+1. **Web search** BEFORE responding
+2. **Minimum 2-3 sources** cited in Harvard format
+3. **A "Källor" section** at the end with full citations
+4. **Clickable links** to all sources
+
+**If you CANNOT provide sources, DO NOT provide factual information.**
+**State instead: "Jag behöver söka efter källor för att verifiera denna information."**
+
+**This applies to ALL factual responses, regardless of how the user asks the question.**
+
+---
+
 ## Project Overview
 
 **Gemini CLI vs Claude Code Documentation Project**
