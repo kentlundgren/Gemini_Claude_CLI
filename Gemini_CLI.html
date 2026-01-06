@@ -165,6 +165,30 @@
             color: #3498db;
             font-weight: bold;
         }
+        .copy-btn {
+            background-color: #9b59b6;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .copy-btn:hover {
+            background-color: #8e44ad;
+            transform: scale(1.05);
+        }
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+        .copy-btn.copied {
+            background-color: #28a745;
+        }
+        .prompt-text {
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -388,9 +412,10 @@
         <div class="prompt-title">📝 Prompt 1: Kodgenerering (Python Script)</div>
         <p><strong>Använd när:</strong> Du vill skapa ny kod från grunden</p>
         <p><strong>Prompt:</strong></p>
-        <div class="code-block">
+        <div class="code-block prompt-text" id="prompt1">
             <span class="prompt-example">Skapa ett Python-script som läser en CSV-fil med försäljningsdata (kolumner: datum, produkt, antal, pris) och genererar en rapport med totala intäkter per produkt. Inkludera felhantering för saknade filer och visualisera resultatet med matplotlib.</span>
         </div>
+        <button class="copy-btn" id="copyBtn1" onclick="copyPrompt('prompt1', 'copyBtn1')">📋 Kopiera Prompt</button>
         <p><strong>Detta visar:</strong></p>
         <ul>
             <li>✅ Kodgenerering från beskrivning</li>
@@ -404,7 +429,7 @@
         <div class="prompt-title">🔍 Prompt 2: Kodgranskning och Förbättring</div>
         <p><strong>Använd när:</strong> Du vill förbättra eller debugga befintlig kod</p>
         <p><strong>Prompt:</strong></p>
-        <div class="code-block">
+        <div class="code-block prompt-text" id="prompt2">
             <span class="prompt-example">Granska följande JavaScript-funktion och föreslå förbättringar för prestanda, läsbarhet och säkerhet:<br><br>
 
 function processUsers(users) {<br>
@@ -419,6 +444,7 @@ function processUsers(users) {<br>
 
 Förklara varje förbättring du föreslår.</span>
         </div>
+        <button class="copy-btn" id="copyBtn2" onclick="copyPrompt('prompt2', 'copyBtn2')">📋 Kopiera Prompt</button>
         <p><strong>Detta visar:</strong></p>
         <ul>
             <li>✅ Kodgranskning och analys</li>
@@ -432,7 +458,7 @@ Förklara varje förbättring du föreslår.</span>
         <div class="prompt-title">📚 Prompt 3: Konceptförklaring som HTML-Dokument</div>
         <p><strong>Använd när:</strong> Du vill lära dig något nytt och få det som ett HTML-dokument att spara</p>
         <p><strong>Prompt (Uppdaterad för HTML-output):</strong></p>
-        <div class="code-block">
+        <div class="code-block prompt-text" id="prompt3">
             <span class="prompt-example">Skapa ett komplett, vackert formaterat HTML-dokument (git_merge_rebase.html) som förklarar skillnaden mellan git merge och git rebase. Dokumentet ska innehålla:<br><br>
 
 1. En tydlig introduktion<br>
@@ -445,6 +471,7 @@ Förklara varje förbättring du föreslår.</span>
 
 Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett HTML-struktur från &lt;!DOCTYPE html&gt; till &lt;/html&gt;.</span>
         </div>
+        <button class="copy-btn" id="copyBtn3" onclick="copyPrompt('prompt3', 'copyBtn3')">📋 Kopiera Prompt</button>
         <p><strong>Detta visar:</strong></p>
         <ul>
             <li>✅ HTML-dokumentgenerering</li>
@@ -463,6 +490,76 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
                 <li>Öppna i webbläsare och njut av ditt nya dokument! 🎉</li>
             </ol>
         </div>
+    </div>
+
+    <h2>📺 Hantera Lång Output i Terminalen - VIKTIGT!</h2>
+
+    <div class="warning">
+        <h3>⚠️ Vanligt Problem: "Jag ser bara slutet av svaret!"</h3>
+        <p>När Gemini genererar mycket text (särskilt HTML-dokument), kommer terminalen bara visa slutet. 
+        Du kan inte se början!</p>
+    </div>
+
+    <div class="step">
+        <h3>✅ Lösningar för att Se Hela Outputen:</h3>
+
+        <h4>Metod 1: Scrolla i Terminalen (Enklast!)</h4>
+        <p>Du kan scrolla uppåt i terminalen för att se början av svaret:</p>
+        <ul>
+            <li><strong>🖱️ Mus:</strong> Använd musens scrollhjul uppåt</li>
+            <li><strong>⌨️ Tangentbord:</strong> 
+                <ul>
+                    <li>Windows/Linux: <code>Shift + Page Up</code> (scrolla upp), <code>Shift + Page Down</code> (scrolla ner)</li>
+                    <li>Mac: <code>Fn + Shift + ↑</code></li>
+                </ul>
+            </li>
+            <li><strong>📜 Tips:</strong> Scrolla tills du ser början av HTML-koden (<code>&lt;!DOCTYPE html&gt;</code>)</li>
+        </ul>
+
+        <h4>Metod 2: Spara Output Direkt till Fil (Rekommenderas!)</h4>
+        <p>Bästa metoden - spara svaret direkt till en fil utan att behöva kopiera manuellt:</p>
+        <div class="code-block">
+            <span class="command"># Kör Gemini och spara output direkt till fil</span><br>
+            gcloud ai gemini generate "Din prompt här" > output.html<br><br>
+
+            <span class="command"># Exempel för Prompt 3:</span><br>
+            gcloud ai gemini generate "Skapa ett komplett, vackert formaterat HTML-dokument..." > git_merge_rebase.html
+        </div>
+
+        <div class="success">
+            <strong>✅ Fördelar med denna metod:</strong>
+            <ul>
+                <li>Ingen manuell kopiering behövs</li>
+                <li>Du missar ingen del av outputen</li>
+                <li>Filen skapas automatiskt</li>
+                <li>Perfekt för långa svar (HTML-dokument)</li>
+            </ul>
+        </div>
+
+        <h4>Metod 3: Öka Terminal Buffer</h4>
+        <p>För att terminalen ska kunna visa mer text:</p>
+        <ol>
+            <li>Högerklicka på terminal-tabben i Cursor</li>
+            <li>Välj "Settings" eller "Properties"</li>
+            <li>Leta efter "Scrollback" eller "Buffer size"</li>
+            <li>Öka värdet till 10000 eller högre</li>
+        </ol>
+
+        <h4>Metod 4: Använd Interactive Session Smart</h4>
+        <p>I interaktiv session (<code>gcloud ai gemini chat</code>) kan du be Gemini att dela upp svaret:</p>
+        <div class="code-block">
+            <span class="output">Gemini></span> <span class="prompt-example">Skapa ett HTML-dokument om git merge vs rebase. Dela upp svaret i flera delar så jag kan följa med.</span>
+        </div>
+    </div>
+
+    <div class="info">
+        <h3>💡 Best Practice för Långa Promter (som Prompt 3):</h3>
+        <ol>
+            <li>✅ <strong>Använd kopieringsknappen</strong> i detta dokument för att kopiera prompten exakt</li>
+            <li>✅ <strong>Använd output-omdirigering</strong> (<code>> filnamn.html</code>) för att spara direkt till fil</li>
+            <li>✅ <strong>Scrolla i terminalen</strong> om du glömt spara till fil</li>
+            <li>✅ <strong>Testa med kortare prompter först</strong> för att lära dig verktyget</li>
+        </ol>
     </div>
 
     <h2>🎨 Användningsområden för Gemini CLI</h2>
@@ -687,8 +784,39 @@ Använd svensk text och gör det pedagogiskt och lättläst. Inkludera komplett 
     <div style="margin-top: 50px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; border-radius: 10px;">
         <p><strong>📝 Dokumentet skapad av Kent Lundgren</strong></p>
         <p>Skapad: 2025-01-06</p>
+        <p>Uppdaterad: 2025-01-06 - Lade till kopieringsknappar och instruktioner för att hantera lång output</p>
         <p><em>Lycka till med Gemini CLI - Din AI-assistent i terminalen! 🚀</em></p>
     </div>
+
+    <script>
+        // Funktion för att kopiera text till clipboard
+        function copyPrompt(promptId, buttonId) {
+            const promptElement = document.getElementById(promptId);
+            const button = document.getElementById(buttonId);
+            
+            // Hämta texten (ta bort HTML-formatering)
+            const text = promptElement.innerText;
+            
+            // Kopiera till clipboard
+            navigator.clipboard.writeText(text).then(function() {
+                // Bekräfta att det kopierades
+                button.textContent = '✅ Kopierat!';
+                button.classList.add('copied');
+                
+                // Återställ knappen efter 2 sekunder
+                setTimeout(function() {
+                    button.textContent = '📋 Kopiera Prompt';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Kunde inte kopiera text: ', err);
+                button.textContent = '❌ Fel vid kopiering';
+                setTimeout(function() {
+                    button.textContent = '📋 Kopiera Prompt';
+                }, 2000);
+            });
+        }
+    </script>
 
 </body>
 </html>
