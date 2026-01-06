@@ -49,6 +49,33 @@ A comprehensive documentation website that serves as a reference for developers 
 - Conversational yet professional tone
 - Extensive troubleshooting sections
 
+### Sources and Fact-Checking
+**All factual claims must be verified and properly cited**
+
+#### Source Priorities
+1. **Swedish Topics:** Prefer Swedish Wikipedia (sv.wikipedia.org)
+2. **Technical Documentation:** Official sites (geminicli.com, claude.com, microsoft.com)
+3. **Community Resources:** GitHub, StackOverflow, official forums
+
+#### Citation Format
+- Use **Harvard referencing style** for all sources
+- Include clickable hyperlinks to all references
+- Verify all links are functional before publishing
+- Document access dates for online sources
+
+#### Fact-Checking Protocol
+1. Cross-reference with at least 2 independent sources
+2. Use web search tools to verify claims
+3. Correct errors immediately when discovered
+4. Document source URLs and access dates
+5. Admit uncertainty if sources conflict
+
+#### Example Reference
+```
+Wikipedia (2024). Frans G Bengtsson. [online] Available at: 
+https://sv.wikipedia.org/wiki/Frans_G._Bengtsson [Accessed: 6 Jan 2026]
+```
+
 ## Code Standards
 
 ### HTML

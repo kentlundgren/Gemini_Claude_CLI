@@ -184,6 +184,8 @@ Test_BS/<br>
                 <li>Hanterar HTML-dokumentation</li>
                 <li>Lägger till screenshots och visuella hjälpmedel</li>
                 <li>Skriver troubleshooting-sektioner</li>
+                <li><strong>Verifierar alla fakta och citerar källor i Harvard-format</strong></li>
+                <li><strong>Kontrollerar att alla länkar är funktionella</strong></li>
             </ul>
 
             <h3>Expertis:</h3>
@@ -192,13 +194,19 @@ Test_BS/<br>
                 <li>HTML/CSS för dokumentationssidor</li>
                 <li>Pedagogisk design</li>
                 <li>Visuell dokumentation</li>
+                <li><strong>Källkritik och faktakontroll</strong></li>
+                <li><strong>Harvard-referensstil</strong></li>
             </ul>
 
             <h3>Exempel på användning:</h3>
             <div class="code-block">
 "Som documentation agent, uppdatera index.html med information om CLAUDE.md"<br>
 <br>
-"Som documentation agent, skapa en ny guide för Git-konfiguration"
+"Som documentation agent, skapa en ny guide för Git-konfiguration"<br>
+<br>
+"Som documentation agent, verifiera fakta om Frans G Bengtsson med svenska Wikipedia"<br>
+<br>
+"Som documentation agent, lägg till källhänvisningar i Harvard-format"
             </div>
         </div>
 
@@ -351,10 +359,11 @@ Frans G. Bengtsson var en svensk författare, essäist och översättare, mest k
 sin historiska äventyrsroman "Röde Orm" (publicerad i två delar 1941 och 1945).<br>
 <br>
 <strong>Liv och karriär:</strong><br>
-- Född i Tossene, Bohuslän<br>
-- Studerade i Lund och blev filosof<br>
-- Arbetade som bibliotekarie och kritiker<br>
+- Född i Tossene, Bohuslän 1894<br>
+- Studerade i Lund (filosofi och litteraturhistoria)<br>
+- Arbetade som författare, essäist, översättare och kritiker<br>
 - Känd för sin eleganta prosa och ironiska stil<br>
+- Avled 1954, hans privata bibliotek finns bevarat i Gullspång<br>
 <br>
 <strong>Viktiga verk:</strong><br>
 - "Röde Orm" - hans mest berömda verk<br>
@@ -639,6 +648,118 @@ Gemini CLI vs Claude Code Documentation Project<br>
 See .claude/agents/ for specialized configurations
         </div>
 
+        <h2>📚 Källor och Faktakontroll</h2>
+
+        <div class="warning-box">
+            <h3 style="color: #856404; margin-top: 0;">⚠️ VIKTIGT: Alla fakta måste verifieras</h3>
+            <p>För att säkerställa trovärdighet och korrekthet har projektet strikta regler för källor och referenser.</p>
+        </div>
+
+        <h3>🔍 Källkrav och Verifiering</h3>
+        <div class="info-box">
+            <p><strong>Documentation Agent är konfigurerad att:</strong></p>
+            <ol>
+                <li><strong>Verifiera alla fakta</strong> innan de dokumenteras</li>
+                <li><strong>Använda trovärdiga källor:</strong>
+                    <ul>
+                        <li>📖 Svenska Wikipedia (sv.wikipedia.org) för svenska ämnen</li>
+                        <li>🌐 Officiell dokumentation (geminicli.com, claude.com, etc.)</li>
+                        <li>🔬 Etablerade tekniska källor</li>
+                    </ul>
+                </li>
+                <li><strong>Kontrollera länkar</strong> innan publicering</li>
+                <li><strong>Citera i Harvard-format</strong></li>
+                <li><strong>Korrigera omedelbart</strong> när fel upptäcks</li>
+            </ol>
+        </div>
+
+        <h3>📖 Harvard Referensstil</h3>
+        <table>
+            <tr>
+                <th>Typ</th>
+                <th>Format</th>
+                <th>Exempel</th>
+            </tr>
+            <tr>
+                <td><strong>I text</strong></td>
+                <td>(Författare, År)</td>
+                <td>Frans G Bengtsson var författare (Wikipedia, 2024)</td>
+            </tr>
+            <tr>
+                <td><strong>Webbsida</strong></td>
+                <td>Organisation (År). Titel. [online] Available at: URL [Accessed: Datum]</td>
+                <td>Wikipedia (2024). Frans G Bengtsson. [online] Available at: https://sv.wikipedia.org/wiki/Frans_G._Bengtsson [Accessed: 6 Jan 2026]</td>
+            </tr>
+            <tr>
+                <td><strong>Bok</strong></td>
+                <td>Författare, A. (År). Titel. Utgåva. Förlag.</td>
+                <td>Nordin, S. (2016). Frans G Bengtsson: En biografi. Bokförlaget Atlas.</td>
+            </tr>
+        </table>
+
+        <h3>✅ Faktakontroll-process</h3>
+        <div class="success-box">
+            <p><strong>Steg-för-steg process som Documentation Agent följer:</strong></p>
+            <ol>
+                <li>🔍 <strong>Initial Research:</strong> Använd webbsökning för faktainformation</li>
+                <li>✔️ <strong>Korsverifiering:</strong> Kontrollera mot minst 2 oberoende källor</li>
+                <li>📝 <strong>Dokumentera Källa:</strong> Notera URL och åtkomstdatum</li>
+                <li>🔗 <strong>Länka:</strong> Skapa hyperlänkar till källor i dokumentationen</li>
+                <li>🔄 <strong>Uppdatera:</strong> Kontrollera länkar regelbundet</li>
+                <li>⚠️ <strong>Vid Osäkerhet:</strong> Erkänn om källor är motstridiga</li>
+            </ol>
+        </div>
+
+        <h3>💡 Exempel: Frans G Bengtsson-fallet</h3>
+        <div class="warning-box">
+            <h4 style="color: #856404; margin-top: 0;">Verkligt Exempel från Detta Projekt</h4>
+            <p><strong>Ursprunglig påstående:</strong> "Frans G Bengtsson arbetade som bibliotekarie"</p>
+            <p><strong>Problem:</strong> Detta var inkorrekt och osourcerat</p>
+            
+            <p><strong>Korrigeringsprocess:</strong></p>
+            <ol>
+                <li>Användaren ifrågasatte faktan och begärde källa</li>
+                <li>Webbsökning genomförd på "Frans G Bengtsson biografi karriär"</li>
+                <li>Källor kontrollerade:
+                    <ul>
+                        <li>bokon.se - "författare, poet, essäist och översättare" (ingen nämning av bibliotekarie)</li>
+                        <li>naturkartan.se - Hans privata bibliotek bevarades, men han arbetade inte som bibliotekarie</li>
+                    </ul>
+                </li>
+                <li>Korrigering gjordes omedelbart i dokumentationen</li>
+                <li>Källor dokumenterades för transparens</li>
+            </ol>
+
+            <p style="background-color: #fff; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                <strong>📚 Lärdomen:</strong> Även AI-genererad information behöver verifieras mot trovärdiga källor. 
+                Detta exempel visar vikten av källkritik och faktakontroll i all dokumentation.
+            </p>
+        </div>
+
+        <h3>🛡️ Kvalitetssäkring</h3>
+        <table>
+            <tr>
+                <th style="width: 50%; background-color: #28a745;">✅ GÖR</th>
+                <th style="width: 50%; background-color: #c62828; color: white;">❌ GÖR INTE</th>
+            </tr>
+            <tr>
+                <td>
+                    ✅ Länka till originalkällor<br>
+                    ✅ Använd svenska källor för svenska ämnen<br>
+                    ✅ Erkänn osäkerhet vid motstridiga källor<br>
+                    ✅ Korrigera fel omedelbart<br>
+                    ✅ Dokumentera åtkomstdatum
+                </td>
+                <td>
+                    ❌ Presentera overifierad information som fakta<br>
+                    ❌ Använd trasiga eller föråldrade länkar<br>
+                    ❌ Kopiera innehåll utan attribution<br>
+                    ❌ Ignorera källkritik<br>
+                    ❌ Förlita dig på en enda källa
+                </td>
+            </tr>
+        </table>
+
         <h2>💡 Best Practices</h2>
 
         <div class="success-box">
@@ -649,6 +770,9 @@ See .claude/agents/ for specialized configurations
                 <li>✅ Håll agent-konfigurationer uppdaterade med nya lärdomar</li>
                 <li>✅ Dokumentera viktiga beslut i CLAUDE.md</li>
                 <li>✅ Testa att alla agenter följer projektets standarder</li>
+                <li>✅ <strong>Verifiera alla fakta med trovärdiga källor</strong></li>
+                <li>✅ <strong>Använd Harvard-format för alla referenser</strong></li>
+                <li>✅ <strong>Kontrollera att alla länkar fungerar</strong></li>
             </ul>
         </div>
 
@@ -660,6 +784,90 @@ See .claude/agents/ for specialized configurations
                 <li>❌ Glömma uppdatera agenter när projektet utvecklas</li>
                 <li>❌ Motstridiga instruktioner i olika agent-filer</li>
             </ul>
+        </div>
+
+        <h2>🔐 Ytterligare Kvalitetssäkring för Sanningshalt</h2>
+
+        <div class="success-box">
+            <h3 style="color: #155724; margin-top: 0;">🎯 Utökade Metoder för Att Säkerställa Korrekthet</h3>
+            
+            <p><strong>Utöver källhänvisningar använder projektet följande metoder:</strong></p>
+
+            <h4>1. 🔄 Triangulering av Källor</h4>
+            <ul>
+                <li>Kräv minst <strong>2-3 oberoende källor</strong> för viktiga fakta</li>
+                <li>Prioritera primärkällor framför sekundärkällor</li>
+                <li>Jämför information mellan svenska och engelska Wikipedia för internationella ämnen</li>
+            </ul>
+
+            <h4>2. ⏰ Datumstempling och Versionshantering</h4>
+            <ul>
+                <li>Dokumentera <strong>när information verifierades</strong></li>
+                <li>Inkludera versionsnummer för teknisk dokumentation</li>
+                <li>Notera när information kan ha ändrats (t.ex. "per jan 2026")</li>
+            </ul>
+
+            <h4>3. 🔗 "Läs Mer"-sektioner</h4>
+            <ul>
+                <li>Ge läsaren flera källor för fördjupning</li>
+                <li>Länka till både svenska och engelska resurser</li>
+                <li>Inkludera både Wikipedia och officiell dokumentation</li>
+                <li>Ange vilken typ av källa (akademisk, journalistisk, officiell, etc.)</li>
+            </ul>
+
+            <h4>4. 🎓 Källkritiska Markeringar</h4>
+            <ul>
+                <li><strong>[Verifierat]</strong> - Information bekräftad av flera källor</li>
+                <li><strong>[Testat]</strong> - Information baserad på faktiska tester i projektet</li>
+                <li><strong>[Oklart]</strong> - Motstridiga källor, mer research behövs</li>
+                <li><strong>[Datum: YYYY-MM-DD]</strong> - När information verifierades</li>
+            </ul>
+
+            <h4>5. 📊 Transparens om Begränsningar</h4>
+            <ul>
+                <li>Erkänn när information är osäker eller kan vara föråldrad</li>
+                <li>Notera om källor är motstridiga</li>
+                <li>Uppmuntra läsare att verifiera kritisk information själva</li>
+                <li>Inkludera länkar för läsaren att själv kontrollera</li>
+            </ul>
+
+            <h4>6. 🧪 Praktisk Verifiering När Möjligt</h4>
+            <ul>
+                <li>För teknisk information: Testa själv om möjligt</li>
+                <li>Inkludera screenshots från faktiska tester</li>
+                <li>Dokumentera exakt vad som testades och när</li>
+                <li>Notera skillnader mellan dokumentation och verklighet</li>
+            </ul>
+
+            <h4>7. 📢 Community Feedback Loop</h4>
+            <ul>
+                <li>Uppmuntra läsare att rapportera fel via GitHub Issues</li>
+                <li>Ha en tydlig process för att korrigera fel</li>
+                <li>Dokumentera korrigeringar i Git-historiken</li>
+                <li>Tacka för och kreditera korrigeringar från communityn</li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="margin-top: 20px;">
+            <h3 style="color: #0c5460; margin-top: 0;">📖 Exempel på Fullständig Referenssektion</h3>
+            <p><strong>Så här ska en källsektion se ut i dokumentationen:</strong></p>
+            <div class="code-block">
+<strong>Källor och Vidare Läsning</strong><br>
+<br>
+<strong>Primära Källor:</strong><br>
+• Wikipedia (2024). Frans G Bengtsson. [online] [Verifierat 2026-01-06]<br>
+  Available at: https://sv.wikipedia.org/wiki/Frans_G._Bengtsson<br>
+<br>
+• Nordin, S. (2016). Frans G Bengtsson: En biografi. Bokförlaget Atlas. [Akademisk källa]<br>
+<br>
+<strong>Kompletterande Källor:</strong><br>
+• Naturkartan (2024). Frans G Bengtssons minnesbibliotek. [online] [Verifierat 2026-01-06]<br>
+  Available at: https://www.naturkartan.se/sv/frans-g-bengtssons-minnesbibliotek<br>
+<br>
+<strong>Läs Mer:</strong><br>
+• Svenska Akademien - Om Frans G Bengtsson och "Röde Orm"<br>
+• Project Runeberg - Digitaliserade verk av Frans G Bengtsson
+            </div>
         </div>
 
         <h2>🎯 Projektspecifika Regler</h2>
@@ -693,6 +901,16 @@ See .claude/agents/ for specialized configurations
                     <td><strong>Separera HTML/CSS/JS</strong></td>
                     <td>Projektstandard för tydlighet</td>
                     <td>✅ Extern CSS i &lt;style&gt;<br>❌ Inline styles överallt</td>
+                </tr>
+                <tr>
+                    <td><strong>Verifiera alla fakta</strong></td>
+                    <td>Trovärdighet och korrekthet</td>
+                    <td>✅ Korsreferera 2+ källor<br>✅ Använd Harvard-format<br>❌ Osourcerade påståenden</td>
+                </tr>
+                <tr>
+                    <td><strong>Kontrollera länkar</strong></td>
+                    <td>Säkerställ att källor är tillgängliga</td>
+                    <td>✅ Verifiera länkar före publicering<br>❌ Trasiga eller föråldrade länkar</td>
                 </tr>
             </table>
         </div>
